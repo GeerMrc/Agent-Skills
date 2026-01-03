@@ -26,21 +26,37 @@ license: MIT
 
 ### 触发模式
 
-当用户请求以下内容时激活本技能：
-- 构建Web组件、页面、应用
-- 设计/美化任何Web UI
-- 实现响应式布局
-- 创建主题系统
-- 实现无障碍访问
+**必须使用场景**：网站/Web应用开发、UI设计、组件库、设计改进、指定框架（React/Vue/Svelte等）、指定工具（Tailwind/shadcn/ui等）
+
+**关键词**："构建网站"、"创建仪表板"、"设计UI"、"让它现代/简洁"
+
+**不用于**：后端API、纯逻辑、非视觉任务
 
 ### 设计思维流程
 
 在编写代码前，按以下步骤思考：
 
 1. **理解上下文** - 用途是什么？谁使用？技术约束？
-2. **选择美学方向** - 选择大胆、独特的设计风格
+2. **选择美学方向** - 选择大胆、独特的设计风格（brutalist、retro-futuristic、luxury、playful、editorial等）
 3. **确定核心差异** - 什么是令人难忘的？
 4. **实现高质量代码** - 生产级、视觉震撼、细节精致
+
+**关键原则**：
+- 选择清晰的概念方向，精确执行
+- 大胆的极繁主义和精致的极简主义都可行
+- 关键是有意性，不是强度
+
+### 技术栈默认值
+
+**默认技术栈**（如未指定）：
+- 框架：React + TypeScript
+- 样式：Tailwind CSS
+- 主题：CSS自定义属性（light/dark模式）
+
+**支持的替代方案**：
+- 框架：Vue、Svelte、Angular、vanilla HTML/CSS
+- 样式：CSS Modules、SCSS、Styled Components、Emotion
+- 组件库：MUI、Ant Design、Chakra UI、Headless UI
 
 ---
 
@@ -81,6 +97,14 @@ license: MIT
 | [审查标准](references/quality/review-criteria.md) | 代码审查标准 |
 | [测试策略](references/quality/testing-strategy.md) | 测试方法 |
 
+### 示例文档
+
+| 文档 | 说明 |
+|------|------|
+| [组件示例](references/examples/component-examples.md) | 组件示例 |
+| [布局示例](references/examples/layout-examples.md) | 布局示例 |
+| [动画示例](references/examples/animation-examples.md) | 动画示例 |
+
 ### 框架特定
 
 | 文档 | 说明 |
@@ -90,6 +114,8 @@ license: MIT
 | [Svelte](references/by-framework/svelte.md) | Svelte最佳实践 |
 | [Angular](references/by-framework/angular.md) | Angular最佳实践 |
 | [Tailwind](references/by-framework/tailwind.md) | Tailwind配置 |
+| [CSS Modules](references/by-framework/css-modules.md) | CSS Modules指南 |
+| [Styled Components](references/by-framework/styled-components.md) | Styled Components指南 |
 
 ---
 
