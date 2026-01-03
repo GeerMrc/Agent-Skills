@@ -10,8 +10,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- Phase 4: 项目模板和测试用例
 - Phase 5: 文档完善和v2.2.0发布
+
+---
+
+## [2.1.2] - 2025-01-04 (Phase 4完成)
+
+### Added
+- ✅ 3个完整项目模板（~50个文件）
+  - React模板 (Vite+React+TypeScript)
+  - Vue模板 (Vite+Vue3+TypeScript)
+  - Vanilla模板 (Vite+TypeScript)
+- ✅ 完整测试套件
+  - test-templates.py - 模板完整性验证
+  - template-test-baseline.json - 测试基准配置
+  - 测试文档和README
+
+### Changed
+- 🔄 更新TASK.md（Phase 4完成，58%进度）
+- 🔄 版本号更新至v2.1.2
+
+### Technical Details
+- **新增模板**: 3个完整项目模板
+- **新增文件**: ~50个文件（配置、源码、文档、测试）
+- **测试状态**: 所有模板测试验证通过
 
 ---
 
@@ -108,6 +130,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 版本说明
 
 - **[Unreleased]**: 计划中的功能
+- **[2.1.2]**: Phase 4模板和测试完成
 - **[2.1.1]**: Phase 3工具脚本开发完成
 - **[2.1.0]**: Phase 2功能实现完成
 - **[2.0.0]**: 初始v2.0.0版本发布
