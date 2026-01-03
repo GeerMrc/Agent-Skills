@@ -19,9 +19,9 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [Design Token方法论](design-tokens.md) | 核心设计令牌系统，建立设计系统基础 | 200-300行 | ⏳ TODO |
-| [令牌工作流](token-workflow.md) | 令牌开发流程，从设计到代码的完整工作流 | 200-300行 | ⏳ TODO |
-| [系统化方法](systematic-approach.md) | 完整设计系统构建方法论 | 200-300行 | ⏳ TODO |
+| [Design Token方法论](design-tokens.md) | 核心设计令牌系统，建立设计系统基础 | 100行 | ⏳ IN_PROGRESS |
+| [令牌工作流](token-workflow.md) | 令牌开发流程，从设计到代码的完整工作流 | 120行 | ⏳ IN_PROGRESS |
+| [系统化方法](systematic-approach.md) | 完整设计系统构建方法论 | 140行 | ⏳ IN_PROGRESS |
 
 ---
 
