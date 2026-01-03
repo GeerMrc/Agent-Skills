@@ -1,0 +1,115 @@
+{
+  "version": "1.0.0",
+  "date": "2025-01-04",
+  "description": "Frontend Design Templates 测试基准配置",
+  "templates": {
+    "react": {
+      "name": "frontend-design-react-template",
+      "framework": "React",
+      "version": "18.2.0",
+      "build_tool": "Vite",
+      "language": "TypeScript",
+      "required_files": 13,
+      "file_list": [
+        "package.json",
+        "vite.config.ts",
+        "tsconfig.json",
+        "tsconfig.node.json",
+        "index.html",
+        ".gitignore",
+        "README.md",
+        "src/main.tsx",
+        "src/App.tsx",
+        "src/App.css",
+        "src/index.css",
+        "src/vite-env.d.ts"
+      ],
+      "expected_scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "typecheck": "tsc --noEmit"
+      },
+      "expected_dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+      }
+    },
+    "vue": {
+      "name": "frontend-design-vue-template",
+      "framework": "Vue",
+      "version": "3.4.15",
+      "build_tool": "Vite",
+      "language": "TypeScript",
+      "required_files": 11,
+      "file_list": [
+        "package.json",
+        "vite.config.ts",
+        "tsconfig.json",
+        "tsconfig.node.json",
+        "index.html",
+        ".gitignore",
+        "README.md",
+        "src/main.ts",
+        "src/App.vue",
+        "src/style.css",
+        "src/vite-env.d.ts"
+      ],
+      "expected_scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview",
+        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+      },
+      "expected_dependencies": {
+        "vue": "^3.4.15"
+      }
+    },
+    "vanilla": {
+      "name": "frontend-design-vanilla-template",
+      "framework": "Vanilla JS",
+      "version": "N/A",
+      "build_tool": "Vite",
+      "language": "TypeScript",
+      "required_files": 8,
+      "file_list": [
+        "package.json",
+        "vite.config.ts",
+        "tsconfig.json",
+        "index.html",
+        ".gitignore",
+        "README.md",
+        "src/main.ts",
+        "src/style.css"
+      ],
+      "expected_scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "lint": "eslint src --ext .ts --fix"
+      },
+      "expected_dependencies": {}
+    }
+  },
+  "validation_rules": {
+    "package_json": {
+      "required_fields": ["name", "version", "type", "scripts"],
+      "required_scripts": ["dev", "build", "preview"],
+      "type_must_be": "module"
+    },
+    "tsconfig_json": {
+      "required_options": ["target", "module", "strict"],
+      "target_minimum": "ES2020",
+      "module_must_be": "ESNext"
+    },
+    "vite_config": {
+      "must_exist": true,
+      "server_port": 3000
+    },
+    "readme": {
+      "required_sections": ["快速开始", "项目结构", "可用脚本"],
+      "must_exist": true
+    }
+  }
+}
