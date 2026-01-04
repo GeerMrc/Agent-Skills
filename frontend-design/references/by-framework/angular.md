@@ -4,7 +4,20 @@
 
 ---
 
-## 📖 核心概念
+## 📖 文档说明
+
+本文档提供 Angular 的完整最佳实践指南，涵盖组件设计、响应式系统、样式管理和性能优化等内容。
+
+**目标读者**: Angular 开发者
+**文档长度**: ~270行（主文档）
+**阅读时间**: 约15分钟
+
+**相关文档**:
+- [完整实现指南](angular-guide.md) - 依赖注入、路由、表单、测试等详细内容
+
+---
+
+## 🎯 核心概念
 
 Angular是完整的平台，提供CLI、路由、表单、HTTP客户端等一整套解决方案。最新版本引入Standalone组件和Signals。
 
@@ -17,7 +30,7 @@ Angular是完整的平台，提供CLI、路由、表单、HTTP客户端等一整
 
 ---
 
-## 🎯 组件设计
+## 🎨 组件设计
 
 ### 组件定义（Standalone）
 
@@ -118,7 +131,7 @@ export class ButtonComponent {
 
 ---
 
-## 🔨 响应式系统
+## 📡 响应式系统
 
 ### Signals（推荐）
 
@@ -392,278 +405,112 @@ export class MyComponent {
 
 ---
 
-## 📡 依赖注入
+## 📋 功能总览
 
-### 服务
+### 核心功能
+
+| 功能 | 说明 | 详细文档 |
+|------|------|----------|
+| **依赖注入** | 服务、组件注入、Injector | [查看详情](angular-guide.md#依赖注入) |
+| **路由** | 路由配置、导航、守卫 | [查看详情](angular-guide.md#路由) |
+| **表单** | 模板驱动、响应式表单 | [查看详情](angular-guide.md#表单) |
+| **无障碍** | ARIA、键盘导航 | [查看详情](angular-guide.md#无障碍最佳实践) |
+| **测试** | 单元测试、集成测试 | [查看详情](angular-guide.md#测试) |
+
+---
+
+## 📋 检查清单
+
+### 组件设计
+
+- [ ] 使用 Standalone 组件
+- [ ] 使用 signal input/output
+- [ ] 描述性组件命名
+- [ ] OnPush 变更检测
+
+### 响应式系统
+
+- [ ] 优先使用 Signals
+- [ ] 正确使用 computed
+- [ ] 避免 effect 滥用
+- [ ] RxJS 订阅清理
+
+### 性能优化
+
+- [ ] OnPush 变更检测
+- [ ] 纯管道优化
+- [ ] 异步管道自动订阅
+- [ ] 路由懒加载
+
+### 样式管理
+
+- [ ] 合理选择 View Encapsulation
+- [ ] 使用样式绑定
+- [ ] 避免过度使用 ::ng-deep
+
+---
+
+## 💡 最佳实践总结
+
+### 1. 组件化
+
+每个组件职责单一，可复用性强
 
 ```typescript
-@Injectable({ providedIn: 'root' })
-export class ApiService {
-  constructor(private http: HttpClient) {}
-
-  getData(): Observable<Data[]> {
-    return this.http.get<Data[]>('/api/data')
-  }
-}
+// ✅ 好的做法
+@Component({
+  selector: 'app-user-card',
+  standalone: true
+})
+export class UserCardComponent {}
 ```
 
-### 组件注入
+### 2. 响应式优先
+
+优先使用 Signals，而非 RxJS
+
+```typescript
+// ✅ 使用 Signals
+readonly count = signal(0)
+readonly doubleCount = computed(() => count() * 2)
+
+// ❌ 避免：过度使用 RxJS
+count$ = new BehaviorSubject(0)
+```
+
+### 3. 性能优先
+
+使用 OnPush 和懒加载
 
 ```typescript
 @Component({
-  selector: 'app-users',
-  // ...
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsersComponent {
-  constructor(private apiService: ApiService) {}
+export class ItemComponent {}
+```
 
-  ngOnInit(): void {
-    this.apiService.getData().subscribe(data => {
-      this.users = data
-    })
-  }
+### 4. 类型安全
+
+充分利用 TypeScript
+
+```typescript
+interface User {
+  name: string
+  age: number
 }
-```
 
-### Injector
-
-```typescript
-// 手动注入
-const injector = Injector.create({
-  providers: [
-    { provide: ApiService, useClass: ApiService }
-  ]
-})
-
-const apiService = injector.get(ApiService)
+readonly user = input.required<User>()
 ```
 
 ---
 
-## 🛣️ 路由（Angular Router）
+## 🔗 相关文档
 
-### 路由配置
-
-```typescript
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'users/:id',
-    component: UserComponent,
-    // 路由守卫
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.routes')
-      .then(m => m.ADMIN_ROUTES)
-  }
-]
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}
-```
-
-### 路由导航
-
-```typescript
-@Component({ /* ... */ })
-export class MyComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  // 编程式导航
-  goToUsers(): void {
-    this.router.navigate(['/users'])
-  }
-
-  // 路由参数
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const id = params['id']
-    })
-
-    // 或使用signal
-    const id = this.route.paramMap.pipe(
-      map(params => params.get('id'))
-    )
-  }
-}
-```
-
-### 路由守卫
-
-```typescript
-@Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService) {}
-
-  canActivate(): Observable<boolean> {
-    return this.authService.isAuthenticated$
-  }
-}
-```
-
----
-
-## 📝 表单
-
-### 模板驱动表单
-
-```html
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-  <input
-    name="username"
-    ngModel
-    required
-    minlength="3"
-    #username="ngModel"
-  />
-
-  @if (username.invalid && username.touched) {
-    <small>Name is required</small>
-  }
-
-  <button type="submit" [disabled]="form.invalid">Submit</button>
-</form>
-```
-
-### 响应式表单
-
-```typescript
-@Component({
-  selector: 'app-form',
-  template: `
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <input formControlName="username" />
-
-      @if (form.get('username')?.hasError('required')) {
-        <small>Name is required</small>
-      }
-
-      <button type="submit" [disabled]="form.invalid">Submit</button>
-    </form>
-  `
-})
-export class FormComponent {
-  form = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.email]]
-  })
-
-  constructor(private fb: FormBuilder) {}
-
-  onSubmit(): void {
-    if (this.form.valid) {
-      console.log(this.form.value)
-    }
-  }
-}
-```
-
----
-
-## ♿ 无障碍最佳实践
-
-### 语义化HTML
-
-```html
-<!-- ✅ 好的做法：语义化元素 -->
-<nav>
-  <ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/about">About</a></li>
-  </ul>
-</nav>
-
-<!-- ❌ 避免：纯div -->
-<div class="nav" (click)="goHome()">Home</div>
-```
-
-### ARIA属性
-
-```html
-<button
-  [attr.aria-pressed]="isPressed()"
-  [attr.aria-expanded]="isExpanded()"
-  (click)="toggle()"
->
-  Toggle
-</button>
-
-<div
-  role="status"
-  [attr.aria-busy]="isLoading()"
-  aria-live="polite"
->
-  @if (isLoading()) {
-    Loading...
-  } @else {
-    Done
-  }
-</div>
-```
-
-### 键盘导航
-
-```html
-<div
-  role="button"
-  tabindex="0"
-  (click)="handleClick()"
-  (keydown.enter)="handleClick()"
-  (keydown.space)="handleClick()"
->
-  Click me or press Enter/Space
-</div>
-```
-
----
-
-## 🧪 测试
-
-### 单元测试（Jest）
-
-```typescript
-import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { CounterComponent } from './counter.component'
-
-describe('CounterComponent', () => {
-  let component: CounterComponent
-  let fixture: ComponentFixture<CounterComponent>
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [CounterComponent]
-    })
-    fixture = TestBed.createComponent(CounterComponent)
-    component = fixture.componentInstance
-  })
-
-  it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-
-  it('should increment count', () => {
-    component.increment()
-    expect(component.localCount()).toBe(1)
-  })
-})
-```
-
----
-
-## 📚 相关文档
-
-- [React](./react.md) - React最佳实践
-- [Vue](./vue.md) - Vue最佳实践
-- [Svelte](./svelte.md) - Svelte最佳实践
-- [组件状态覆盖](../implementation/component-states.md) - 组件状态管理
+- [完整实现指南](angular-guide.md) - 依赖注入、路由、表单、测试
+- [React最佳实践](./react.md)
+- [Vue最佳实践](./vue.md)
+- [Svelte最佳实践](./svelte.md)
+- [组件状态覆盖](../implementation/component-states.md)
 
 ---
 
@@ -675,6 +522,6 @@ describe('CounterComponent', () => {
 
 ---
 
-> **状态**: ✅ DONE
-> **最后更新**: 2025-01-03
-> **维护者**: 项目团队
+> **文档版本**: v2.0
+> **最后更新**: 2026-01-05
+> **维护者**: Frontend Design Agent Skills Team

@@ -28,7 +28,8 @@
 | [React](react.md) | React最佳实践，Hooks模式，组件设计 | 655行 | ✅ DONE |
 | [Vue](vue.md) | Vue最佳实践，Composition API，组件设计 | 668行 | ✅ DONE |
 | [Svelte](svelte.md) | Svelte最佳实践，响应式声明，组件设计 | 644行 | ✅ DONE |
-| [Angular](angular.md) | Angular最佳实践，组件设计，依赖注入 | 680行 | ✅ DONE |
+| [Angular](angular.md) | Angular最佳实践，组件设计，依赖注入 | 527行 | ✅ DONE |
+| └─ [完整实现指南](angular-guide.md) | 依赖注入、路由、表单、测试 | 620行 | ✅ DONE |
 | [Tailwind](tailwind.md) | Tailwind配置，自定义主题，最佳实践 | 649行 | ✅ DONE |
 | [CSS Modules](css-modules.md) | CSS Modules指南，命名规范，最佳实践 | 603行 | ✅ DONE |
 | [Styled Components](styled-components.md) | Styled Components总览（主文档，1份子文档） | 294行 | ✅ DONE |
