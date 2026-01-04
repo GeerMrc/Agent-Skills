@@ -6,7 +6,7 @@ license: MIT
 
 # Frontend Design Agent Skills
 
-> 📋 **版本**: v2.2.0
+> 📋 **版本**: v0.1.1（首个稳定版）
 > 🎯 **目标**: 符合Agent Skills最佳实践，功能超越GLM原版
 
 ---
@@ -190,4 +190,4 @@ license: MIT
 
 ---
 
-> **版本**: v2.0.0 | **状态**: 🚀 Active Development
+> **版本**: v0.1.1 | **状态**: ✅ 稳定发布 |
