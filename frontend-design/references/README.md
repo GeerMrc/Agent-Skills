@@ -45,7 +45,9 @@
 | └─ [交互状态详解](implementation/component-states-interactive.md) | Default/Hover/Active/Focus | 310行 | ✅ DONE |
 | └─ [功能状态详解](implementation/component-states-functional.md) | 功能状态总览（主文档） | 252行 | ✅ DONE |
 | └─ [Disabled状态](implementation/component-states-disabled.md) | 禁用状态详解 | 405行 | ✅ DONE |
-| └─ [Loading状态](implementation/component-states-loading.md) | 加载状态详解 | 708行 | ✅ DONE |
+| └─ [Loading状态](implementation/component-states-loading.md) | 加载状态总览（主文档，3份子文档） | 240行 | ✅ DONE |
+| └─ [Loading视觉与交互](implementation/component-states-loading-visual.md) | 视觉设计、交互行为、无障碍 | 357行 | ✅ DONE |
+| └─ [Loading加载模式](implementation/component-states-loading-patterns.md) | 4种加载模式完整实现 | 650行 | ✅ DONE |
 | └─ [Empty & Error状态](implementation/component-states-empty-error.md) | 空/错误状态详解 | 661行 | ✅ DONE |
 | [无障碍指南](implementation/accessibility.md) | WCAG AA标准 | 280行 | ✅ DONE |
 | [响应式设计](implementation/responsive-design.md) | 移动优先 | 290行 | ✅ DONE |

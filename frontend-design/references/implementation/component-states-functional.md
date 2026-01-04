@@ -50,7 +50,7 @@
 - 异步数据加载中
 - 文件上传/下载进行中
 
-**详细文档**: [Loading状态详解](./component-states-loading.md)
+**详细文档**: [Loading状态详解](./component-states-loading.md) （主文档，包含视觉设计与加载模式子文档）
 
 ### 3. Empty（空状态）
 
@@ -228,7 +228,7 @@ function SearchInput({ query, results, searching }) {
 
 ### 详细状态文档
 - [Disabled状态详解](./component-states-disabled.md) - 禁用状态完整规范（~250行）
-- [Loading状态详解](./component-states-loading.md) - 加载状态完整规范（~280行）
+- [Loading状态详解](./component-states-loading.md) - 加载状态总览（含视觉与模式子文档，共~1247行）
 - [Empty & Error状态详解](./component-states-empty-error.md) - 空/错误状态完整规范（~350行）
 
 ### 相关文档
