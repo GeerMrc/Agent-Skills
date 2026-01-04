@@ -75,8 +75,8 @@ license: MIT
 | 文档 | 说明 |
 |------|------|
 | [组件状态覆盖](references/implementation/component-states.md) | 8种状态完整覆盖 |
-| [无障碍指南](references/implementation/accessibility.md) | WCAG AA标准 |
-| [响应式设计](references/implementation/responsive-design.md) | 移动优先 |
+| [无障碍指南](references/implementation/accessibility.md) | WCAG AA标准 ⏳ 计划中 |
+| [响应式设计](references/implementation/responsive-design.md) | 移动优先 ⏳ 计划中 |
 | [性能优化](references/implementation/performance.md) | 性能最佳实践 |
 | [SEO指南](references/implementation/seo-best-practices.md) | 搜索引擎优化 |
 
@@ -85,37 +85,37 @@ license: MIT
 | 文档 | 说明 |
 |------|------|
 | [设计方向](references/aesthetics/design-directions.md) | 5种设计方向模板 |
-| [排版指南](references/aesthetics/typography.md) | 字体选择与排版 |
-| [色彩理论](references/aesthetics/color-theory.md) | 色彩系统 |
-| [反模式](references/aesthetics/anti-patterns.md) | 避免常见错误 |
+| [排版指南](references/aesthetics/typography.md) | 字体选择与排版 ⏳ 计划中 |
+| [色彩理论](references/aesthetics/color-theory.md) | 色彩系统 ⏳ 计划中 |
+| [反模式](references/aesthetics/anti-patterns.md) | 避免常见错误 ⏳ 计划中 |
 
 ### 质量保证
 
 | 文档 | 说明 |
 |------|------|
 | [质量清单](references/quality/checklist.md) | 完整检查清单 |
-| [审查标准](references/quality/review-criteria.md) | 代码审查标准 |
-| [测试策略](references/quality/testing-strategy.md) | 测试方法 |
+| [审查标准](references/quality/review-criteria.md) | 代码审查标准 ⏳ 计划中 |
+| [测试策略](references/quality/testing-strategy.md) | 测试方法 ⏳ 计划中 |
 
 ### 示例文档
 
 | 文档 | 说明 |
 |------|------|
-| [组件示例](references/examples/component-examples.md) | 组件示例 |
-| [布局示例](references/examples/layout-examples.md) | 布局示例 |
-| [动画示例](references/examples/animation-examples.md) | 动画示例 |
+| [组件示例](references/examples/component-examples.md) | 组件示例 ⏳ 计划中 |
+| [布局示例](references/examples/layout-examples.md) | 布局示例 ⏳ 计划中 |
+| [动画示例](references/examples/animation-examples.md) | 动画示例 ⏳ 计划中 |
 
 ### 框架特定
 
 | 文档 | 说明 |
 |------|------|
-| [React](references/by-framework/react.md) | React最佳实践 |
+| [React](references/by-framework/react.md) | React最佳实践 ⏳ 计划中 |
 | [Vue](references/by-framework/vue.md) | Vue最佳实践 |
 | [Svelte](references/by-framework/svelte.md) | Svelte最佳实践 |
 | [Angular](references/by-framework/angular.md) | Angular最佳实践 |
-| [Tailwind](references/by-framework/tailwind.md) | Tailwind配置 |
-| [CSS Modules](references/by-framework/css-modules.md) | CSS Modules指南 |
-| [Styled Components](references/by-framework/styled-components.md) | Styled Components指南 |
+| [Tailwind](references/by-framework/tailwind.md) | Tailwind配置 ⏳ 计划中 |
+| [CSS Modules](references/by-framework/css-modules.md) | CSS Modules指南 ⏳ 计划中 |
+| [Styled Components](references/by-framework/styled-components.md) | Styled Components指南 ⏳ 计划中 |
 
 ---
 
