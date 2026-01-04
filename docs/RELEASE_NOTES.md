@@ -1,8 +1,11 @@
-# Release Notes - v2.2.0
+# Release Notes
 
-> 🎉 **Frontend Design Agent Skills v2.2.0**
+> 🎉 **Frontend Design Agent Skills v0.1.1 稳定版**
 > 📅 **发布日期**: 2025-01-04
+> 📅 **最后更新**: 2026-01-05
 > 👥 **维护者**: 项目团队
+
+> **版本说明**: 本文档原针对 v2.2.0（内部开发版本号），当前项目稳定版本为 v0.1.1
 
 ---
 

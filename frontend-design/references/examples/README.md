@@ -25,9 +25,9 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [组件示例](component-examples.md) | 组件示例，按钮/输入框/卡片等常见组件 | 200-300行 | ⏳ TODO |
-| [布局示例](layout-examples.md) | 布局示例，Flexbox/Grid/容器查询等 | 200-300行 | ⏳ TODO |
-| [动画示例](animation-examples.md) | 动画示例，微交互/页面加载/过渡效果 | 200-300行 | ⏳ TODO |
+| [组件示例](component-examples.md) | 组件示例，按钮/输入框/卡片等常见组件 | 703行 | ✅ DONE |
+| [布局示例](layout-examples.md) | 布局示例，Flexbox/Grid/容器查询等 | 604行 | ✅ DONE |
+| [动画示例](animation-examples.md) | 动画示例，微交互/页面加载/过渡效果 | 633行 | ✅ DONE |
 
 ---
 
