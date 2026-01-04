@@ -130,7 +130,8 @@
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
 | [React](by-framework/react.md) | React最佳实践 | 420行 | ✅ DONE |
-| [Vue](by-framework/vue.md) | Vue最佳实践 | 668行 | ✅ DONE |
+| [Vue](by-framework/vue.md) | Vue最佳实践（主文档，1份子文档） | 577行 | ✅ DONE |
+| └─ [完整实现指南](by-framework/vue-guide.md) | 状态管理、路由、测试 | 580行 | ✅ DONE |
 | [Svelte](by-framework/svelte.md) | Svelte最佳实践 | 644行 | ✅ DONE |
 | [Angular](by-framework/angular.md) | Angular最佳实践（主文档，1份子文档） | 527行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/angular-guide.md) | 依赖注入、路由、表单、测试 | 620行 | ✅ DONE |

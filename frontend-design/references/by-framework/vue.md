@@ -4,7 +4,20 @@
 
 ---
 
-## 📖 核心概念
+## 📖 文档说明
+
+本文档提供 Vue.js 3 的完整最佳实践指南，涵盖组件设计、Composition API、样式管理和性能优化等内容。
+
+**目标读者**: Vue 开发者
+**文档长度**: ~280行（主文档）
+**阅读时间**: 约15分钟
+
+**相关文档**:
+- [完整实现指南](vue-guide.md) - 状态管理、路由、测试等详细内容
+
+---
+
+## 🎯 核心概念
 
 Vue 3 采用Composition API，提供更灵活的代码组织和更好的TypeScript支持。本指南涵盖Vue开发的最佳实践。
 
@@ -16,7 +29,7 @@ Vue 3 采用Composition API，提供更灵活的代码组织和更好的TypeScri
 
 ---
 
-## 🎯 组件设计
+## 🎨 组件设计
 
 ### 组件定义
 
@@ -432,226 +445,122 @@ const theme = inject<Ref<string>>('theme')
 
 ---
 
-## 📡 状态管理
+## 📋 功能总览
 
-### Pinia（推荐）
+### 核心功能
 
-```typescript
-// stores/counter.ts
-import { defineStore } from 'pinia'
+| 功能 | 说明 | 详细文档 |
+|------|------|----------|
+| **状态管理** | Pinia、组合式Store | [查看详情](vue-guide.md#状态管理) |
+| **路由** | Vue Router配置、导航 | [查看详情](vue-guide.md#路由) |
+| **无障碍** | ARIA、键盘导航 | [查看详情](vue-guide.md#无障碍最佳实践) |
+| **测试** | 单元测试、集成测试 | [查看详情](vue-guide.md#测试) |
 
-export const useCounterStore = defineStore('counter', {
-  state: () => ({
-    count: 0
-  }),
+---
 
-  getters: {
-    doubleCount: (state) => state.count * 2
-  },
+## 📋 检查清单
 
-  actions: {
-    increment() {
-      this.count++
-    }
-  }
-})
+### 组件设计
 
-// 使用
+- [ ] 使用 `<script setup>` 语法
+- [ ] TypeScript定义Props和Emits
+- [ ] 多词组件命名
+- [ ] Props验证和默认值
+
+### Composition API
+
+- [ ] 使用 ref/reactive
+- [ ] 创建可复用Composables
+- [ ] 生命周期钩子正确使用
+- [ ] 清理副作用
+
+### 性能优化
+
+- [ ] v-once静态内容
+- [ ] v-memo条件缓存
+- [ ] 计算属性缓存
+- [ ] 异步组件加载
+
+### 样式管理
+
+- [ ] Scoped CSS或CSS Modules
+- [ ] 动态样式计算
+- [ ] CSS变量使用
+
+---
+
+## 💡 最佳实践总结
+
+### 1. 组件化
+
+每个组件职责单一，可复用性强
+
+```vue
+<!-- ✅ 好的做法 -->
 <script setup lang="ts">
-import { useCounterStore } from '@/stores/counter'
-
-const counter = useCounterStore()
-
-counter.count++
-counter.increment()
+interface Props {
+  user: User
+}
+const props = defineProps<Props>()
 </script>
+
+<template>
+  <UserProfileCard :user="user" />
+</template>
 ```
 
-### 组合式Store
+### 2. Composition优先
+
+优先使用 Composition API
 
 ```typescript
-// stores/useTheme.ts
-import { ref } from 'vue'
-import { useStorage } from '@vueuse/core'
+// ✅ 使用 Composition API
+const { count, increment } = useCounter()
 
-export function useTheme() {
-  const theme = useStorage('theme', 'light')
-
-  const isDark = computed(() => theme.value === 'dark')
-
-  function toggle() {
-    theme.value = theme.value === 'light' ? 'dark' : 'light'
-  }
-
-  return {
-    theme,
-    isDark,
-    toggle
+// ❌ 避免：Options API
+export default {
+  data() {
+    return { count: 0 }
   }
 }
 ```
 
----
+### 3. 性能优先
 
-## 🛣️ 路由（Vue Router）
-
-### 路由配置
+使用计算属性和异步组件
 
 ```typescript
-// router/index.ts
-import { createRouter, createWebHistory } from 'vue-router'
+// ✅ 计算属性
+const filteredList = computed(() => list.filter(...))
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: () => import('@/views/HomeView.vue')
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/AboutView.vue')
-  },
-  {
-    path: '/users/:id',
-    name: 'user',
-    component: () => import('@/views/UserView.vue'),
-    props: true
-  }
-]
-
-export const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
+// ❌ 避免：方法调用
+{{ filterList() }}
 ```
 
-### 路由导航
+### 4. 类型安全
 
-```vue
-<script setup lang="ts">
-import { useRouter, useRoute } from 'vue-router'
+充分利用 TypeScript
 
-const router = useRouter()
-const route = useRoute()
-
-// 编程式导航
-function goToAbout() {
-  router.push({ name: 'about' })
+```typescript
+interface Props {
+  title: string
+  count?: number
 }
 
-// 路由参数
-const userId = route.params.id
-const query = route.query.search
-</script>
-
-<template>
-  <router-link :to="{ name: 'about' }">About</router-link>
-</template>
-```
-
----
-
-## ♿ 无障碍最佳实践
-
-### 语义化HTML
-
-```vue
-<template>
-  <!-- ✅ 好的做法：语义化元素 -->
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-    </ul>
-  </nav>
-
-  <!-- ❌ 避免：纯div -->
-  <div class="nav">
-    <div class="nav-item" @click="goHome">Home</div>
-  </div>
-</template>
-```
-
-### ARIA属性
-
-```vue
-<template>
-  <!-- 按钮状态 -->
-  <button
-    :aria-pressed="isPressed"
-    :aria-expanded="isExpanded"
-    @click="toggle"
-  >
-    Toggle
-  </button>
-
-  <!-- 加载状态 -->
-  <div
-    role="status"
-    :aria-busy="isLoading"
-    aria-live="polite"
-  >
-    {{ isLoading ? 'Loading...' : 'Done' }}
-  </div>
-</template>
-```
-
-### 键盘导航
-
-```vue
-<template>
-  <div
-    role="button"
-    tabindex="0"
-    @click="handleClick"
-    @keydown.enter="handleClick"
-    @keydown.space.prevent="handleClick"
-  >
-    Click me or press Enter/Space
-  </div>
-</template>
-```
-
----
-
-## 🧪 测试
-
-### 单元测试（Vitest）
-
-```typescript
-// Counter.test.ts
-import { describe, it, expect } from 'vitest'
-import { mount } from '@vue/test-utils'
-import Counter from '@/components/Counter.vue'
-
-describe('Counter', () => {
-  it('increments count when button clicked', async () => {
-    const wrapper = mount(Counter)
-
-    await wrapper.find('button').trigger('click')
-
-    expect(wrapper.find('p').text()).toContain('1')
-  })
-
-  it('emits update event', async () => {
-    const wrapper = mount(Counter)
-
-    await wrapper.find('button').trigger('click')
-
-    expect(wrapper.emitted('update')).toBeTruthy()
-  })
+const props = withDefaults(defineProps<Props>(), {
+  count: 0
 })
 ```
 
 ---
 
-## 📚 相关文档
+## 🔗 相关文档
 
-- [React](./react.md) - React最佳实践
-- [Svelte](./svelte.md) - Svelte最佳实践
-- [Angular](./angular.md) - Angular最佳实践
-- [组件状态覆盖](../implementation/component-states.md) - 组件状态管理
+- [完整实现指南](vue-guide.md) - 状态管理、路由、测试
+- [React最佳实践](./react.md)
+- [Svelte最佳实践](./svelte.md)
+- [Angular最佳实践](./angular.md)
+- [组件状态覆盖](../implementation/component-states.md)
 
 ---
 
@@ -663,6 +572,6 @@ describe('Counter', () => {
 
 ---
 
-> **状态**: ✅ DONE
-> **最后更新**: 2025-01-03
-> **维护者**: 项目团队
+> **文档版本**: v2.0
+> **最后更新**: 2026-01-05
+> **维护者**: Frontend Design Agent Skills Team
