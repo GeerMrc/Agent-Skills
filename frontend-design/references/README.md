@@ -70,7 +70,9 @@
 |------|------|------|------|
 | [设计方向](aesthetics/design-directions.md) | 5种设计方向模板（主文档） | 232行 | ✅ DONE |
 | └─ [现代风格详解](aesthetics/design-directions-modern.md) | Brutalist、Retro-Futuristic | 480行 | ✅ DONE |
-| └─ [表现风格详解](aesthetics/design-directions-expressive.md) | Luxury、Playful | 530行 | ✅ DONE |
+| └─ [表现风格详解](aesthetics/design-directions-expressive.md) | Luxury、Playful总览（主文档） | 293行 | ✅ DONE |
+| └─ [Luxury风格](aesthetics/design-directions-luxury.md) | 奢华风格详解 | 525行 | ✅ DONE |
+| └─ [Playful风格](aesthetics/design-directions-playful.md) | 俏皮风格详解 | 634行 | ✅ DONE |
 | └─ [编辑风格详解](aesthetics/design-directions-editorial.md) | Editorial | 350行 | ✅ DONE |
 | [排版指南](aesthetics/typography.md) | 字体选择与排版 | 280行 | ✅ DONE |
 | [色彩理论](aesthetics/color-theory.md) | 色彩系统 | 270行 | ✅ DONE |
