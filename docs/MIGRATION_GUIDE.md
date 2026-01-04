@@ -299,7 +299,7 @@ npm run build
 
 # 3. 运行模板测试
 cd ../..
-python release/verify/test/test-templates.py
+python tests/test-cases/test-templates.py
 ```
 
 **破坏性变更**: 无

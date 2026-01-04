@@ -94,7 +94,7 @@ def verify_template(template_name, template_dir):
 
 ## 📚 相关资源
 
-- [测试用例](../test-cases/)
+- [测试用例](../../../../tests/test-cases/)
 - [Frontend Design Agent Skills](https://github.com/your-org/frontend-design)
 
 ---

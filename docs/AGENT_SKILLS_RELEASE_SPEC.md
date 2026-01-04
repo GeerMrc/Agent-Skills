@@ -46,7 +46,6 @@ Agent-Skills/                    # GitHub 仓库根目录
 │   │   ├── verify-before-release.py  # 发布前验证
 │   │   ├── verify-after-install.py   # 安装后验证
 │   │   ├── test/                # 技能测试工具
-│   │   ├── test-cases/          # 测试用例
 │   │   └── expected-output/     # 预期输出
 │   └── output/                  # 发布包输出（.gitignore）
 ├── docs/                        # ✅ 开发文档目录（仅在仓库中）
@@ -55,6 +54,11 @@ Agent-Skills/                    # GitHub 仓库根目录
 │   ├── API.md                   # API 文档
 │   ├── TASK.md                  # 任务追踪
 │   └── AGENT_SKILLS_RELEASE_SPEC.md
+├── tests/                       # ✅ 测试代码目录（仅在仓库中）
+│   ├── unit/                    # 单元测试
+│   ├── integration/             # 集成测试
+│   ├── e2e/                     # E2E测试
+│   └── test-cases/              # 测试用例
 └── frontend-design/             # 技能包目录（纯净的运行时）
     ├── SKILL.md                 # 必需
     ├── LICENSE

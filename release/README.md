@@ -15,7 +15,7 @@ release/
 ├── verify/               # 验证工具
 │   ├── verify-before-release.py # 发布前验证
 │   ├── verify-after-install.py  # 安装后验证
-│   ├── test-cases/              # 测试用例
+│   ├── test/                    # 技能测试工具
 │   ├── expected-output/         # 预期输出
 │   └── README.md                # 测试说明
 └── output/               # 发布包输出
