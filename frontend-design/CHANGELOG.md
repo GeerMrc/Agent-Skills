@@ -7,7 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [2.2.0] - 2025-01-04 (Phase 5 完成 - 正式发布)
+## [0.1.1] - 2026-01-04 (首个稳定版)
+
+### Released
+- ✅ 首个稳定版本发布
+- ✅ 版本号统一为v0.1.1
+- ✅ 完整功能实现（41个原始任务）
+- ✅ Phase 0-2审核完成（20个审核任务）
+- ✅ 项目通过完整架构合规性审核
+
+### Key Features
+- ✅ 渐进式披露三层架构（PDA Pattern）
+- ✅ Design Token方法论（OKLCH色彩系统）
+- ✅ 8种组件状态完整覆盖
+- ✅ 5种设计方向模板
+- ✅ 多框架支持（React/Vue/Svelte/Angular）
+- ✅ 6个Python验证/生成工具
+- ✅ 3个完整项目模板
+
+### Notes
+- 保留v2.x开发历史在Git记录中
+- v0.1.1作为首个稳定发布版本
+- 符合Agent Skills开放标准
+
+---
+
+## [2.2.0] - 2025-01-04 (Phase 5 完成 - 开发版本)
 
 ### Added
 - ✅ 完整的 API 文档（docs/API.md - 938行）
