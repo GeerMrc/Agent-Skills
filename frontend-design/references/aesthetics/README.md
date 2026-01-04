@@ -26,10 +26,10 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [设计方向](design-directions.md) | 5种设计方向模板（brutalist/retro-futuristic/luxury/playful/editorial） | 200-300行 | ⏳ TODO |
-| [排版指南](typography.md) | 字体选择与排版，避免通用字体 | 200-300行 | ⏳ TODO |
-| [色彩理论](color-theory.md) | 色彩系统，OKLCH色彩空间，主题管理 | 200-300行 | ⏳ TODO |
-| [反模式](anti-patterns.md) | 避免常见错误，通用AI美学陷阱 | 200-300行 | ⏳ TODO |
+| [设计方向](design-directions.md) | 5种设计方向模板（brutalist/retro-futuristic/luxury/playful/editorial） | 200-300行 | ✅ DONE |
+| [排版指南](typography.md) | 字体选择与排版，避免通用字体 | 200-300行 | ✅ DONE |
+| [色彩理论](color-theory.md) | 色彩系统，OKLCH色彩空间，主题管理 | 200-300行 | ✅ DONE |
+| [反模式](anti-patterns.md) | 避免常见错误，通用AI美学陷阱 | 200-300行 | ✅ DONE |
 
 ---
 
