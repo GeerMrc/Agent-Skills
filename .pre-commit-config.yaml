@@ -1,0 +1,32 @@
+# Pre-commit configuration
+# https://pre-commit.com/
+
+default_language_version:
+  python: python3
+
+repos:
+  # Generic checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^.pre-commit-config.yaml$
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+      - id: detect-private-key
+      - id: fix-byte-order-marker
+
+  # Commit message validation
+  - repo: local
+    hooks:
+      - id: conventional-commits
+        name: Conventional Commits
+        entry: .commit-msg.sh
+        language: script
+        stages: [commit-msg]

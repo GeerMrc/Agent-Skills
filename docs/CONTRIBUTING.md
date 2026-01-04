@@ -88,10 +88,71 @@ footer
 - `feat`: 新功能
 - `fix`: 问题修复
 - `docs`: 文档更新
-- `style`: 代码格式
-- `refactor`: 代码重构
+- `style`: 代码格式（不影响代码运行的变动）
+- `refactor`: 代码重构（既不是新增功能也不是修复bug）
 - `test`: 测试相关
-- `chore`: 构建工具
+- `chore`: 构建工具或辅助工具的变动
+- `perf`: 性能优化
+- `ci`: CI配置文件和脚本的变动
+- `build`: 影响构建系统或外部依赖的变动
+- `revert`: 回滚之前的提交
+
+**示例**：
+```
+feat(design-tokens): add OKLCH color system support
+
+Implement OKLCH color space for better perceptual uniformity.
+Includes token definitions and conversion utilities.
+
+Closes #123
+```
+
+```
+fix(auth): resolve token validation error
+
+Fix edge case where tokens with special characters were
+incorrectly rejected.
+
+Fixes #456
+```
+
+#### 自动化验证
+
+项目使用Git hooks自动验证提交信息格式：
+
+**方法1：安装commit-msg hook（推荐）**
+
+```bash
+# 复制hook脚本到.git/hooks目录
+cp .commit-msg.sh .git/hooks/commit-msg
+
+# 设置可执行权限
+chmod +x .git/hooks/commit-msg
+```
+
+**方法2：使用pre-commit框架**
+
+```bash
+# 安装pre-commit
+pip install pre-commit
+
+# 安装hook
+pre-commit install
+
+# 手动运行所有检查
+pre-commit run --all-files
+```
+
+**配置文件**：`.pre-commit-config.yaml`
+
+**hook脚本**：`.commit-msg.sh`
+
+如果提交信息不符合规范，hook会显示错误提示并拒绝提交。
+
+**跳过验证（不推荐）**：
+```bash
+git commit --no-verify -m "message"
+```
 
 ---
 
