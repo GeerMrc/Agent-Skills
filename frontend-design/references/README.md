@@ -136,7 +136,8 @@
 | [Svelte](by-framework/svelte.md) | Svelte最佳实践 | 644行 | ✅ DONE |
 | [Angular](by-framework/angular.md) | Angular最佳实践（主文档，1份子文档） | 527行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/angular-guide.md) | 依赖注入、路由、表单、测试 | 620行 | ✅ DONE |
-| [Tailwind](by-framework/tailwind.md) | Tailwind配置 | 290行 | ✅ DONE |
+| [Tailwind](by-framework/tailwind.md) | Tailwind最佳实践（主文档，1份子文档） | 265行 | ✅ DONE |
+| └─ [完整配置指南](by-framework/tailwind-guide.md) | 设计令牌、自定义配置、性能优化 | 380行 | ✅ DONE |
 | [CSS Modules](by-framework/css-modules.md) | CSS Modules指南 | 280行 | ✅ DONE |
 | [Styled Components](by-framework/styled-components.md) | Styled Components总览（主文档，1份子文档） | 294行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/styled-components-guide.md) | 安装、配置、高级用法、测试、性能优化 | 582行 | ✅ DONE |

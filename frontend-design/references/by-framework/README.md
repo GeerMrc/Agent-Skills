@@ -32,7 +32,8 @@
 | [Svelte](svelte.md) | Svelte最佳实践，响应式声明，组件设计 | 644行 | ✅ DONE |
 | [Angular](angular.md) | Angular最佳实践，组件设计，依赖注入 | 527行 | ✅ DONE |
 | └─ [完整实现指南](angular-guide.md) | 依赖注入、路由、表单、测试 | 620行 | ✅ DONE |
-| [Tailwind](tailwind.md) | Tailwind配置，自定义主题，最佳实践 | 649行 | ✅ DONE |
+| [Tailwind](tailwind.md) | Tailwind最佳实践（主文档，1份子文档） | 265行 | ✅ DONE |
+| └─ [完整配置指南](tailwind-guide.md) | 设计令牌、自定义配置、性能优化 | 380行 | ✅ DONE |
 | [CSS Modules](css-modules.md) | CSS Modules指南，命名规范，最佳实践 | 603行 | ✅ DONE |
 | [Styled Components](styled-components.md) | Styled Components总览（主文档，1份子文档） | 294行 | ✅ DONE |
 | └─ [完整实现指南](styled-components-guide.md) | 安装、配置、高级用法、测试、性能优化 | 582行 | ✅ DONE |

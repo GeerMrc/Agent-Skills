@@ -6,11 +6,14 @@
 
 ## 📖 文档说明
 
-Tailwind CSS 是一个功能类优先的 CSS 框架，提供高度可定制的设计系统。本指南涵盖配置、使用和最佳实践。
+Tailwind CSS 是一个功能类优先的 CSS 框架，提供高度可定制的设计系统。本指南涵盖安装、配置、响应式设计和最佳实践。
 
 **目标读者**: 前端开发者
-**文档长度**: 约290行
-**阅读时间**: 约16分钟
+**文档长度**: ~265行（主文档）
+**阅读时间**: 约15分钟
+
+**相关文档**:
+- [完整配置指南](tailwind-guide.md) - 设计令牌、自定义配置、性能优化
 
 ---
 
@@ -81,66 +84,6 @@ export default {
   .btn-primary {
     @apply btn bg-blue-600 text-white hover:bg-blue-700;
   }
-}
-```
-
----
-
-## 🎨 设计令牌系统
-
-### 使用 OKLCH 颜色
-
-```javascript
-// tailwind.config.js
-import colors from 'tailwindcss-oklch-text/colors'
-
-export default {
-  theme: {
-    extend: {
-      colors: {
-        // 使用 OKLCH 颜色空间
-        primary: {
-          light: 'oklch(0.6 0.2 250)',
-          DEFAULT: 'oklch(0.5 0.2 250)',
-          dark: 'oklch(0.4 0.2 250)',
-        },
-      },
-    },
-  },
-}
-```
-
-### 自定义间距
-
-```javascript
-// tailwind.config.js
-export default {
-  theme: {
-    extend: {
-      spacing: {
-        '128': '32rem',
-        '144': '36rem',
-      },
-    },
-  },
-}
-```
-
-### 断点系统
-
-```javascript
-// tailwind.config.js
-export default {
-  theme: {
-    screens: {
-      'xs': '475px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
-    },
-  },
 }
 ```
 
@@ -386,155 +329,6 @@ export function DarkModeToggle() {
 
 ---
 
-## 🔧 自定义配置
-
-### 自定义颜色
-
-```javascript
-// tailwind.config.js
-export default {
-  theme: {
-    extend: {
-      colors: {
-        brand: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-        },
-      },
-    },
-  },
-}
-```
-
-### 自定义字体
-
-```javascript
-// tailwind.config.js
-export default {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Merriweather', 'Georgia', 'serif'],
-        mono: ['Fira Code', 'monospace'],
-      },
-    },
-  },
-}
-```
-
-### 自定义动画
-
-```javascript
-// tailwind.config.js
-export default {
-  theme: {
-    extend: {
-      animation: {
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'bounce-slow': 'bounce 1s infinite',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-      },
-    },
-  },
-}
-```
-
----
-
-## ⚡ 性能优化
-
-### JIT 模式
-
-Tailwind CSS 3.0+ 默认使用 JIT（即时）编译，只生成使用的样式。
-
-```javascript
-// tailwind.config.js
-export default {
-  // JIT 默认启用
-  content: ['./src/**/*.{html,js,ts,jsx,tsx}'],
-}
-```
-
-### 清理未使用的样式
-
-```bash
-# 安装 @tailwindcss/erase
-npm install -D @tailwindcss/erase
-
-# 添加到插件
-// tailwind.config.js
-export default {
-  plugins: [
-    require('@tailwindcss/erase'),
-  ],
-}
-```
-
-### 生产构建
-
-```javascript
-// postcss.config.js
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
-```
-
----
-
-## 🧩 常用插件
-
-### 表单插件
-
-```bash
-npm install -D @tailwindcss/forms
-```
-
-```javascript
-// tailwind.config.js
-export default {
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
-```
-
-### 排版插件
-
-```bash
-npm install -D @tailwindcss/typography
-```
-
-```jsx
-<article className="prose dark:prose-invert lg:prose-xl">
-  <h1>文章标题</h1>
-  <p>文章内容...</p>
-</article>
-```
-
----
-
 ## 📋 最佳实践
 
 ### 组件提取
@@ -575,6 +369,20 @@ npm install -D @tailwindcss/typography
 }
 ```
 
+### 移动优先
+
+```jsx
+// ✅ 好的做法：默认移动端，逐步增强
+<div className="w-full md:w-1/2 lg:w-1/3">
+  响应式布局
+</div>
+
+// ❌ 避免：从桌面端开始
+<div className="lg:w-1/3 md:w-1/2 w-full">
+  难以维护
+</div>
+```
+
 ---
 
 ## ⚠️ 常见陷阱
@@ -602,6 +410,19 @@ npm install -D @tailwindcss/typography
   动态颜色
 </div>
 ```
+
+---
+
+## 📋 功能总览
+
+### 核心功能
+
+| 功能 | 说明 | 详细文档 |
+|------|------|----------|
+| **设计令牌** | 颜色、间距、断点系统 | [查看详情](tailwind-guide.md#设计令牌系统) |
+| **自定义配置** | 颜色、字体、动画 | [查看详情](tailwind-guide.md#自定义配置) |
+| **性能优化** | JIT模式、清理样式 | [查看详情](tailwind-guide.md#性能优化) |
+| **常用插件** | 表单、排版插件 | [查看详情](tailwind-guide.md#常用插件) |
 
 ---
 
@@ -638,12 +459,30 @@ npm install -D @tailwindcss/typography
 
 ### 工具
 
-- ** Headwind UI**: 免费组件库
-- ** Tailwind Shades**: 颜色生成器
-- ** Tailwind CSS IntelliSense**: VSCode 插件
+- **Headwind UI**: 免费组件库
+- **Tailwind Shades**: 颜色生成器
+- **Tailwind CSS IntelliSense**: VSCode 插件
 
 ---
 
-> **文档版本**: v1.0
-> **最后更新**: 2026-01-04
+## 🔗 相关文档
+
+- [完整配置指南](tailwind-guide.md) - 设计令牌、自定义配置、性能优化
+- [React最佳实践](./react.md)
+- [Vue最佳实践](./vue.md)
+- [Svelte最佳实践](./svelte.md)
+- [设计Token方法论](../methodology/design-tokens.md)
+
+---
+
+## 🔗 快速导航
+
+- [返回by-framework/](./README.md)
+- [返回references/](../README.md)
+- [返回SKILL.md](../../SKILL.md)
+
+---
+
+> **文档版本**: v2.0
+> **最后更新**: 2026-01-05
 > **维护者**: Frontend Design Agent Skills Team
