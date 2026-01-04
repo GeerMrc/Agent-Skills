@@ -21,3 +21,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Template testing
+tests/temp/
+template-tests/
+*.template-test-report.*
