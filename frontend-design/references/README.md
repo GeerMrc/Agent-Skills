@@ -101,8 +101,8 @@
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
 | [组件示例](examples/component-examples.md) | 组件示例 | 290行 | ✅ DONE |
-| [布局示例](examples/layout-examples.md) | 布局示例 | - | ⏳ TODO |
-| [动画示例](examples/animation-examples.md) | 动画示例 | - | ⏳ TODO |
+| [布局示例](examples/layout-examples.md) | 布局示例 | 280行 | ✅ DONE |
+| [动画示例](examples/animation-examples.md) | 动画示例 | 270行 | ✅ DONE |
 
 **何时读取**：
 - 学习示例时
@@ -122,8 +122,8 @@
 | [Svelte](by-framework/svelte.md) | Svelte最佳实践 | 644行 | ✅ DONE |
 | [Angular](by-framework/angular.md) | Angular最佳实践 | 680行 | ✅ DONE |
 | [Tailwind](by-framework/tailwind.md) | Tailwind配置 | 290行 | ✅ DONE |
-| [CSS Modules](by-framework/css-modules.md) | CSS Modules指南 | - | ⏳ TODO |
-| [Styled Components](by-framework/styled-components.md) | Styled Components指南 | - | ⏳ TODO |
+| [CSS Modules](by-framework/css-modules.md) | CSS Modules指南 | 280行 | ✅ DONE |
+| [Styled Components](by-framework/styled-components.md) | Styled Components指南 | 290行 | ✅ DONE |
 
 **何时读取**：
 - 使用特定框架时
