@@ -98,11 +98,14 @@ class ComponentGenerator:
         """生成React组件"""
         type_info = self.COMPONENT_TYPES.get(self.component_type, self.COMPONENT_TYPES['button'])
 
+        # 生成属性列表
+        props_list = '\n'.join(f'  {prop}?: {self._get_prop_type(prop)};' for prop in type_info['props'])
+
         code = f'''// {self.component_name}.tsx
 import {{ designTokens }} from '@/tokens';
 
 interface {self.component_name}Props {{
-{'\\n'.join(f'  {prop}?: {self._get_prop_type(prop)};' for prop in type_info['props'])}
+{props_list}
   children?: React.ReactNode;
   className?: string;
 }}
