@@ -68,7 +68,7 @@
 - 筛选后无匹配项
 - 用户首次使用
 
-**详细文档**: [Empty & Error状态详解](./component-states-empty-error.md#empty状态详解)
+**详细文档**: [Empty状态详解](./component-states-empty.md) - [Error状态详解](./component-states-error.md)
 
 ### 4. Error（错误状态）
 
