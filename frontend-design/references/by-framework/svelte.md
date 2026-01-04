@@ -4,19 +4,32 @@
 
 ---
 
-## 📖 核心概念
+## 📖 文档说明
 
-Svelte是编译型框架，在构建时将组件转换为高效的原生JavaScript。无虚拟DOM，运行时开销极小。
+Svelte是编译型框架，在构建时将组件转换为高效的原生JavaScript。本指南涵盖核心概念、组件设计、响应式系统和性能优化等内容。
+
+**目标读者**: Svelte开发者
+**文档长度**: ~260行（主文档）
+**阅读时间**: 约15分钟
+
+**相关文档**:
+- [完整实现指南](svelte-guide.md) - 组件通信、状态管理、路由、无障碍、测试
+
+---
+
+## 🎯 核心概念
 
 **核心特性**：
 - 编译时优化（无虚拟DOM）
 - 响应式声明（`$:`语法）
-- 真正的反应性（ runes）
+- 真正的反应性（runes）
 - 内置状态管理和过渡动画
+
+Svelte在编译时生成高效的原生JavaScript代码，无需运行时虚拟DOM开销。
 
 ---
 
-## 🎯 组件设计
+## 🎨 组件设计
 
 ### 组件定义（Svelte 5 Runes）
 
@@ -216,6 +229,7 @@ Svelte是编译型框架，在构建时将组件转换为高效的原生JavaScri
   )
 </script>
 
+<!-- 使用派生类名 -->
 <button class={classes}>Click</button>
 
 <!-- 或使用模板字面量 -->
@@ -266,9 +280,6 @@ Svelte是编译型框架，在构建时将组件转换为高效的原生JavaScri
 ### 静态内容
 
 ```svelte
-<!-- 不需要在花括号中 -->
-<h1>{title}</h1>
-
 <!-- ✅ 好的做法：静态内容直接写 -->
 <h1>Hello World</h1>
 
@@ -318,316 +329,163 @@ Svelte是编译型框架，在构建时将组件转换为高效的原生JavaScri
 
 ---
 
-## 🔗 组件通信
+## 📋 最佳实践
 
-### Props down, Events up
+### 组件化
 
-```svelte
-<!-- 父组件 Parent.svelte -->
-<script lang="ts">
-  import Child from './Child.svelte'
-
-  let parentCount = $state(0)
-
-  function handleUpdate(value: number) {
-    parentCount = value
-  }
-</script>
-
-<Child
-  count={parentCount}
-  onupdate={handleUpdate}
-/>
-
-<!-- 子组件 Child.svelte -->
-<script lang="ts">
-  interface Props {
-    count: number
-  }
-
-  let { count }: Props = $props()
-
-  const emit = createEventDispatcher<{
-    update: number
-  }>()
-
-  function increment() {
-    emit('update', count + 1)
-  }
-</script>
-
-<button on:click={increment}>{count}</button>
-```
-
-### 双向绑定（bind:）
+每个组件职责单一，可复用性强
 
 ```svelte
-<!-- 父组件 Parent.svelte -->
-<script lang="ts">
-  import ChildInput from './ChildInput.svelte'
+<!-- ✅ 好的做法 -->
+<UserCard {user} />
 
-  let text = $state('')
-</script>
-
-<ChildInput bind:value={text} />
-<p>{text}</p>
-
-<!-- 子组件 ChildInput.svelte -->
-<script lang="ts">
-  interface Props {
-    value: string
-  }
-
-  let { value }: Props = $props()
-</script>
-
-<input bind:value={value} />
+<!-- ❌ 避免：大而全的组件 -->
+<UserProfileWithPostsAndComments />
 ```
 
-### createEventDispatcher（事件派发）
+### 响应式优先
+
+优先使用响应式声明而非手动更新
 
 ```svelte
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte'
+  // ✅ 使用$derived
+  let count = $state(0)
+  let double = $derived(count * 2)
 
-  const dispatch = createEventDispatcher<{
-    click: MouseEvent
-    change: { value: string }
-  }>()
-
-  function handleClick(event: MouseEvent) {
-    dispatch('click', event)
-  }
-
-  function handleChange(value: string) {
-    dispatch('change', { value })
-  }
-</script>
-```
-
----
-
-## 📡 状态管理
-
-### Svelte Stores（内置）
-
-```typescript
-// stores/counter.ts
-import { writable, derived, readable } from 'svelte/store'
-
-// writable（可写store）
-export const count = writable(0)
-
-// 读取和更新
-import { count } from '@/stores/counter'
-
-count.subscribe(value => console.log(value))
-count.set(1)
-count.update(n => n + 1)
-
-// derived（派生store）
-export const doubleCount = derived(
-  count,
-  $count => $count * 2
-)
-
-// readable（只读store）
-export const time = readable(new Date(), set => {
-  const interval = setInterval(() => {
-    set(new Date())
-  }, 1000)
-  return () => clearInterval(interval)
-)
-```
-
-### 自定义Store
-
-```typescript
-// stores/useTheme.ts
-import { writable } from 'svelte/store'
-
-function createTheme() {
-  const { subscribe, set, update } = writable('light')
-
-  return {
-    subscribe,
-    toggle: () => update(theme =>
-      theme === 'light' ? 'dark' : 'light'
-    ),
-    set
-  }
-}
-
-export const theme = createTheme()
-```
-
-### Store使用
-
-```svelte
-<script lang="ts">
-  import { count } from '@/stores/counter'
-
-  // 自动订阅（$语法）
-  $count = 5
-
-  // 或使用subscribe
+  // ❌ 避免：手动更新
+  let double = 0
   $effect(() => {
-    console.log($count)
+    double = count * 2
+  })
+</script>
+```
+
+### 样式隔离
+
+使用scoped CSS避免样式冲突
+
+```svelte
+<style>
+  /* ✅ 自动scoped */
+  .button {
+    padding: 8px;
+  }
+</style>
+```
+
+---
+
+## ⚠️ 常见陷阱
+
+### 避免的陷阱
+
+```svelte
+<!-- ❌ 陷阱1：在模板中执行复杂逻辑 -->
+<div>{items.filter(item => item.active).map(item => item.name).join(', ')}</div>
+
+<!-- ✅ 正确做法：使用$derived -->
+<script lang="ts">
+  let activeNames = $derived(
+    items.filter(item => item.active).map(item => item.name).join(', ')
+  )
+</script>
+<div>{activeNames}</div>
+
+<!-- ❌ 陷阱2：直接修改数组/对象 -->
+<script lang="ts">
+  let items = $state([1, 2, 3])
+
+  // 可能不触发更新
+  items[0] = 4
+</script>
+
+<!-- ✅ 正确做法：赋值整个数组 -->
+<script lang="ts">
+  let items = $state([1, 2, 3])
+
+  items = [4, ...items.slice(1)]
+</script>
+
+<!-- ❌ 陷阱3：忘记清理副作用 -->
+<script lang="ts">
+  $effect(() => {
+    const timer = setInterval(() => {}, 1000)
+    // 忘记清理
   })
 </script>
 
-<p>Count: {$count}</p>
-```
-
----
-
-## 🛣️ 路由（SvelteKit）
-
-### 文件路由
-
-```
-src/routes/
-├── +page.svelte          # /
-├── about/
-│   └── +page.svelte      # /about
-├── blog/
-│   ├── +page.svelte      # /blog
-│   └── [slug]/
-│       └── +page.svelte  # /blog/:slug
-```
-
-### 页面组件
-
-```svelte
-<!-- src/routes/+page.svelte -->
+<!-- ✅ 正确做法：返回清理函数 -->
 <script lang="ts">
-  // 服务端数据加载
-  export async function load({ fetch }) {
-    const res = await fetch('/api/posts')
-    const posts = await res.json()
-    return { posts }
-  }
-</script>
-
-{#each data.posts as post}
-  <article>{post.title}</article>
-{/each}
-```
-
-### 路由导航
-
-```svelte
-<script lang="ts">
-  import { goto } from '$app/navigation'
-
-  function goToAbout() {
-    goto('/about')
-  }
-
-  function goBack() {
-    history.back()
-  }
-</script>
-
-<a href="/about">About</a>
-<button on:click={goToAbout}>Go to About</button>
-```
-
----
-
-## ♿ 无障碍最佳实践
-
-### 语义化HTML
-
-```svelte
-<!-- ✅ 好的做法：语义化元素 -->
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-  </ul>
-</nav>
-
-<!-- ❌ 避免：纯div -->
-<div class="nav">
-  <div class="nav-item" on:click={goHome}>Home</div>
-</div>
-```
-
-### ARIA属性
-
-```svelte
-<button
-  aria-pressed={isPressed}
-  aria-expanded={isExpanded}
-  on:click={toggle}
->
-  Toggle
-</button>
-
-<div
-  role="status"
-  aria-busy={isLoading}
-  aria-live="polite"
->
-  {#if isLoading}
-    Loading...
-  {:else}
-    Done
-  {/if}
-</div>
-```
-
-### 键盘导航
-
-```svelte
-<div
-  role="button"
-  tabindex="0"
-  on:click={handleClick}
-  on:keydown={(e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleClick()
-    }
-  }}
->
-  Click me or press Enter/Space
-</div>
-```
-
----
-
-## 🧪 测试
-
-### 单元测试（Vitest）
-
-```typescript
-// Counter.test.ts
-import { describe, it, expect } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/svelte'
-import Counter from '@/components/Counter.svelte'
-
-describe('Counter', () => {
-  it('increments count when button clicked', async () => {
-    render(Counter)
-
-    const button = screen.getByRole('button')
-    await fireEvent.click(button)
-
-    expect(screen.getByText(/1/)).toBeInTheDocument()
+  $effect(() => {
+    const timer = setInterval(() => {}, 1000)
+    return () => clearInterval(timer)
   })
-})
+</script>
 ```
 
 ---
 
-## 📚 相关文档
+## 📋 功能总览
 
-- [Vue](./vue.md) - Vue最佳实践
-- [React](./react.md) - React最佳实践
-- [Angular](./angular.md) - Angular最佳实践
-- [组件状态覆盖](../implementation/component-states.md) - 组件状态管理
+### 核心功能
+
+| 功能 | 说明 | 详细文档 |
+|------|------|----------|
+| **组件通信** | Props down, Events up、双向绑定 | [查看详情](svelte-guide.md#组件通信) |
+| **状态管理** | Svelte Stores、自定义Store | [查看详情](svelte-guide.md#状态管理) |
+| **路由** | SvelteKit文件路由、导航 | [查看详情](svelte-guide.md#路由) |
+| **无障碍** | 语义化、ARIA、键盘导航 | [查看详情](svelte-guide.md#无障碍) |
+| **测试** | Vitest、Testing Library | [查看详情](svelte-guide.md#测试) |
+
+---
+
+## 📋 检查清单
+
+### 组件设计
+
+- [ ] 组件职责单一
+- [ ] Props有明确的TypeScript类型
+- [ ] 组件名使用多词形式
+- [ ] 避免过度嵌套
+
+### 响应式系统
+
+- [ ] 正确使用$state定义响应式状态
+- [ ] 使用$derived定义派生状态
+- [ ] $effect包含清理函数
+- [ ] 避免在模板中执行复杂逻辑
+
+### 性能优化
+
+- [ ] 列表渲染使用key
+- [ ] 静态内容不使用响应式
+- [ ] 大组件使用懒加载
+- [ ] 避免不必要的重新渲染
+
+---
+
+## 🔗 相关资源
+
+### 官方文档
+
+- [Svelte官方文档](https://svelte.dev/docs)
+- [SvelteKit文档](https://kit.svelte.dev/docs)
+
+### 工具
+
+- **Svelte for VS Code**: 官方VSCode插件
+- **Svelte DevTools**: 浏览器调试工具
+
+---
+
+## 🔗 相关文档
+
+- [完整实现指南](svelte-guide.md) - 组件通信、状态管理、路由、无障碍、测试
+- [React最佳实践](./react.md)
+- [Vue最佳实践](./vue.md)
+- [Angular最佳实践](./angular.md)
+- [组件状态覆盖](../implementation/component-states.md)
 
 ---
 
@@ -639,6 +497,6 @@ describe('Counter', () => {
 
 ---
 
-> **状态**: ✅ DONE
-> **最后更新**: 2025-01-03
-> **维护者**: 项目团队
+> **文档版本**: v2.0
+> **最后更新**: 2026-01-05
+> **维护者**: Frontend Design Agent Skills Team
