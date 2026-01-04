@@ -44,7 +44,7 @@ git clone https://github.com/GeerMrc/Agent-Skills.git
 cd Agent-Skills
 
 # 验证技能包
-python frontend-design/scripts/test/test-skill.py
+python release/verify/test/test-skill.py
 
 # 验证安装（发布包）
 cd frontend-design
@@ -115,7 +115,7 @@ python frontend-design/scripts/generate/generate-component.py Button --framework
 python frontend-design/scripts/generate/generate-theme.py my-theme --colors modern
 
 # 技能完整性测试
-python frontend-design/scripts/test/test-skill.py
+python release/verify/test/test-skill.py
 ```
 
 **详细信息**: 查看 [Frontend Design README](frontend-design/README.md)

@@ -278,7 +278,7 @@ python scripts/generate/generate-theme.py --type both --format scss --output src
 
 **用法**:
 ```bash
-python scripts/test/test-skill.py [options]
+python release/verify/test/test-skill.py [options]
 ```
 
 **参数**:
@@ -295,13 +295,13 @@ python scripts/test/test-skill.py [options]
 **示例**:
 ```bash
 # 基础测试
-python scripts/test/test-skill.py
+python release/verify/test/test-skill.py
 
 # 指定文件
-python scripts/test/test-skill.py --file references/SKILL.md
+python release/verify/test/test-skill.py --file references/SKILL.md
 
 # 详细输出
-python scripts/test/test-skill.py --verbose
+python release/verify/test/test-skill.py --verbose
 ```
 
 **验证项**:

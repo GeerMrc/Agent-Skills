@@ -157,7 +157,7 @@ license: MIT
 - `scripts/generate/export-tokens.py` - Token导出
 
 ### 测试工具
-- `scripts/test/test-skill.py` - 技能测试
+- `release/verify/test/test-skill.py` - 技能测试
 
 ---
 

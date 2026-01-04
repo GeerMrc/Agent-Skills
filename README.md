@@ -44,7 +44,7 @@ git clone https://github.com/GeerMrc/Agent-Skills.git
 cd Agent-Skills
 
 # 验证技能包
-python frontend-design/scripts/test/test-skill.py
+python release/verify/test/test-skill.py
 ```
 
 ---
