@@ -66,9 +66,9 @@
 | └─ [现代风格详解](aesthetics/design-directions-modern.md) | Brutalist、Retro-Futuristic | 480行 | ✅ DONE |
 | └─ [表现风格详解](aesthetics/design-directions-expressive.md) | Luxury、Playful | 530行 | ✅ DONE |
 | └─ [编辑风格详解](aesthetics/design-directions-editorial.md) | Editorial | 350行 | ✅ DONE |
-| [排版指南](aesthetics/typography.md) | 字体选择与排版 | - | ⏳ TODO |
-| [色彩理论](aesthetics/color-theory.md) | 色彩系统 | - | ⏳ TODO |
-| [反模式](aesthetics/anti-patterns.md) | 避免常见错误 | - | ⏳ TODO |
+| [排版指南](aesthetics/typography.md) | 字体选择与排版 | 280行 | ✅ DONE |
+| [色彩理论](aesthetics/color-theory.md) | 色彩系统 | 270行 | ✅ DONE |
+| [反模式](aesthetics/anti-patterns.md) | 避免常见错误 | 290行 | ✅ DONE |
 
 **何时读取**：
 - 设计UI界面时
@@ -84,8 +84,8 @@
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
 | [质量清单](quality/checklist.md) | 完整检查清单 | 402行 | ✅ DONE |
-| [审查标准](quality/review-criteria.md) | 代码审查标准 | - | ⏳ TODO |
-| [测试策略](quality/testing-strategy.md) | 测试方法 | - | ⏳ TODO |
+| [审查标准](quality/review-criteria.md) | 代码审查标准 | 280行 | ✅ DONE |
+| [测试策略](quality/testing-strategy.md) | 测试方法 | 280行 | ✅ DONE |
 
 **何时读取**：
 - 代码审查时
@@ -100,7 +100,7 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [组件示例](examples/component-examples.md) | 组件示例 | - | ⏳ TODO |
+| [组件示例](examples/component-examples.md) | 组件示例 | 290行 | ✅ DONE |
 | [布局示例](examples/layout-examples.md) | 布局示例 | - | ⏳ TODO |
 | [动画示例](examples/animation-examples.md) | 动画示例 | - | ⏳ TODO |
 
