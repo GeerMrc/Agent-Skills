@@ -36,5 +36,5 @@ build/
 *.tmp
 *.temp
 
-# Test Output
-tests/release-packages/
+# Test Output (managed at repository level)
+# tests/ directory moved to release/verify/

@@ -1,0 +1,36 @@
+{
+  "skill_name": "frontend-design",
+  "skill_version": "2.2.0",
+  "output_directory": "../output/",
+
+  "exclude_patterns": [
+    ".git",
+    ".gitignore",
+    "docs/",
+    "tests/",
+    "release-packages/",
+    "*.pyc",
+    "__pycache__/",
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+
+  "required_files": [
+    "SKILL.md"
+  ],
+
+  "allowed_root_files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md"
+  ],
+
+  "allowed_root_dirs": [
+    "scripts",
+    "references",
+    "templates",
+    "assets"
+  ]
+}

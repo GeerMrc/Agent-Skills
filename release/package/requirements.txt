@@ -1,0 +1,7 @@
+# Python 依赖
+
+# 打包工具使用 Python 标准库，无需额外依赖
+# - tarfile: TAR.GZ 打包
+# - zipfile: ZIP 打包
+# - json: 配置文件解析
+# - pathlib: 路径操作

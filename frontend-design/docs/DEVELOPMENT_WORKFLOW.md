@@ -256,14 +256,25 @@ grep "vX.X.X" CHANGELOG.md    # 确认版本信息已记录
 **目标**：发布版本
 
 **关键活动**：
-- 创建Git标签
-- 生成发布说明
-- 部署到生产环境
-- 通知stakeholders
+1. 使用 release/ 工具创建发布包
+   ```bash
+   cd release/package
+   python package-skill.py
+   ```
+2. 运行发布前验证
+   ```bash
+   cd ../verify
+   python verify-before-release.py
+   ```
+3. 创建Git标签
+4. 生成发布说明
+5. 部署到生产环境（GitHub Release）
+6. 通知stakeholders
 
 **输出**：
 - 发布说明
 - 部署确认
+- 验证报告
 
 ---
 
@@ -412,33 +423,29 @@ Closes #123
 ### 📦 技能包发布流程
 
 ```
-1. 正确的技能包发布功能
-   ├── 确定技能包根目录
-   ├── 排除 docs/ 目录
-   ├── 排除开发过程文件
-   └── 只包含技能运行所需文件
+1. 使用自动化打包工具
+   ├── 进入 release/package/ 目录
+   ├── 运行 python package-skill.py
+   ├── 输出发布包到 release/output/
+   └── 确认打包成功
 
-2. 正确的指定测试解压目录
-   ├── 创建临时测试目录
-   ├── 解压发布包到测试目录
-   └── 准备验证环境
+2. 运行发布前验证
+   ├── 进入 release/verify/ 目录
+   ├── 运行 python verify-before-release.py
+   ├── 检查验证报告
+   └── 确认验证通过
 
-3. 正确的检验确认符合规范
-   ├── 验证 SKILL.md 存在
-   ├── 验证必需文件存在
-   ├── 验证目录结构符合规范
-   ├── 验证不包含 docs/ 目录
-   └── 验证不包含开发文档
+3. 创建 GitHub Release
+   ├── 创建 Git 标签
+   ├── 生成发布说明
+   ├── 上传发布包
+   └── 发布到生产环境
 
-4. 如果符合规范要求
-   ├── 清理解压测试目录
-   ├── 清理临时文件
-   └── 验证通过
-
-5. 如果不符合规范要求
-   ├── 执行交叉验证确认
-   ├── 修正/修复问题
-   └── 重新执行发布流程
+4. 用户安装后验证
+   ├── 用户下载发布包
+   ├── 解压到技能目录
+   ├── 运行 verify-after-install.py
+   └── 确认安装正确
 ```
 
 ### ❌ 发布包排除规则
@@ -447,7 +454,9 @@ Closes #123
 
 | 排除项 | 原因 |
 |--------|------|
+| `release/` | 发布和验证工具，开发管理用 |
 | `docs/` | 开发文档，不是技能运行所需 |
+| `tests/` | 测试和验证工具，开发管理用 |
 | `TASK.md` | 任务追踪文档 |
 | `FRONTEND-DESIGN-DEVELOPMENT-PLAN.md` | 开发计划 |
 | `PRE_RELEASE_AUDIT_REPORT.md` | 审计报告 |
@@ -474,7 +483,6 @@ Closes #123
 | `scripts/` | ✅ 可选 - 技能运行所需脚本 |
 | `references/` | ✅ 可选 - 技能参考文档 |
 | `templates/` | ✅ 可选 - 项目模板 |
-| `tests/` | ✅ 可选 - 测试文件 |
 | `assets/` | ✅ 可选 - 静态资源 |
 
 ### 📋 发布前验证清单

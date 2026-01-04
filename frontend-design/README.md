@@ -45,6 +45,22 @@ cd Agent-Skills
 
 # 验证技能包
 python frontend-design/scripts/test/test-skill.py
+
+# 验证安装（发布包）
+cd frontend-design
+python ../release/verify/verify-after-install.py
+```
+
+### 从发布包安装
+
+```bash
+# 1. 从 GitHub Release 下载发布包
+# 2. 解压到目标位置
+unzip frontend-design-2.2.0.zip
+
+# 3. 验证安装
+cd frontend-design
+python ../release/verify/verify-after-install.py
 ```
 
 ---
@@ -74,6 +90,7 @@ frontend-design/
 ├── scripts/              # 11个Python工具脚本
 │   ├── validate/         # Token/无障碍/性能验证
 │   ├── generate/         # 组件/主题生成
+│   ├── test/             # 技能测试工具
 │   └── utils/            # 共享模块
 ├── references/           # 详细文档
 │   ├── methodology/      # 设计方法论
@@ -83,11 +100,7 @@ frontend-design/
 │   ├── react/            # Vite + React 18 + TS
 │   ├── vue/              # Vite + Vue 3.4 + TS
 │   └── vanilla/          # Vite + TypeScript
-├── docs/                 # 项目文档
-│   ├── API.md            # 完整API文档
-│   ├── CONTRIBUTING.md   # 贡献指南
-│   └── MIGRATION_GUIDE.md # 迁移指南
-└── tests/                # 测试套件
+└── docs/                 # 开发文档（不在发布包中）
 ```
 
 **快速使用**:
@@ -100,6 +113,9 @@ python frontend-design/scripts/generate/generate-component.py Button --framework
 
 # 生成主题
 python frontend-design/scripts/generate/generate-theme.py my-theme --colors modern
+
+# 技能完整性测试
+python frontend-design/scripts/test/test-skill.py
 ```
 
 **详细信息**: 查看 [Frontend Design README](frontend-design/README.md)

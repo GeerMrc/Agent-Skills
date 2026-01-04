@@ -32,8 +32,8 @@ class ReleasePackageValidator:
         "scripts",            # 可选 - 可执行代码
         "references",         # 可选 - 详细文档
         "templates",          # 可选 - 项目模板
-        "tests",              # 可选 - 测试文件
-        # 注意：docs/ 不在允许列表中 - 开发文档不应包含在发布包中
+        "assets",             # 可选 - 静态资源
+        # 注意：docs/、tests/、release/ 不在允许列表中
     ]
 
     # 发布包中必须排除的目录和文件
@@ -270,7 +270,9 @@ def create_test_package(source_dir: Path, output_dir: Path):
     exclude_patterns = [
         ".git",
         ".gitignore",
+        "release",           # 🆕 发布和验证工具
         "docs",              # ⚠️ 关键：排除开发文档目录
+        "tests",             # 🆕 测试和验证工具
         "TASK.md",
         "FRONTEND-DESIGN-DEVELOPMENT-PLAN.md",
         "MIGRATION_GUIDE.md",
@@ -315,9 +317,10 @@ def create_test_package(source_dir: Path, output_dir: Path):
 
 def main():
     """主函数"""
-    # 获取脚本所在目录的父目录（技能包根目录）
+    # 获取脚本所在目录
+    # 脚本位于 release/verify/，需要指向仓库根目录下的 frontend-design/
     script_dir = Path(__file__).parent.resolve()
-    source_dir = script_dir.parent  # GitHub 仓库中的 frontend-design/
+    source_dir = script_dir.parent.parent / "frontend-design"
 
     print("=" * 70)
     print("Frontend Design Agent Skills - 发布包验证测试")

@@ -37,7 +37,17 @@ Agent-Skills/                    # GitHub 仓库根目录
 ├── CHANGELOG.md                 # 变更日志
 ├── CONTRIBUTING.md              # 贡献指南
 ├── LICENSE                      # 许可证
+├── .gitignore                   # 仓库级忽略配置
+├── release/                     # 🆕 发布管理目录（仅在仓库中）
+│   ├── package/                 # 🆕 打包工具
+│   │   ├── package-skill.py     # 🆕 自动打包脚本
+│   │   └── requirements.txt     # 🆕 依赖
+│   ├── verify/                  # 🆕 验证工具
+│   │   ├── verify-before-release.py  # 🆕 发布前验证
+│   │   └── verify-after-install.py   # 🆕 安装后验证
+│   └── output/                  # 🆕 发布包输出（.gitignore）
 ├── docs/                        # ✅ 开发文档目录（仅在仓库中）
+│   ├── README.md                # 🆕 文档导航索引
 │   ├── DEVELOPMENT_WORKFLOW.md  # 开发流程规范
 │   ├── API.md                   # API 文档
 │   ├── TASK.md                  # 任务追踪
@@ -49,14 +59,13 @@ Agent-Skills/                    # GitHub 仓库根目录
 │   ├── CHANGELOG.md
 │   ├── scripts/
 │   ├── references/
-│   ├── templates/
-│   └── tests/
+│   └── templates/
 └── .git/                        # Git 版本控制
 ```
 
 ### 发布的技能包内容（精简）
 
-> **关键**: 发布的技能包**不包含** `docs/` 目录
+> **关键**: 发布的技能包**不包含** `docs/` 和 `tests/` 目录
 
 ```
 frontend-design/                 # 发布的技能包
@@ -77,8 +86,7 @@ frontend-design/                 # 发布的技能包
 │   ├── react/
 │   ├── vue/
 │   └── vanilla/
-└── tests/                       # ✅ 可选 - 测试文件
-    └── verify-release-package.py
+└── assets/                      # ✅ 可选 - 静态资源
 ```
 
 ### ❌ 不应包含在发布包中的内容
@@ -87,7 +95,9 @@ frontend-design/                 # 发布的技能包
 
 | 目录/文件 | 原因 |
 |-----------|------|
+| `release/` | 发布和验证工具，开发管理用 |
 | `docs/` | 开发文档，给开发者看的，不是技能运行所需 |
+| `tests/` | 测试和验证工具，开发管理用 |
 | `TASK.md` | 任务追踪，开发管理用 |
 | `FRONTEND-DESIGN-DEVELOPMENT-PLAN.md` | 开发计划 |
 | `PRE_RELEASE_AUDIT_REPORT.md` | 审计报告 |
@@ -109,7 +119,9 @@ frontend-design/                 # 发布的技能包
 EXCLUDE_PATTERNS = [
     '.git/',                    # Git 版本控制
     '.gitignore',               # Git 配置
+    'release/',                 # 🆕 发布和验证工具
     'docs/',                    # ⚠️ 开发文档（关键！）
+    'tests/',                   # 🆕 测试和验证工具
     '*.md',                     # 只保留必需的 MD 文件
 ]
 
