@@ -4,7 +4,20 @@
 
 ---
 
-## 📖 核心概念
+## 📖 文档说明
+
+本文档提供 React 18 的完整最佳实践指南，涵盖组件设计、Hooks使用和性能优化等内容。
+
+**目标读者**: React 开发者
+**文档长度**: ~260行（主文档）
+**阅读时间**: 约15分钟
+
+**相关文档**:
+- [完整实现指南](react-guide.md) - Context、表单、测试等详细内容
+
+---
+
+## 🎯 核心概念
 
 React 18 引入并发特性，提供更好的用户体验和性能。本指南涵盖现代React开发的最佳实践。
 
@@ -17,7 +30,7 @@ React 18 引入并发特性，提供更好的用户体验和性能。本指南�
 
 ---
 
-## 🎯 组件设计
+## 🎨 组件设计
 
 ### 组件定义
 
@@ -353,259 +366,16 @@ function App() {
 
 ---
 
-## 🎨 Context 使用
+## 📋 功能总览
 
-### 创建 Context
+### 核心功能
 
-```tsx
-import { createContext, useContext, ReactNode } from 'react'
-
-// 定义 Context 类型
-interface ThemeContextType {
-  theme: 'light' | 'dark'
-  toggleTheme: () => void
-}
-
-// 创建 Context
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
-
-// Provider 组件
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
-  }
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  )
-}
-
-// 自定义 Hook
-export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider')
-  }
-  return context
-}
-```
-
-### 使用 Context
-
-```tsx
-// 在组件中使用
-function ThemeButton() {
-  const { theme, toggleTheme } = useTheme()
-
-  return (
-    <button onClick={toggleTheme}>
-      Current theme: {theme}
-    </button>
-  )
-}
-```
-
----
-
-## 📝 表单处理
-
-### 受控组件
-
-```tsx
-function LoginForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // 提交逻辑
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button type="submit">Login</button>
-    </form>
-  )
-}
-```
-
-### 使用 React Hook Form
-
-```tsx
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-
-const loginSchema = z.object({
-  email: z.string().email('Invalid email'),
-  password: z.string().min(8, 'Password too short')
-})
-
-type LoginForm = z.infer<typeof loginSchema>
-
-function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema)
-  })
-
-  const onSubmit = (data: LoginForm) => {
-    console.log(data)
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('email')} placeholder="Email" />
-      {errors.email && <span>{errors.email.message}</span>}
-
-      <input {...register('password')} type="password" placeholder="Password" />
-      {errors.password && <span>{errors.password.message}</span>}
-
-      <button type="submit">Login</button>
-    </form>
-  )
-}
-```
-
----
-
-## 🧪 测试
-
-### 单元测试（Vitest）
-
-```tsx
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest'
-import { Button } from './Button'
-
-describe('Button', () => {
-  it('renders children', () => {
-    render(<Button>Click me</Button>)
-    expect(screen.getByText('Click me')).toBeInTheDocument()
-  })
-
-  it('calls onClick when clicked', async () => {
-    const user = userEvent.setup()
-    const handleClick = vi.fn()
-
-    render(<Button onClick={handleClick}>Click me</Button>)
-
-    await user.click(screen.getByRole('button'))
-    expect(handleClick).toHaveBeenCalledTimes(1)
-  })
-
-  it('is disabled when disabled prop is true', () => {
-    render(<Button disabled>Click me</Button>)
-    expect(screen.getByRole('button')).toBeDisabled()
-  })
-})
-```
-
-### 集成测试（Testing Library）
-
-```tsx
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { LoginForm } from './LoginForm'
-
-describe('LoginForm', () => {
-  it('submits form with valid data', async () => {
-    const onSubmit = vi.fn()
-    render(<LoginForm onSubmit={onSubmit} />)
-
-    await user.type(screen.getByLabelText(/email/i), 'test@example.com')
-    await user.type(screen.getByLabelText(/password/i), 'password123')
-    await user.click(screen.getByRole('button', { name: /login/i }))
-
-    await waitFor(() => {
-      expect(onSubmit).toHaveBeenCalledWith({
-        email: 'test@example.com',
-        password: 'password123'
-      })
-    })
-  })
-})
-```
-
----
-
-## ⚠️ 常见陷阱
-
-### 避免的陷阱
-
-```tsx
-// ❌ 陷阱1：在循环中创建 Hooks
-function BadComponent({ items }: { items: string[] }) {
-  return (
-    <div>
-      {items.map(item => {
-        const [value, setValue] = useState(item) // ❌ 错误！
-        return <div key={item}>{value}</div>
-      })}
-    </div>
-  )
-}
-
-// ✅ 正确做法：创建子组件
-function Item({ initialValue }: { initialValue: string }) {
-  const [value, setValue] = useState(initialValue)
-  return <div>{value}</div>
-}
-
-function GoodComponent({ items }: { items: string[] }) {
-  return (
-    <div>
-      {items.map(item => (
-        <Item key={item} initialValue={item} />
-      ))}
-    </div>
-  )
-}
-
-// ❌ 陷阱2：直接修改状态
-function BadCounter() {
-  const [count, setCount] = useState(0)
-  const increment = () => setCount(count + 1) // 可能有问题
-  // ...
-}
-
-// ✅ 正确做法：使用函数更新
-function GoodCounter() {
-  const [count, setCount] = useState(0)
-  const increment = () => setCount(c => c + 1)
-  // ...
-}
-
-// ❌ 陷阱3：缺少依赖项
-useEffect(() => {
-  fetchData(userId)
-}, []) // 缺少 userId 依赖
-
-// ✅ 正确做法：包含所有依赖
-useEffect(() => {
-  fetchData(userId)
-}, [userId])
-```
+| 功能 | 说明 | 详细文档 |
+|------|------|----------|
+| **Context** | 创建和使用Context | [查看详情](react-guide.md#context使用) |
+| **表单** | 受控组件、React Hook Form | [查看详情](react-guide.md#表单处理) |
+| **测试** | 单元测试、集成测试 | [查看详情](react-guide.md#测试) |
+| **最佳实践** | 常见陷阱、检查清单 | [查看详情](react-guide.md#最佳实践) |
 
 ---
 
@@ -634,22 +404,82 @@ useEffect(() => {
 
 ---
 
-## 🔗 相关资源
+## 💡 最佳实践总结
 
-### 官方文档
+### 1. 组件化
 
-- [React 官方文档](https://react.dev/)
-- [React TypeScript 类型](https://www.typescriptlang.org/docs/handbook/react.html)
+每个组件职责单一，可复用性强
 
-### 工具库
+```tsx
+// ✅ 好的做法
+export function UserCard({ user }: { user: User }) {
+  return <Card>{user.name}</Card>
+}
+```
 
-- ** React Hook Form**: 表单管理
-- ** TanStack Query**: 服务端状态管理
-- ** Zustand**: 轻量状态管理
-- ** Vitest**: 单元测试
+### 2. Hooks优先
+
+优先使用 Hooks 而非类组件
+
+```tsx
+// ✅ 使用 Hooks
+function Component() {
+  const [count, setCount] = useState(0)
+  return <div>{count}</div>
+}
+
+// ❌ 避免：类组件
+class Component extends React.Component {
+  state = { count: 0 }
+  render() { return <div>{this.state.count}</div> }
+}
+```
+
+### 3. 性能优先
+
+使用 memo、useCallback、useMemo 优化性能
+
+```tsx
+const ExpensiveComponent = memo(function ExpensiveComponent({ data }) {
+  return <div>{data.name}</div>
+})
+```
+
+### 4. 类型安全
+
+充分利用 TypeScript
+
+```tsx
+interface Props {
+  title: string
+  count?: number
+}
+
+export function Component({ title, count = 0 }: Props) {
+  return <div>{title}: {count}</div>
+}
+```
 
 ---
 
-> **文档版本**: v1.0
-> **最后更新**: 2026-01-04
+## 🔗 相关文档
+
+- [完整实现指南](react-guide.md) - Context、表单、测试
+- [Vue最佳实践](./vue.md)
+- [Svelte最佳实践](./svelte.md)
+- [Angular最佳实践](./angular.md)
+- [组件状态覆盖](../implementation/component-states.md)
+
+---
+
+## 🔗 快速导航
+
+- [返回by-framework/](./README.md)
+- [返回references/](../README.md)
+- [返回SKILL.md](../../SKILL.md)
+
+---
+
+> **文档版本**: v2.0
+> **最后更新**: 2026-01-05
 > **维护者**: Frontend Design Agent Skills Team
