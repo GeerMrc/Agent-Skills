@@ -1,134 +1,85 @@
-# Frontend Design Agent Skills
+# Agent-Skills
 
-> 🎨 创建独特、生产级前端界面，符合Agent Skills最佳实践
-
----
-
-## 📋 项目概述
-
-**Frontend Design Agent Skills** 是一个符合 Claude Code Agent Skills 最佳实践的前端设计技能，采用渐进式披露三层架构，功能超越 GLM 原版。
-
-### 核心特性
-
-- ✅ **符合最佳实践** - SKILL.md ≤ 200行，渐进式披露三层架构
-- ✅ **功能完整性** - 保留GLM所有功能，新增多框架支持
-- ✅ **技术栈灵活** - 支持 React/Vue/Svelte/Angular
-- ✅ **生产就绪** - 完整的工具脚本和项目模板
+> 🤖 **AI Agent 技能包集合** - 遵循官方 [Agent Skills 开放标准](https://agentskills.io/specification)
 
 ---
 
-## 🎯 设计理念
+## 📋 仓库概述
 
-### 渐进式披露三层架构（PDA Pattern）
+**Agent-Skills** 是一个 AI Agent 技能包的集合仓库，每个技能包都是一个符合 [Agent Skills 规范](https://agentskills.io/specification) 的独立模块。
 
-```
-第一层：元数据层（Metadata Layer）
-├── YAML frontmatter（~100词）
-└── 用于技能发现和相关性判断
+### Agent Skills 开放标准
 
-第二层：入口点层（Entry Point Layer）
-├── SKILL.md（≤200行，社区黄金标准）
-└── 包含：触发模式、核心理念、导航地图
+- **发布日期**: 2025-12-18
+- **规范来源**: [agentskills.io](https://agentskills.io)
+- **核心理念**: 通过可发现文件夹的指令、脚本和资源，为 AI Agent 提供可组合、可扩展的能力
 
-第三层：详细内容层（Detail Layer）
-├── references/*.md（200-300行/文件）
-├── scripts/（可执行，不加载上下文）
-└── templates/（项目模板）
-```
+---
+
+## 🎯 技能包列表
+
+| 技能包 | 版本 | 描述 | 状态 |
+|--------|------|------|------|
+| [Frontend Design](frontend-design/) | v2.2.0 | 创建独特、生产级前端界面的专业技能 | ✅ 已发布 |
 
 ---
 
 ## 🚀 快速开始
 
-### 安装
+### 在 Claude Code 中安装
 
 ```bash
-# 克隆项目
-git clone https://github.com/your-org/frontend-design.git
-cd frontend-design
+# 添加市场插件
+/plugin marketplace add GeerMrc/Agent-Skills
 
-# 验证技能
-python scripts/test/test-skill.py
+# 选择并安装技能包
+# 浏览并安装: frontend-design
 ```
 
-### 使用
+### 本地使用
 
-在 Claude Code 中，当您需要：
-- 构建Web组件、页面、应用
-- 设计/美化任何Web UI
-- 实现响应式布局
-- 创建主题系统
-
-Frontend Design Agent Skills 将自动激活并提供指导。
-
----
-
-## 📁 项目结构
-
-```
-frontend-design/
-├── SKILL.md              # 📋 入口点（175行）
-├── TASK.md               # 📋 任务追踪
-├── README.md             # 📖 项目概述
-├── references/           # 📚 渐进式披露核心
-├── scripts/              # 🔧 可执行工具
-├── templates/            # 📦 项目模板
-├── docs/                 # 📖 项目文档
-└── tests/                # 🧪 测试用例
-```
-
----
-
-## 📚 核心文档
-
-### 方法论文档
-- [Design Token方法论](references/methodology/design-tokens.md)
-- [令牌工作流](references/methodology/token-workflow.md)
-- [系统化方法](references/methodology/systematic-approach.md)
-
-### 实现指南
-- [组件状态覆盖](references/implementation/component-states.md)
-- [无障碍指南](references/implementation/accessibility.md)
-- [响应式设计](references/implementation/responsive-design.md)
-
-### 框架特定
-- [React](references/by-framework/react.md)
-- [Vue](references/by-framework/vue.md)
-- [Tailwind](references/by-framework/tailwind.md)
-
----
-
-## 🛠️ 工具与脚本
-
-### 验证工具
 ```bash
-python scripts/validate/check-tokens.py
-python scripts/validate/check-accessibility.py
-python scripts/validate/check-performance.py
-```
+# 克隆仓库
+git clone https://github.com/GeerMrc/Agent-Skills.git
+cd Agent-Skills
 
-### 生成工具
-```bash
-python scripts/generate/generate-theme.py
-python scripts/generate/export-tokens.py
+# 验证技能包
+python frontend-design/scripts/test/test-skill.py
 ```
 
 ---
 
-## 📊 项目对比
+## 📚 Agent Skills 规范
 
-| 指标 | GLM原版 | 重构版 | 提升 |
-|------|---------|--------|------|
-| SKILL.md大小 | 980行 | 175行 | 5.6倍 |
-| 上下文消耗 | ~2000行 | ~175行 | 11.4倍 |
-| 标准化程度 | 40% | 95% | 2.4倍 |
-| 多框架支持 | TS绑定 | 5个框架 | ✅ |
+### 技能包目录结构
+
+```
+skill-name/
+├── SKILL.md              # 必需 - 技能入口文件
+├── LICENSE               # 可选 - 许可证
+├── README.md             # 可选 - 技能说明
+├── scripts/              # 可选 - 可执行代码
+├── references/           # 可选 - 详细文档
+├── templates/            # 可选 - 项目模板
+├── assets/               # 可选 - 静态资源
+└── tests/                # 可选 - 测试文件
+```
 
 ---
 
-## 🤝 贡献
+## 🤝 贡献指南
 
-欢迎贡献！请查看 [贡献指南](docs/CONTRIBUTING.md) 了解详情。
+欢迎贡献新的技能包或改进现有技能包！
+
+详细规范请参考: [docs/AGENT_SKILLS_RELEASE_SPEC.md](docs/AGENT_SKILLS_RELEASE_SPEC.md)
+
+---
+
+## 📖 相关资源
+
+- [Agent Skills 规范](https://agentskills.io/specification)
+- [Agent Skills 官方网站](https://agentskills.io)
+- [Anthropic 官方博客](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
 
 ---
 
@@ -138,13 +89,5 @@ MIT License - 详见 [LICENSE](LICENSE)
 
 ---
 
-## 🔄 版本信息
-
-- **当前版本**: v2.0.0
-- **开发状态**: 🚀 Active Development
-- **发布日期**: 2025-01-03
-
----
-
-> **Maintained by**: 项目团队
-> **Based on**: GLM Frontend Design v2.0 + Anthropic Best Practices
+> **Maintained by**: GeerMrc
+> **Based on**: [Agent Skills Open Standard](https://agentskills.io/specification)
