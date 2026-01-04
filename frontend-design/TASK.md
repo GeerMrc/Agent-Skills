@@ -11,8 +11,8 @@
 | 项目名称 | frontend-design Agent Skills |
 | 版本号 | v2.2.0（Phase 5 完成） |
 | 开发周期 | 2025-01-03 至 2025-02-28 (8周) |
-| 当前状态 | 🚀 Phase 5: 文档和发布 |
-| 完成度 | 69% (31/45 tasks) |
+| 当前状态 | ✅ Phase 5 完成 - 已发布 |
+| 完成度 | 100% (32/32 tasks) |
 
 ---
 
@@ -24,7 +24,7 @@ Phase 1: ██████████████████████  100
 Phase 2: ██████████████████████  100% (7/7 tasks done) ✅
 Phase 3: ██████████████████████  100% (6/6 tasks done) ✅
 Phase 4: ██████████████████████  100% (5/5 tasks done) ✅
-Phase 5: ██████████████████████  100% (5/6 tasks done)
+Phase 5: ██████████████████████  100% (6/6 tasks done) ✅
 ```
 
 ---
@@ -104,7 +104,7 @@ Phase 5: ██████████████████████  100
 | TASK-503 | 编写迁移指南 | ✅ DONE | 2025-01-04 | MIGRATION_GUIDE.md (607行) |
 | TASK-504 | 准备发布说明 | ✅ DONE | 2025-01-04 | RELEASE_NOTES.md (492行) |
 | TASK-505 | 最终质量验证 | ✅ DONE | 2025-01-04 | 全面验证通过 |
-| TASK-506 | 发布v2.0.0 | ⏳ TODO | Week 8 | Git Tag + Release |
+| TASK-506 | 发布v2.0.0 | ✅ DONE | 2026-01-04 | GitHub Release v1.0.0 |
 
 ---
 
@@ -115,6 +115,56 @@ Phase 5: ██████████████████████  100
 - ✅ **DONE**: 已完成
 - ❌ **BLOCKED**: 已阻塞
 - ⏸️ **DEFERRED**: 已延期
+
+---
+
+## 🔧 发布修复记录 (2026-01-04)
+
+### 问题描述
+
+首次发布时，错误地将开发参考目录包含在发布的技能包中：
+- `claude-code-docs/` - Claude Code 开发文档参考（开发辅助用）
+- `claude-frontend-design-skill/` - 旧技能参考代码（开发参考用）
+- `glm-frontend-design-skill/` - GLM 原始技能参考（开发参考用）
+
+这些目录仅用于开发过程辅助制定开发计划，不应发布到远端仓库。
+
+### 修复过程
+
+| 步骤 | 操作 | 说明 |
+|------|------|------|
+| 1 | 创建 fix/clean-release 分支 | 用于修复问题 |
+| 2 | 使用 git rm 移除开发参考目录 | 移除37个文件，17452行 |
+| 3 | 验证技能包结构 | 确保符合 Agent Skills 规范 |
+| 4 | 提交修复 | commit: 3ae5031 |
+| 5 | 合并到 main 分支 | Fast-forward 合并 |
+| 6 | 删除错误的 v1.0.0 Release | 使用 gh release delete |
+| 7 | 删除并重新创建 tag | 修正版本标签 |
+| 8 | 创建正确的 v1.0.0 Release | 符合 Agent Skills 规范 |
+
+### 修复后结构
+
+```
+frontend-design/          ✅ 符合 Agent Skills 规范
+├── SKILL.md              ✅ 必需 - 技能入口文件
+├── LICENSE               ✅ 可选 - 许可证
+├── README.md             ✅ 可选 - 技能说明
+├── CHANGELOG.md          ✅ 可选 - 变更日志
+├── CONTRIBUTING.md       ✅ 可选 - 贡献指南
+├── MIGRATION_GUIDE.md    ✅ 可选 - 迁移指南
+├── scripts/              ✅ 可选 - 可执行代码
+├── references/           ✅ 可选 - 详细文档
+├── templates/            ✅ 可选 - 项目模板
+├── tests/                ✅ 可选 - 测试文件
+└── docs/                 ✅ 额外文档
+```
+
+### 最终结果
+
+- **仓库**: https://github.com/GeerMrc/Agent-Skills
+- **Release**: v1.0.0
+- **技能包**: frontend-design v2.2.0
+- **规范**: 符合 Agent Skills 开放标准
 
 ---
 
