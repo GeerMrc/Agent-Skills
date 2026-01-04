@@ -18,6 +18,112 @@
 
 ---
 
+## 🎯 关键概念区分
+
+### ⚠️ GitHub 仓库 vs 发布的技能包
+
+> **重要**: 必须明确区分两个不同的概念
+
+| 概念 | 定义 | 内容 | 用途 |
+|------|------|------|------|
+| **GitHub 仓库** | 版本控制的代码仓库 | 所有文件 + docs/ + 开发文档 | 开发管理、版本控制、协作 |
+| **发布的技能包** | 打包分发的技能文件 | 只包含技能运行所需文件 | AI Agent 使用技能 |
+
+### GitHub 仓库结构（完整）
+
+```
+Agent-Skills/                    # GitHub 仓库根目录
+├── README.md                    # 仓库总览
+├── CHANGELOG.md                 # 变更日志
+├── CONTRIBUTING.md              # 贡献指南
+├── LICENSE                      # 许可证
+├── docs/                        # ✅ 开发文档目录（仅在仓库中）
+│   ├── DEVELOPMENT_WORKFLOW.md  # 开发流程规范
+│   ├── API.md                   # API 文档
+│   ├── TASK.md                  # 任务追踪
+│   └── AGENT_SKILLS_RELEASE_SPEC.md
+├── frontend-design/             # 技能包目录
+│   ├── SKILL.md                 # 必需
+│   ├── LICENSE
+│   ├── README.md
+│   ├── CHANGELOG.md
+│   ├── scripts/
+│   ├── references/
+│   ├── templates/
+│   └── tests/
+└── .git/                        # Git 版本控制
+```
+
+### 发布的技能包内容（精简）
+
+> **关键**: 发布的技能包**不包含** `docs/` 目录
+
+```
+frontend-design/                 # 发布的技能包
+├── SKILL.md                     # ✅ 必需
+├── LICENSE                      # ✅ 可选
+├── README.md                    # ✅ 可选
+├── CHANGELOG.md                 # ✅ 可选
+├── scripts/                     # ✅ 可选 - 技能运行所需的脚本
+│   ├── check-tokens.py
+│   ├── check-accessibility.py
+│   ├── generate-theme.py
+│   └── ...
+├── references/                  # ✅ 可选 - 技能参考文档
+│   ├── methodology/
+│   ├── by-framework/
+│   └── quality/
+├── templates/                   # ✅ 可选 - 项目模板
+│   ├── react/
+│   ├── vue/
+│   └── vanilla/
+└── tests/                       # ✅ 可选 - 测试文件
+    └── verify-release-package.py
+```
+
+### ❌ 不应包含在发布包中的内容
+
+以下内容**只在 GitHub 仓库中**，**不包含在发布的技能包**中：
+
+| 目录/文件 | 原因 |
+|-----------|------|
+| `docs/` | 开发文档，给开发者看的，不是技能运行所需 |
+| `TASK.md` | 任务追踪，开发管理用 |
+| `FRONTEND-DESIGN-DEVELOPMENT-PLAN.md` | 开发计划 |
+| `PRE_RELEASE_AUDIT_REPORT.md` | 审计报告 |
+| `QUALITY_VALIDATION_REPORT.md` | 验证报告 |
+| `RELEASE_NOTES.md` | 发布说明 |
+| `MIGRATION_GUIDE.md` | 迁移指南 |
+| `ARCHITECTURE.md` | 架构文档 |
+| `API.md` | API 文档 |
+| `DEVELOPMENT_WORKFLOW.md` | 开发流程规范 |
+| `AGENT_SKILLS_RELEASE_SPEC.md` | 发布规范文档 |
+| `.git/` | Git 版本控制 |
+
+### 📦 技能包打包时的排除规则
+
+创建发布包时，必须排除以下内容：
+
+```python
+# 打包时排除的目录和文件
+EXCLUDE_PATTERNS = [
+    '.git/',                    # Git 版本控制
+    '.gitignore',               # Git 配置
+    'docs/',                    # ⚠️ 开发文档（关键！）
+    '*.md',                     # 只保留必需的 MD 文件
+]
+
+# 只包含的 MD 文件
+INCLUDE_MD_ONLY = [
+    'SKILL.md',                 # 必需
+    'README.md',                # 可选
+    'CHANGELOG.md',             # 可选
+    'CONTRIBUTING.md',          # 可选
+]
+```
+
+---
+
 ## 🏗️ 技能包目录结构
 
 ### 最小结构

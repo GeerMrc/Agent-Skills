@@ -33,11 +33,12 @@ class ReleasePackageValidator:
         "references",         # 可选 - 详细文档
         "templates",          # 可选 - 项目模板
         "tests",              # 可选 - 测试文件
-        "docs",               # 可选 - 额外文档
+        # 注意：docs/ 不在允许列表中 - 开发文档不应包含在发布包中
     ]
 
-    # 不应在发布包根目录的开发过程文档
-    DEV_FILES_THAT_SHOULD_BE_IN_DOCS = [
+    # 发布包中必须排除的目录和文件
+    EXCLUDE_FROM_RELEASE = [
+        "docs",               # ⚠️ 开发文档目录 - 不应包含在发布包中
         "TASK.md",
         "FRONTEND-DESIGN-DEVELOPMENT-PLAN.md",
         "MIGRATION_GUIDE.md",
@@ -48,6 +49,7 @@ class ReleasePackageValidator:
         "API.md",
         "DEVELOPMENT_WORKFLOW.md",
         "AGENT_SKILLS_RELEASE_SPEC.md",
+        ".git",
     ]
 
     def __init__(self, package_path: str):
@@ -186,24 +188,36 @@ class ReleasePackageValidator:
         self.passed_checks.append("SKILL.md 格式验证完成")
 
     def _validate_dev_docs_location(self):
-        """验证开发文档位置正确"""
-        self.log("检查开发文档位置...", "info")
+        """验证开发文档不在发布包中"""
+        self.log("检查发布包不包含开发文档...", "info")
 
-        # 检查根目录是否有开发文档
-        dev_docs_in_root = []
-        for doc_name in self.DEV_FILES_THAT_SHOULD_BE_IN_DOCS:
-            if (self.package_path / doc_name).exists():
-                dev_docs_in_root.append(doc_name)
-
-        if dev_docs_in_root:
+        # 检查 docs/ 目录是否存在（发布包中不应存在）
+        docs_dir = self.package_path / "docs"
+        if docs_dir.exists():
             self.errors.append(
-                f"开发文档应在 docs/ 目录: {', '.join(dev_docs_in_root)}"
+                "发布包包含 docs/ 目录 - 开发文档不应包含在发布包中"
             )
-            for doc in dev_docs_in_root:
-                self.log(f"  {doc} 应在 docs/ 目录", "error")
+            self.log("  docs/ 目录不应存在于发布包中", "error")
         else:
-            self.log("  开发文档位置正确", "success")
-            self.passed_checks.append("开发文档位置验证完成")
+            self.log("  docs/ 目录不存在（正确）", "success")
+            self.passed_checks.append("docs/ 目录检查通过")
+
+        # 检查其他开发文档是否在根目录
+        dev_docs_found = []
+        for doc_name in self.EXCLUDE_FROM_RELEASE:
+            item_path = self.package_path / doc_name
+            if item_path.exists():
+                dev_docs_found.append(doc_name)
+
+        if dev_docs_found:
+            self.errors.append(
+                f"发布包包含不应存在的开发文件: {', '.join(dev_docs_found)}"
+            )
+            for doc in dev_docs_found:
+                self.log(f"  {doc} 不应存在于发布包中", "error")
+        else:
+            self.log("  发布包不包含开发文档（正确）", "success")
+            self.passed_checks.append("开发文档排除检查通过")
 
     def _print_results(self) -> bool:
         """打印验证结果"""
@@ -243,6 +257,8 @@ def create_test_package(source_dir: Path, output_dir: Path):
     """
     创建测试用的发布包（zip 和 tar.gz）
 
+    ⚠️ 重要：发布包不包含 docs/ 目录和开发文档
+
     Args:
         source_dir: 源目录
         output_dir: 输出目录
@@ -250,11 +266,37 @@ def create_test_package(source_dir: Path, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
     package_name = "frontend-design-skill"
 
+    # 排除列表 - 发布包中不应包含的内容
+    exclude_patterns = [
+        ".git",
+        ".gitignore",
+        "docs",              # ⚠️ 关键：排除开发文档目录
+        "TASK.md",
+        "FRONTEND-DESIGN-DEVELOPMENT-PLAN.md",
+        "MIGRATION_GUIDE.md",
+        "PRE_RELEASE_AUDIT_REPORT.md",
+        "QUALITY_VALIDATION_REPORT.md",
+        "RELEASE_NOTES.md",
+        "ARCHITECTURE.md",
+        "API.md",
+        "DEVELOPMENT_WORKFLOW.md",
+        "AGENT_SKILLS_RELEASE_SPEC.md",
+        "release-packages",   # 测试输出目录
+    ]
+
+    def should_exclude(file_path: Path) -> bool:
+        """检查文件是否应该被排除"""
+        # 检查文件路径中的任何部分是否匹配排除模式
+        for part in file_path.parts:
+            if part in exclude_patterns:
+                return True
+        return False
+
     # 创建 zip 包
     zip_path = output_dir / f"{package_name}.zip"
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         for item in source_dir.rglob("*"):
-            if item.is_file() and ".git" not in str(item):
+            if item.is_file() and not should_exclude(item):
                 arcname = f"{package_name}/{item.relative_to(source_dir)}"
                 zipf.write(item, arcname)
 
@@ -264,7 +306,7 @@ def create_test_package(source_dir: Path, output_dir: Path):
     tar_path = output_dir / f"{package_name}.tar.gz"
     with tarfile.open(tar_path, "w:gz") as tarf:
         for item in source_dir.rglob("*"):
-            if item.is_file() and ".git" not in str(item):
+            if item.is_file() and not should_exclude(item):
                 arcname = f"{package_name}/{item.relative_to(source_dir)}"
                 tarf.add(item, arcname)
 
@@ -275,34 +317,63 @@ def main():
     """主函数"""
     # 获取脚本所在目录的父目录（技能包根目录）
     script_dir = Path(__file__).parent.resolve()
-    package_dir = script_dir.parent
+    source_dir = script_dir.parent  # GitHub 仓库中的 frontend-design/
 
     print("=" * 70)
     print("Frontend Design Agent Skills - 发布包验证测试")
     print("=" * 70)
     print()
 
-    # 执行验证
-    validator = ReleasePackageValidator(str(package_dir))
+    # 步骤 1: 创建测试发布包（排除 docs/ 和开发文档）
+    print("步骤 1: 创建测试发布包（排除开发文档）...")
+    test_output_dir = script_dir / "release-packages"
+    create_test_package(source_dir, test_output_dir)
+    print()
+
+    # 步骤 2: 解压发布包到临时目录进行验证
+    print("步骤 2: 解压发布包到临时目录...")
+    import tempfile
+    import shutil
+
+    # 使用临时目录
+    temp_dir = tempfile.mkdtemp(prefix="skill-verify-")
+    temp_extract_dir = Path(temp_dir) / "extracted"
+    temp_extract_dir.mkdir()
+
+    # 解压 tar.gz 进行验证
+    tar_path = test_output_dir / "frontend-design-skill.tar.gz"
+    if tar_path.exists():
+        with tarfile.open(tar_path, "r:gz") as tarf:
+            tarf.extractall(temp_extract_dir)
+
+    # 验证解压后的目录
+    extracted_skill_dir = temp_extract_dir / "frontend-design-skill"
+    print(f"  解压到: {extracted_skill_dir}")
+    print()
+
+    # 步骤 3: 验证发布包内容
+    print("步骤 3: 验证发布包内容...")
+    validator = ReleasePackageValidator(str(extracted_skill_dir))
     passed = validator.validate()
-
     print()
 
-    # 如果验证通过，创建测试包
+    # 步骤 4: 清理临时目录
+    print("步骤 4: 清理临时文件...")
+    shutil.rmtree(temp_dir)
+    print("  ✅ 临时目录已清理")
+    print()
+
+    # 显示创建的包信息
+    print("发布包信息:")
+    for pkg in test_output_dir.glob("*"):
+        print(f"  📦 {pkg.name}: {pkg.stat().st_size:,} bytes")
+    print()
+
+    print("=" * 70)
     if passed:
-        print("创建测试发布包...")
-        test_output_dir = script_dir / "release-packages"
-        create_test_package(package_dir, test_output_dir)
-        print()
-
-        # 验证创建的包
-        print("验证创建的发布包...")
-        for pkg in test_output_dir.glob("*"):
-            print(f"  📦 {pkg.name}: {pkg.stat().st_size} bytes")
+        print("✅ 发布包验证通过!")
     else:
-        print("❌ 验证未通过，不创建测试包")
-
-    print()
+        print("❌ 发布包验证失败!")
     print("=" * 70)
 
     sys.exit(0 if passed else 1)

@@ -396,6 +396,125 @@ Closes #123
 
 ---
 
+## 🎯 技能包发布规范
+
+> **重要**: 发布技能包前必须遵循的规范
+
+### ⚠️ GitHub 仓库 vs 发布的技能包
+
+必须明确区分两个概念：
+
+| 概念 | 内容 | 用途 |
+|------|------|------|
+| **GitHub 仓库** | 所有文件 + docs/ + 开发文档 | 开发管理、版本控制 |
+| **发布的技能包** | 只包含技能运行所需文件 | AI Agent 使用 |
+
+### 📦 技能包发布流程
+
+```
+1. 正确的技能包发布功能
+   ├── 确定技能包根目录
+   ├── 排除 docs/ 目录
+   ├── 排除开发过程文件
+   └── 只包含技能运行所需文件
+
+2. 正确的指定测试解压目录
+   ├── 创建临时测试目录
+   ├── 解压发布包到测试目录
+   └── 准备验证环境
+
+3. 正确的检验确认符合规范
+   ├── 验证 SKILL.md 存在
+   ├── 验证必需文件存在
+   ├── 验证目录结构符合规范
+   ├── 验证不包含 docs/ 目录
+   └── 验证不包含开发文档
+
+4. 如果符合规范要求
+   ├── 清理解压测试目录
+   ├── 清理临时文件
+   └── 验证通过
+
+5. 如果不符合规范要求
+   ├── 执行交叉验证确认
+   ├── 修正/修复问题
+   └── 重新执行发布流程
+```
+
+### ❌ 发布包排除规则
+
+发布技能包时，**必须排除**以下内容：
+
+| 排除项 | 原因 |
+|--------|------|
+| `docs/` | 开发文档，不是技能运行所需 |
+| `TASK.md` | 任务追踪文档 |
+| `FRONTEND-DESIGN-DEVELOPMENT-PLAN.md` | 开发计划 |
+| `PRE_RELEASE_AUDIT_REPORT.md` | 审计报告 |
+| `QUALITY_VALIDATION_REPORT.md` | 验证报告 |
+| `RELEASE_NOTES.md` | 发布说明 |
+| `MIGRATION_GUIDE.md` | 迁移指南 |
+| `ARCHITECTURE.md` | 架构文档 |
+| `API.md` | API 文档 |
+| `DEVELOPMENT_WORKFLOW.md` | 开发流程规范 |
+| `AGENT_SKILLS_RELEASE_SPEC.md` | 发布规范文档 |
+| `.git/` | Git 版本控制 |
+
+### ✅ 发布包包含规则
+
+发布技能包时，**只包含**以下内容：
+
+| 包含项 | 说明 |
+|--------|------|
+| `SKILL.md` | ✅ 必需 - 技能入口文件 |
+| `LICENSE` | ✅ 可选 - 许可证 |
+| `README.md` | ✅ 可选 - 技能说明 |
+| `CHANGELOG.md` | ✅ 可选 - 变更日志 |
+| `CONTRIBUTING.md` | ✅ 可选 - 贡献指南 |
+| `scripts/` | ✅ 可选 - 技能运行所需脚本 |
+| `references/` | ✅ 可选 - 技能参考文档 |
+| `templates/` | ✅ 可选 - 项目模板 |
+| `tests/` | ✅ 可选 - 测试文件 |
+| `assets/` | ✅ 可选 - 静态资源 |
+
+### 📋 发布前验证清单
+
+发布技能包前，必须执行以下验证：
+
+```bash
+# 1. 验证 SKILL.md 存在
+ls SKILL.md
+
+# 2. 验证必需的 MD 文件存在
+ls README.md CHANGELOG.md
+
+# 3. 验证不包含 docs/ 目录
+! test -d docs/
+
+# 4. 验证不包含开发文档
+! test -f TASK.md
+! test -f FRONTEND-DESIGN-DEVELOPMENT-PLAN.md
+! test -f PRE_RELEASE_AUDIT_REPORT.md
+
+# 5. 创建测试发布包
+tar --exclude='.git' --exclude='docs/' --exclude='*.log' \
+    -czf test-package.tar.gz .
+
+# 6. 解压到临时目录验证
+mkdir -p test-verify
+tar -xzf test-package.tar.gz -C test-verify/
+
+# 7. 验证解压后的结构
+ls test-verify/
+# 应该看到: SKILL.md, LICENSE, README.md, scripts/, references/, etc.
+# 不应该看到: docs/, TASK.md, 等
+
+# 8. 清理测试环境
+rm -rf test-verify test-package.tar.gz
+```
+
+---
+
 ## 📖 参考资料
 
 - [Conventional Commits](https://www.conventionalcommits.org/)
