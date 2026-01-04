@@ -168,6 +168,71 @@ frontend-design/          ✅ 符合 Agent Skills 规范
 
 ---
 
+## 🔧 第二次发布修复记录 (2026-01-04)
+
+### 问题描述
+
+首次修复后，发现 frontend-design/ 根目录仍包含开发过程文档：
+- `FRONTEND-DESIGN-DEVELOPMENT-PLAN.md` - 开发计划
+- `MIGRATION_GUIDE.md` - 迁移指南
+- `PRE_RELEASE_AUDIT_REPORT.md` - 发布前审计报告
+- `QUALITY_VALIDATION_REPORT.md` - 质量验证报告
+- `RELEASE_NOTES.md` - 发布说明
+- `TASK.md` - 任务追踪
+
+这些开发过程文档不应在技能包根目录，应放在 docs/ 目录下。
+
+### 第二次修复过程
+
+| 步骤 | 操作 | 说明 |
+|------|------|------|
+| 1 | 全面排查远端目录结构 | 确认所有开发文档 |
+| 2 | 移动开发文档到 docs/ | 6个文件移动 |
+| 3 | 创建发布包验证测试 | verify-release-package.py |
+| 4 | 提交修复 | commit: f63587a |
+| 5 | 验证符合规范 | ✅ 通过 |
+
+### 最终结构（符合 Agent Skills 规范）
+
+```
+frontend-design/          ✅ 符合 Agent Skills 规范
+├── SKILL.md              ✅ 必需 - 技能入口文件
+├── LICENSE               ✅ 可选 - 许可证
+├── README.md             ✅ 可选 - 技能说明
+├── CHANGELOG.md          ✅ 可选 - 变更日志
+├── CONTRIBUTING.md       ✅ 可选 - 贡献指南
+├── .gitignore            ✅ 可选
+├── scripts/              ✅ 可选 - 可执行代码
+├── references/           ✅ 可选 - 详细文档
+├── templates/            ✅ 可选 - 项目模板
+├── tests/                ✅ 可选 - 测试文件
+│   └── verify-release-package.py  ✅ 发布包验证测试
+└── docs/                 ✅ 额外文档
+    ├── TASK.md                           任务追踪
+    ├── FRONTEND-DESIGN-DEVELOPMENT-PLAN.md
+    ├── MIGRATION_GUIDE.md
+    ├── PRE_RELEASE_AUDIT_REPORT.md
+    ├── QUALITY_VALIDATION_REPORT.md
+    ├── RELEASE_NOTES.md
+    ├── AGENT_SKILLS_RELEASE_SPEC.md
+    ├── API.md
+    ├── ARCHITECTURE.md
+    ├── CONTRIBUTING.md
+    └── DEVELOPMENT_WORKFLOW.md
+```
+
+### 发布包验证测试
+
+新增 `tests/verify-release-package.py` 脚本用于验证：
+- ✅ 必需文件存在（SKILL.md）
+- ✅ 根目录文件符合规范
+- ✅ 根目录目录符合规范
+- ✅ SKILL.md YAML frontmatter 格式正确
+- ✅ 开发文档位于 docs/ 目录
+- ✅ 可创建 zip/tar.gz 测试发布包
+
+---
+
 ## 🔗 相关文档
 
 - [开发流程规范](docs/DEVELOPMENT_WORKFLOW.md)
