@@ -46,7 +46,10 @@
 | └─ [功能状态详解](implementation/component-states-functional.md) | Disabled/Loading/Empty/Error | 450行 | ✅ DONE |
 | [无障碍指南](implementation/accessibility.md) | WCAG AA标准 | 280行 | ✅ DONE |
 | [响应式设计](implementation/responsive-design.md) | 移动优先 | 290行 | ✅ DONE |
-| [性能优化](implementation/performance.md) | 性能最佳实践 | 622行 | ✅ DONE |
+| [性能优化](implementation/performance-optimization.md) | 性能最佳实践（主文档） | 218行 | ✅ DONE |
+| └─ [渲染优化](implementation/performance-rendering.md) | 加载+运行时+构建优化 | 277行 | ✅ DONE |
+| └─ [资源优化](implementation/performance-resources.md) | 图片+网络优化 | 236行 | ✅ DONE |
+| └─ [监控测试](implementation/performance-monitoring.md) | 测试+监控+检查清单 | 278行 | ✅ DONE |
 | [SEO指南](implementation/seo-best-practices.md) | 搜索引擎优化 | 535行 | ✅ DONE |
 
 **何时读取**：
