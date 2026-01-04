@@ -74,7 +74,7 @@ license: MIT
 
 | 文档 | 说明 |
 |------|------|
-| [组件状态覆盖](references/implementation/component-states.md) | 8种状态完整覆盖 |
+| [组件状态覆盖](references/implementation/component-states.md) | 8种状态完整覆盖（主文档+交互状态+功能状态） |
 | [无障碍指南](references/implementation/accessibility.md) | WCAG AA标准 ⏳ 计划中 |
 | [响应式设计](references/implementation/responsive-design.md) | 移动优先 ⏳ 计划中 |
 | [性能优化](references/implementation/performance.md) | 性能最佳实践 |

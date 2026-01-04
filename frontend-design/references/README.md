@@ -41,7 +41,9 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [组件状态覆盖](implementation/component-states.md) | 8种状态完整覆盖 | 514行 | ✅ DONE |
+| [组件状态覆盖](implementation/component-states.md) | 8种状态完整覆盖（主文档） | 230行 | ✅ DONE |
+| └─ [交互状态详解](implementation/component-states-interactive.md) | Default/Hover/Active/Focus | 310行 | ✅ DONE |
+| └─ [功能状态详解](implementation/component-states-functional.md) | Disabled/Loading/Empty/Error | 450行 | ✅ DONE |
 | [无障碍指南](implementation/accessibility.md) | WCAG AA标准 | - | ⏳ TODO |
 | [响应式设计](implementation/responsive-design.md) | 移动优先 | - | ⏳ TODO |
 | [性能优化](implementation/performance.md) | 性能最佳实践 | 622行 | ✅ DONE |
