@@ -562,7 +562,7 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 
 | 任务ID | 任务名称 | 状态 | 完成时间 | 备注 |
 |--------|----------|------|----------|------|
-| TASK-1001 | 优化超行数文档（>600行拆分） | ✅ DONE | 2026-01-05 | 拆分3个超长文档为11个子文档 |
+| TASK-1001 | 优化超行数文档（>600行拆分） | ✅ DONE | 2026-01-05 | 拆分3个超长文档为10个子文档 |
 | TASK-1002 | 添加Git提交规范自动化 | ✅ DONE | 2026-01-04 | 创建.commit-msg.sh和.pre-commit-config.yaml |
 | TASK-1003 | 创建模板测试脚本 | ✅ DONE | 2026-01-04 | 创建完整的模板测试框架 |
 
@@ -572,9 +572,9 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 
 | 文档 | 当前行数 | 拆分方案 | 优先级 |
 |------|----------|----------|--------|
-| design-directions-expressive.md | 735 | 拆分为3个子文档 | 中 |
-| component-states-functional.md | 655 | 拆分为3个子文档 | 中 |
-| performance.md | 622 | 拆分为3个子文档 | 中 |
+| design-directions-expressive.md | 293 | 拆分为2个子文档(luxury.md, playful.md) | 中 |
+| component-states-functional.md | 252 | 拆分为3个子文档(disabled.md, loading.md, empty-error.md) | 中 |
+| performance-optimization.md | 218 | 主文档，拆分出3个子文档(rendering.md, resources.md, monitoring.md) | 中 |
 
 **TASK-1002**: 添加Git提交规范自动化
 

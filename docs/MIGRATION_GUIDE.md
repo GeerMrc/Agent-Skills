@@ -77,7 +77,7 @@ SKILL.md (193行，入口点)
 ├── quality/ (质量指南)
 │   ├── checklist.md
 │   ├── accessibility.md
-│   ├── performance.md
+│   ├── performance-optimization.md
 │   └── seo.md
 └── scripts/ (工具脚本)
     ├── validate/

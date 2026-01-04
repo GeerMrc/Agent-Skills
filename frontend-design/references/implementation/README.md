@@ -21,11 +21,11 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [组件状态覆盖](component-states.md) | 8种状态完整覆盖（default/hover/active/focus/disabled/loading/empty/error） | 200-300行 | ⏳ TODO |
-| [无障碍指南](accessibility.md) | WCAG AA无障碍标准，ARIA最佳实践 | 200-300行 | ⏳ TODO |
-| [响应式设计](responsive-design.md) | 移动优先，断点系统，容器查询 | 200-300行 | ⏳ TODO |
-| [性能优化](performance.md) | 性能最佳实践，LCP < 2.5s目标 | 200-300行 | ⏳ TODO |
-| [SEO指南](seo-best-practices.md) | 搜索引擎优化，元数据，结构化数据 | 200-300行 | ⏳ TODO |
+| [组件状态覆盖](component-states.md) | 8种状态完整覆盖（default/hover/active/focus/disabled/loading/empty/error） | 200-300行 | ✅ DONE |
+| [无障碍指南](accessibility.md) | WCAG AA无障碍标准，ARIA最佳实践 | 200-300行 | ✅ DONE |
+| [响应式设计](responsive-design.md) | 移动优先，断点系统，容器查询 | 200-300行 | ✅ DONE |
+| [性能优化](performance-optimization.md) | 性能最佳实践，LCP < 2.5s目标 | 200-300行 | ✅ DONE |
+| [SEO指南](seo-best-practices.md) | 搜索引擎优化，元数据，结构化数据 | 200-300行 | ✅ DONE |
 
 ---
 
@@ -42,7 +42,7 @@
 - 遇到组件状态问题时 → 读取 component-states.md
 - 需要确保无障碍时 → 读取 accessibility.md
 - 实现响应式布局时 → 读取 responsive-design.md
-- 性能优化时 → 读取 performance.md
+- 性能优化时 → 读取 performance-optimization.md
 - SEO优化时 → 读取 seo-best-practices.md
 
 ---

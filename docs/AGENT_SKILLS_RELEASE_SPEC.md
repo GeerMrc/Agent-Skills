@@ -388,7 +388,7 @@ references/
 │   └── angular.md
 └── quality/
     ├── checklist.md
-    ├── performance.md
+    ├── performance-optimization.md
     └── seo-best-practices.md
 ```
 

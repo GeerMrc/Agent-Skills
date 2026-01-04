@@ -385,7 +385,7 @@
 - [审查标准](./review-criteria.md) - 代码审查标准
 - [测试策略](./testing-strategy.md) - 测试方法
 - [无障碍指南](../implementation/accessibility.md) - WCAG AA标准
-- [性能优化](../implementation/performance.md) - 性能最佳实践
+- [性能优化](../implementation/performance-optimization.md) - 性能最佳实践
 
 ---
 

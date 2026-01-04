@@ -516,7 +516,7 @@ https://search.google.com/test/mobile-friendly
 
 ## 📚 相关文档
 
-- [性能优化](./performance.md) - 性能最佳实践
+- [性能优化](./performance-optimization.md) - 性能最佳实践
 - [无障碍指南](./accessibility.md) - WCAG AA标准
 - [质量检查清单](../quality/checklist.md) - 完整检查清单
 
