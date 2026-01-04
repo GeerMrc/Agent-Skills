@@ -598,9 +598,9 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 
 ## 🔗 相关文档
 
-- [开发流程规范](docs/DEVELOPMENT_WORKFLOW.md)
+- [开发流程规范](DEVELOPMENT_WORKFLOW.md)
 - [完整开发计划](FRONTEND-DESIGN-DEVELOPMENT-PLAN.md)
-- [变更日志](CHANGELOG.md)
+- [变更日志](../frontend-design/CHANGELOG.md)
 
 ---
 
