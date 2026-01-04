@@ -62,7 +62,10 @@
 
 | 文档 | 说明 | 行数 | 状态 |
 |------|------|------|------|
-| [设计方向](aesthetics/design-directions.md) | 5种设计方向模板 | 625行 | ✅ DONE |
+| [设计方向](aesthetics/design-directions.md) | 5种设计方向模板（主文档） | 232行 | ✅ DONE |
+| └─ [现代风格详解](aesthetics/design-directions-modern.md) | Brutalist、Retro-Futuristic | 480行 | ✅ DONE |
+| └─ [表现风格详解](aesthetics/design-directions-expressive.md) | Luxury、Playful | 530行 | ✅ DONE |
+| └─ [编辑风格详解](aesthetics/design-directions-editorial.md) | Editorial | 350行 | ✅ DONE |
 | [排版指南](aesthetics/typography.md) | 字体选择与排版 | - | ⏳ TODO |
 | [色彩理论](aesthetics/color-theory.md) | 色彩系统 | - | ⏳ TODO |
 | [反模式](aesthetics/anti-patterns.md) | 避免常见错误 | - | ⏳ TODO |

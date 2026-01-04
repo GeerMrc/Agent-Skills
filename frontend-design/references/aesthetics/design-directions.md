@@ -16,531 +16,44 @@
 
 ---
 
-## 1. Brutalist（野兽派）
+## 📋 设计方向快速参考
 
-### 整体描述
-原始、粗犷、未修饰的设计风格。强调功能性而非装饰，使用大胆的边框、强烈的对比和原始的排版。
+| 方向 | 关键词 | 色彩 | 字体 | 适用产品 |
+|------|--------|------|------|----------|
+| **Brutalist** | 原始、粗犷、功能优先 | 黑白高对比 | Space Mono等宽 | 开发者工具、创意作品集 |
+| **Retro-Futuristic** | 复古未来、霓虹、渐变 | 霓虹色+暗背景 | Orbitron合成风 | 游戏、音乐、科技产品 |
+| **Luxury** | 优雅、精致、高端 | 金色系+深色 | Playfair Display衬线 | 奢侈品、金融、艺术 |
+| **Playful** | 活泼、有趣、友好 | 明亮渐变色 | Nunito圆润 | 教育、儿童、社交 |
+| **Editorial** | 排版驱动、杂志风 | 中性色+强调色 | Libre Baskerville | 新闻、博客、出版 |
 
-### 色彩方案
-```css
-:root {
-  /* 主色：高对比黑白 */
-  --brutalist-bg: #ffffff;
-  --brutalist-text: #000000;
-  --brutalist-accent: #ff0000;
-  --brutalist-border: #000000;
-
-  /* 暗色模式 */
-  --brutalist-dark-bg: #000000;
-  --brutalist-dark-text: #ffffff;
-  --brutalist-dark-accent: #00ff00;
-}
-```
-
-### 字体选择
-```css
-/* 避免Inter/Roboto，使用等宽或粗字体 */
-font-family: 'Courier New', 'Space Mono', 'IBM Plex Mono', monospace;
-
-/* 粗体标题 */
-font-weight: 900;
-text-transform: uppercase;
-letter-spacing: -0.05em;
-```
-
-### 组件风格
-
-#### 按钮
-```css
-.brutalist-button {
-  background: transparent;
-  border: 3px solid #000;
-  color: #000;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 16px 32px;
-  cursor: pointer;
-  transition: all 0.1s;
-}
-
-.brutalist-button:hover {
-  background: #000;
-  color: #fff;
-}
-
-.brutalist-button:active {
-  transform: translate(4px, 4px);
-}
-```
-
-#### 卡片
-```css
-.brutalist-card {
-  border: 4px solid #000;
-  box-shadow: 8px 8px 0 #000;
-  background: #fff;
-  padding: 0;
-  margin: 16px;
-}
-
-.brutalist-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 12px 12px 0 #000;
-}
-```
-
-### 布局特点
-- 使用CSS Grid创建不对称布局
-- 大胆的间距（0或大间距）
-- 粗边框和分割线
-- 无圆角或最小圆角
-
-### 适用产品
-- 开发者工具
-- 创意作品集
-- 实验性项目
-- 独立博客
+**详细指南**：
+- [现代风格详解](./design-directions-modern.md) - Brutalist、Retro-Futuristic
+- [表现风格详解](./design-directions-expressive.md) - Luxury、Playful
+- [编辑风格详解](./design-directions-editorial.md) - Editorial
 
 ---
 
-## 2. Retro-Futuristic（复古未来主义）
+## 🎯 设计方向对比
 
-### 整体描述
-80-90年代对未来的想象，霓虹色彩、渐变、几何形状。结合复古美学和现代技术。
+### 视觉强度对比
 
-### 色彩方案
-```css
-:root {
-  /* 霓虹色彩 */
-  --retro-neon-pink: #ff00ff;
-  --retro-neon-blue: #00ffff;
-  --retro-neon-purple: #9d00ff;
-  --retro-neon-yellow: #ffff00;
-
-  /* 渐变背景 */
-  --retro-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-
-  /* 暗色背景 */
-  --retro-bg-dark: #0a0a1a;
-  --retro-bg-light: #1a1a2e;
-}
+```
+Brutalist ████████████████████ 极强（原始冲击力）
+Retro-Futuristic █████████████████ 强（霓虹视觉）
+Luxury ████████████░░░░░░░░░░░ 中等（精致优雅）
+Playful ███████████████░░░░░░░░ 中等（活泼友好）
+Editorial ████████░░░░░░░░░░░░░ 弱（内容驱动）
 ```
 
-### 字体选择
-```css
-/* 合成波风格字体 */
-font-family: 'Orbitron', 'Rajdhani', 'Exo 2', sans-serif;
+### 功能适用性对比
 
-/* 标题效果 */
-h1 {
-  text-shadow:
-    0 0 10px var(--retro-neon-pink),
-    0 0 20px var(--retro-neon-pink),
-    0 0 40px var(--retro-neon-pink);
-}
-```
-
-### 组件风格
-
-#### 按钮
-```css
-.retro-button {
-  background: linear-gradient(180deg, #ff00ff 0%, #9d00ff 100%);
-  border: none;
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 12px 24px;
-  box-shadow:
-    0 0 20px rgba(255, 0, 255, 0.5),
-    inset 0 0 20px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s;
-}
-
-.retro-button:hover {
-  box-shadow:
-    0 0 40px rgba(255, 0, 255, 0.8),
-    inset 0 0 30px rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-```
-
-#### 卡片
-```css
-.retro-card {
-  background: rgba(26, 26, 46, 0.9);
-  border: 2px solid var(--retro-neon-blue);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 0 20px rgba(0, 255, 255, 0.3),
-    inset 0 0 20px rgba(0, 255, 255, 0.1);
-  padding: 24px;
-}
-
-.retro-card::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, var(--retro-neon-pink), var(--retro-neon-blue));
-  border-radius: 16px;
-  z-index: -1;
-  opacity: 0.5;
-}
-```
-
-### 装饰元素
-- 几何形状（三角形、圆形、线条）
-- 网格背景
-- 扫描线效果
-- 辉光和阴影
-
-### 适用产品
-- 游戏界面
-- 音乐应用
-- 科技产品
-- 创意平台
-
----
-
-## 3. Luxury（奢华风格）
-
-### 整体描述
-优雅、精致、高端的设计风格。使用金色、深色、衬线字体，传递品质和价值感。
-
-### 色彩方案
-```css
-:root {
-  /* 金色系 */
-  --luxury-gold: #d4af37;
-  --luxury-gold-light: #f4e4bc;
-  --luxury-gold-dark: #996515;
-
-  /* 深色背景 */
-  --luxury-bg-primary: #0c0c0c;
-  --luxury-bg-secondary: #1a1a1a;
-  --luxury-bg-tertiary: #2a2a2a;
-
-  /* 文字颜色 */
-  --luxury-text-primary: #f4e4bc;
-  --luxury-text-secondary: #d4af37;
-  --luxury-text-muted: #888888;
-}
-```
-
-### 字体选择
-```css
-/* 衬线字体营造优雅感 */
-font-family: 'Playfair Display', 'Cormorant Garamond', 'Bodoni Moda', serif;
-
-/* 标题 */
-h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-/* 正文 */
-body {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  line-height: 1.8;
-}
-```
-
-### 组件风格
-
-#### 按钮
-```css
-.luxury-button {
-  background: linear-gradient(135deg, var(--luxury-gold-dark) 0%, var(--luxury-gold) 100%);
-  border: 1px solid var(--luxury-gold);
-  color: var(--luxury-bg-primary);
-  font-family: 'Bodoni Moda', serif;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 16px 48px;
-  border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.luxury-button::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 100%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.luxury-button:hover::before {
-  opacity: 1;
-}
-```
-
-#### 卡片
-```css
-.luxury-card {
-  background: var(--luxury-bg-secondary);
-  border: 1px solid var(--luxury-gold-dark);
-  border-radius: 4px;
-  padding: 40px;
-  position: relative;
-}
-
-.luxury-card::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  border: 1px solid var(--luxury-gold-light);
-  pointer-events: none;
-}
-```
-
-### 装饰元素
-- 金色边框和分割线
-- 精致的图案和纹理
-- 丰富的空白
-- 微妙的动画效果
-
-### 适用产品
-- 奢侈品电商
-- 高端服务
-- 金融产品
-- 艺术作品集
-
----
-
-## 4. Playful（俏皮风格）
-
-### 整体描述
-活泼、有趣、友好的设计风格。使用明亮的色彩、圆润的形状、有趣的图标，传递轻松愉快的体验。
-
-### 色彩方案
-```css
-:root {
-  /* 明亮色彩 */
-  --playful-primary: #ff6b6b;
-  --playful-secondary: #4ecdc4;
-  --playful-accent: #ffe66d;
-  --playful-purple: #a29bfe;
-
-  /* 柔和背景 */
-  --playful-bg: #f7f9fc;
-  --playful-surface: #ffffff;
-
-  /* 渐变 */
-  --playful-gradient: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
-}
-```
-
-### 字体选择
-```css
-/* 圆润的字体 */
-font-family: 'Nunito', 'Quicksand', 'Poppins', sans-serif;
-
-/* 标题 */
-h1, h2, h3 {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-/* 正文 */
-body {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 500;
-}
-```
-
-### 组件风格
-
-#### 按钮
-```css
-.playful-button {
-  background: var(--playful-gradient);
-  border: none;
-  border-radius: 50px;
-  color: #fff;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  padding: 16px 32px;
-  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  position: relative;
-  overflow: hidden;
-}
-
-.playful-button:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
-}
-
-.playful-button:active {
-  transform: translateY(-2px) scale(1.02);
-}
-```
-
-#### 卡片
-```css
-.playful-card {
-  background: var(--playful-surface);
-  border-radius: 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  padding: 32px;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  border: 3px solid transparent;
-}
-
-.playful-card:hover {
-  transform: translateY(-8px) rotate(1deg);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-  border-color: var(--playful-accent);
-}
-```
-
-### 装饰元素
-- 圆润的形状（圆形、波浪线）
-- 有趣的图标和插图
-- 弹性动画效果
-- 明亮的渐变和阴影
-
-### 适用产品
-- 教育应用
-- 儿童产品
-- 社交应用
-- 游戏化产品
-
----
-
-## 5. Editorial（编辑风格）
-
-### 整体描述
-受杂志和报纸启发的排版驱动设计。强调内容、排版层次、留白和视觉节奏。
-
-### 色彩方案
-```css
-:root {
-  /* 中性色彩 */
-  --editorial-bg: #fafafa;
-  --editorial-surface: #ffffff;
-  --editorial-text: #1a1a1a;
-  --editorial-text-muted: #666666;
-  --editorial-accent: #c0392b;
-
-  /* 分割线 */
-  --editorial-divider: #e0e0e0;
-}
-```
-
-### 字体选择
-```css
-/* 标题：使用有性格的衬线字体 */
-font-family: 'Libre Baskerville', 'Merriweather', 'Source Serif Pro', serif;
-
-/* 正文：易读性优先 */
-body {
-  font-family: 'Source Serif Pro', Georgia, serif;
-  font-size: 20px;
-  line-height: 1.6;
-  max-width: 70ch;
-}
-
-/* 副标题：无衬线字体形成对比 */
-h3 {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 14px;
-}
-```
-
-### 组件风格
-
-#### 按钮
-```css
-.editorial-button {
-  background: transparent;
-  border: 1px solid var(--editorial-text);
-  color: var(--editorial-text);
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 12px;
-  padding: 16px 32px;
-  transition: all 0.2s;
-}
-
-.editorial-button:hover {
-  background: var(--editorial-text);
-  color: var(--editorial-surface);
-}
-
-.editorial-button.primary {
-  background: var(--editorial-accent);
-  border-color: var(--editorial-accent);
-  color: #fff;
-}
-
-.editorial-button.primary:hover {
-  background: #a93226;
-  border-color: #a93226;
-}
-```
-
-#### 卡片（文章卡片）
-```css
-.editorial-article {
-  border-bottom: 1px solid var(--editorial-divider);
-  padding: 48px 0;
-  max-width: 900px;
-}
-
-.editorial-article-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 42px;
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.editorial-article-meta {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--editorial-text-muted);
-  margin-bottom: 24px;
-}
-
-.editorial-article-excerpt {
-  font-size: 20px;
-  line-height: 1.6;
-  color: var(--editorial-text-muted);
-}
-```
-
-### 布局特点
-- 大量留白
-- 清晰的排版层次
-- 网格系统
-- 强调阅读体验
-
-### 适用产品
-- 新闻和媒体网站
-- 博客平台
-- 出版物
-- 内容驱动的应用
+| 方向 | 数据展示 | 内容阅读 | 交互密集 | 品牌识别 |
+|------|----------|----------|----------|----------|
+| Brutalist | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Retro-Futuristic | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Luxury | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Playful | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Editorial | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
 
 ---
 
@@ -548,35 +61,67 @@ h3 {
 
 ### 决策矩阵
 
-| 产品类型 | 推荐方向 | 替代方向 |
-|----------|----------|----------|
-| 开发者工具 | Brutalist | Editorial |
-| 游戏/娱乐 | Retro-Futuristic | Playful |
-| 奢侈品/金融 | Luxury | Editorial |
-| 教育/儿童 | Playful | Retro-Futuristic |
-| 新闻/出版 | Editorial | Brutalist |
-| 创意作品集 | Brutalist | Retro-Futuristic |
+| 产品类型 | 推荐方向 | 替代方向 | 选择理由 |
+|----------|----------|----------|----------|
+| 开发者工具 | Brutalist | Editorial | 功能优先，原始冲击力强 |
+| 游戏/娱乐 | Retro-Futuristic | Playful | 视觉震撼，符合游戏美学 |
+| 奢侈品/金融 | Luxury | Editorial | 传达品质和价值感 |
+| 教育/儿童 | Playful | Retro-Futuristic | 活泼友好，降低学习门槛 |
+| 新闻/出版 | Editorial | Brutalist | 内容驱动，阅读体验优先 |
+| 创意作品集 | Brutalist | Retro-Futuristic | 独特性强，视觉记忆点 |
+| SaaS产品 | Editorial | Playful | 专业可信，易于使用 |
+| 电商平台 | Luxury | Playful | 高端感或亲和力 |
+
+### 选择流程
+
+```
+1. 明确产品定位
+   ├── 目标用户是谁？
+   ├── 核心功能是什么？
+   └── 品牌个性是什么？
+
+2. 分析竞品设计
+   ├── 行业主流风格是什么？
+   ├── 如何差异化？
+   └── 避免哪些陈词滥调？
+
+3. 评估技术约束
+   ├── 设计实现难度
+   ├── 性能要求
+   └── 维护成本
+
+4. 选择核心方向
+   ├── 单一方向（推荐）
+   └── 混合方向（谨慎使用）
+```
 
 ### 混合策略
 
-不同模块可以使用不同的设计方向：
+**⚠️ 注意**：混合多种设计方向容易造成视觉不一致，建议：
+
+1. **主方向明确**：选择一个主导方向（70-80%）
+2. **局部差异**：特定模块使用辅助方向（20-30%）
+3. **过渡平滑**：使用共同的设计语言连接
 
 ```css
-/* 主应用：Editorial风格 */
+/* 推荐：主方向明确 */
 .app {
+  /* Editorial风格作为主导 */
   font-family: 'Source Serif Pro', serif;
+  color: var(--editorial-text);
 }
 
-/* 数据仪表板：Retro-Futuristic风格 */
-.dashboard {
+/* 局部模块使用辅助风格 */
+.app .marketing-hero {
+  /* Playful风格增强视觉冲击 */
+  background: var(--playful-gradient);
+  border-radius: 24px;
+}
+
+.app .data-visualization {
+  /* Retro-Futuristic风格突出数据 */
   font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-/* 设置页面：Brutalist风格 */
-.settings {
-  font-family: 'Space Mono', monospace;
-  border: 3px solid #000;
+  background: var(--retro-bg-dark);
 }
 ```
 
@@ -585,30 +130,91 @@ h3 {
 ## ✅ 设计方向检查清单
 
 ### 视觉一致性
-- [ ] 色彩方案统一
-- [ ] 字体选择一致
-- [ ] 组件风格统一
-- [ ] 装饰元素适度
+- [ ] 色彩方案统一（使用Design Token）
+- [ ] 字体选择一致（限制2-3种）
+- [ ] 组件风格统一（按钮、卡片、表单）
+- [ ] 装饰元素适度（不过度使用）
 
 ### 用户体验
-- [ ] 可读性良好
-- [ ] 交互清晰
-- [ ] 导航直观
-- [ ] 响应式适配
+- [ ] 可读性良好（对比度、字号、行高）
+- [ ] 交互清晰（hover、active、focus状态）
+- [ ] 导航直观（位置、样式、反馈）
+- [ ] 响应式适配（移动端、平板、桌面）
 
 ### 品牌传达
-- [ ] 符合品牌定位
-- [ ] 目标用户匹配
-- [ ] 竞争对手差异化
-- [ ] 视觉识别度
+- [ ] 符合品牌定位（高端、友好、专业等）
+- [ ] 目标用户匹配（年龄、偏好、场景）
+- [ ] 竞争对手差异化（独特识别度）
+- [ ] 视觉识别度（独特且一致）
+
+### 技术实现
+- [ ] 性能优化（字体加载、图片压缩）
+- [ ] 无障碍支持（键盘、屏幕阅读器）
+- [ ] 浏览器兼容（现代浏览器）
+- [ ] 代码可维护（CSS变量、组件化）
+
+---
+
+## 🚫 通用AI美学陷阱（避免）
+
+### 字体陷阱
+❌ **避免**：
+- Inter、Roboto、Arial（过于通用）
+- 全局使用同一字重（缺乏层次）
+- 过小的字号（可读性差）
+
+✅ **推荐**：
+- 选择有性格的字体（Space Mono、Playfair Display、Orbitron等）
+- 使用字重层次（300/400/600/700）
+- 合理的字号比例（1.2-1.5倍数）
+
+### 色彩陷阱
+❌ **避免**：
+- 白色背景+蓝色渐变（AI设计标配）
+- 紫色作为主色（过度使用）
+- 低对比度配色（可访问性差）
+
+✅ **推荐**：
+- 根据方向选择合适色系
+- 高对比度保证可读性
+- 独特的色彩组合（黑色+金色、霓虹色+暗色）
+
+### 布局陷阱
+❌ **避免**：
+- 统一的卡片布局（千篇一律）
+- 居中对齐所有内容（缺乏节奏）
+- 圆角过度使用（视觉疲劳）
+
+✅ **推荐**：
+- 多样化布局（网格、不对称、杂志风）
+- 左对齐或混合对齐（视觉节奏）
+- 适度圆角或无圆角（方向一致）
+
+### 动画陷阱
+❌ **避免**：
+- 相同的缓动函数（ease-in-out）
+- 统一的动画时长（300ms）
+- 过度的微动画（干扰用户）
+
+✅ **推荐**：
+- 根据方向选择动画风格（弹性、线性、无动画）
+- 差异化时长（150-600ms）
+- 有意义的动画（引导注意力，非装饰）
 
 ---
 
 ## 📚 相关文档
 
-- [色彩理论](./color-theory.md) - 色彩系统深入
-- [排版指南](./typography.md) - 字体选择与排版
-- [反模式](./anti-patterns.md) - 避免常见错误
+### 详细设计方向指南
+- [现代风格详解](./design-directions-modern.md) - Brutalist、Retro-Futuristic完整指南
+- [表现风格详解](./design-directions-expressive.md) - Luxury、Playful完整指南
+- [编辑风格详解](./design-directions-editorial.md) - Editorial完整指南
+
+### 相关设计文档
+- [色彩理论](./color-theory.md) - 色彩系统深入 ⏳ 计划中
+- [排版指南](./typography.md) - 字体选择与排版 ⏳ 计划中
+- [反模式](./anti-patterns.md) - 避免常见错误 ⏳ 计划中
+- [Design Token方法论](../methodology/design-tokens.md) - Token基础概念
 
 ---
 
@@ -621,5 +227,5 @@ h3 {
 ---
 
 > **状态**: ✅ DONE
-> **最后更新**: 2025-01-03
+> **最后更新**: 2026-01-04 (文档重构：拆分为4份)
 > **维护者**: 项目团队

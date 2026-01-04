@@ -84,7 +84,7 @@ license: MIT
 
 | 文档 | 说明 |
 |------|------|
-| [设计方向](references/aesthetics/design-directions.md) | 5种设计方向模板 |
+| [设计方向](references/aesthetics/design-directions.md) | 5种设计方向模板（主文档+3份详解） |
 | [排版指南](references/aesthetics/typography.md) | 字体选择与排版 ⏳ 计划中 |
 | [色彩理论](references/aesthetics/color-theory.md) | 色彩系统 ⏳ 计划中 |
 | [反模式](references/aesthetics/anti-patterns.md) | 避免常见错误 ⏳ 计划中 |
