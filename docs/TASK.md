@@ -854,8 +854,8 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 | 任务ID | 任务名称 | 状态 | 优先级 | 备注 |
 |--------|----------|------|--------|------|
 | TASK-1501 | 修复 examples/README.md 断链 | ✅ DONE | 2026-01-05 | 第30行，2份→3份子文档 |
-| TASK-1502 | 修复 references/README.md 断链 | 🔄 IN_PROGRESS | P0 | 第116行 |
-| TASK-1503 | 修复 TASK.md 文件引用 | ⏳ TODO | P0 | 多处 |
+| TASK-1502 | 修复 references/README.md 断链 | ✅ DONE | 2026-01-05 | 第116行，2份→3份子文档 |
+| TASK-1503 | 修复 TASK.md 文件引用 | 🔄 IN_PROGRESS | P0 | 多处 |
 | TASK-1504 | 更新框架文档子文档数量 | ⏳ TODO | P1 | 5个框架 |
 | TASK-1505 | 更新 Playful 子文档数量 | ⏳ TODO | P1 | 第77-78行 |
 | TASK-1506 | 处理未记录的文档 | ⏳ TODO | P2 | 3个文件 |
