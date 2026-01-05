@@ -133,18 +133,25 @@
 |------|------|------|------|
 | [React](by-framework/react.md) | React最佳实践（主文档，1份子文档） | 485行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/react-guide.md) | Context、表单、测试 | 560行 | ✅ DONE |
-| [Vue](by-framework/vue.md) | Vue最佳实践（主文档，1份子文档） | 577行 | ✅ DONE |
+| [Vue](by-framework/vue.md) | Vue最佳实践（主文档，2份子文档） | 577行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/vue-guide.md) | 状态管理、路由、测试 | 580行 | ✅ DONE |
-| [Svelte](by-framework/svelte.md) | Svelte最佳实践（主文档，1份子文档） | 260行 | ✅ DONE |
+| └─ [Composition API](by-framework/vue-guide-composition.md) | Composition API 指南 | 280行 | ✅ DONE |
+| [Svelte](by-framework/svelte.md) | Svelte最佳实践（主文档，3份子文档） | 260行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/svelte-guide.md) | 组件通信、状态管理、路由、无障碍、测试 | 380行 | ✅ DONE |
-| [Angular](by-framework/angular.md) | Angular最佳实践（主文档，1份子文档） | 527行 | ✅ DONE |
+| └─ [状态管理与路由](by-framework/svelte-guide-state-routing.md) | 状态管理、路由 | 180行 | ✅ DONE |
+| └─ [高级主题](by-framework/svelte-guide-advanced.md) | 高级用法、测试 | 230行 | ✅ DONE |
+| [Angular](by-framework/angular.md) | Angular最佳实践（主文档，3份子文档） | 527行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/angular-guide.md) | 依赖注入、路由、表单、测试 | 620行 | ✅ DONE |
-| [Tailwind](by-framework/tailwind.md) | Tailwind最佳实践（主文档，1份子文档） | 265行 | ✅ DONE |
+| └─ [路由与表单](by-framework/angular-guide-routing-forms.md) | 路由、表单 | 280行 | ✅ DONE |
+| └─ [测试最佳实践](by-framework/angular-guide-testing-best-practices.md) | 测试、最佳实践 | 310行 | ✅ DONE |
+| [Tailwind](by-framework/tailwind.md) | Tailwind最佳实践（主文档，2份子文档） | 265行 | ✅ DONE |
 | └─ [完整配置指南](by-framework/tailwind-guide.md) | 设计令牌、自定义配置、性能优化 | 380行 | ✅ DONE |
+| └─ [自定义配置](by-framework/tailwind-guide-customization.md) | 自定义配置、主题 | 250行 | ✅ DONE |
 | [CSS Modules](by-framework/css-modules.md) | CSS Modules指南（主文档，1份子文档） | 300行 | ✅ DONE |
 | └─ [高级主题](by-framework/css-modules-advanced.md) | 预处理器、主题、性能、测试、迁移 | 357行 | ✅ DONE |
-| [Styled Components](by-framework/styled-components.md) | Styled Components总览（主文档，1份子文档） | 294行 | ✅ DONE |
+| [Styled Components](by-framework/styled-components.md) | Styled Components总览（主文档，2份子文档） | 294行 | ✅ DONE |
 | └─ [完整实现指南](by-framework/styled-components-guide.md) | 安装、配置、高级用法、测试、性能优化 | 582行 | ✅ DONE |
+| └─ [高级主题](by-framework/styled-components-guide-advanced.md) | 高级用法、性能优化 | 300行 | ✅ DONE |
 
 **何时读取**：
 - 使用特定框架时
