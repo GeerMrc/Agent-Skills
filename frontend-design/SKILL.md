@@ -74,7 +74,7 @@ license: MIT
 
 | 文档 | 说明 |
 |------|------|
-| [组件状态覆盖](references/implementation/component-states.md) | 8种状态完整覆盖（1主文档+9份专题） |
+| [组件状态覆盖](references/implementation/component-states.md) | 8种状态完整覆盖（1主文档+10份专题） |
 | [无障碍指南](references/implementation/accessibility.md) | WCAG AA标准 ✅ DONE |
 | [响应式设计](references/implementation/responsive-design.md) | 移动优先 ✅ DONE |
 | [性能优化](references/implementation/performance-optimization.md) | 性能最佳实践 |
@@ -84,7 +84,7 @@ license: MIT
 
 | 文档 | 说明 |
 |------|------|
-| [设计方向](references/aesthetics/design-directions.md) | 5种设计方向模板（1主文档+6份专题） |
+| [设计方向](references/aesthetics/design-directions.md) | 5种设计方向模板（1主文档+8份专题） |
 | [排版指南](references/aesthetics/typography.md) | 字体选择与排版 ✅ DONE |
 | [色彩理论](references/aesthetics/color-theory.md) | 色彩系统 ✅ DONE |
 | [反模式](references/aesthetics/anti-patterns.md) | 避免常见错误 ✅ DONE |
