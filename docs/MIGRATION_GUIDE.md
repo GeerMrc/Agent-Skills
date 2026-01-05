@@ -1,11 +1,11 @@
 # 迁移指南
 
 > 📖 **文档版本**: v2.2.0（内部开发版本号）
-> 📌 **项目版本**: Frontend Design Agent Skills v0.1.1 稳定版
+> 📌 **项目版本**: Frontend Design Agent Skills v0.1.1.1 稳定版
 > 📅 **更新日期**: 2025-01-04
 > 📅 **最后更新**: 2026-01-05
 
-> **版本说明**: 本文档使用 v2.2.0 作为内部开发版本号（历史遗留），当前项目稳定版本为 v0.1.1
+> **版本说明**: 本文档使用 v2.2.0 作为内部开发版本号（历史遗留），当前项目稳定版本为 v0.1.1.1
 
 ---
 
@@ -586,9 +586,9 @@ export let variant: string = 'primary';
 
 ### 资源链接
 
-- [API 文档](./docs/API.md)
-- [贡献指南](./CONTRIBUTING.md)
-- [开发规范](./docs/DEVELOPMENT_WORKFLOW.md)
+- [API 文档](./API.md)
+- [贡献指南](../frontend-design/CONTRIBUTING.md)
+- [开发规范](./DEVELOPMENT_WORKFLOW.md)
 - [任务追踪](./TASK.md)
 
 ### 报告问题
@@ -603,7 +603,7 @@ export let variant: string = 'primary';
 
 ## 变更日志
 
-完整的变更记录请查看 [CHANGELOG.md](./CHANGELOG.md)。
+完整的变更记录请查看 [CHANGELOG.md](../frontend-design/CHANGELOG.md)。
 
 ---
 

@@ -1,12 +1,12 @@
 # Frontend Design Agent Skills - API 文档
 
 > 📖 **文档版本**: v2.2.0（内部开发版本号）
-> 📌 **项目版本**: Frontend Design Agent Skills v0.1.1 稳定版
+> 📌 **项目版本**: Frontend Design Agent Skills v0.1.1.1 稳定版
 > 📅 **更新日期**: 2025-01-04
 > 📅 **最后更新**: 2026-01-05
 > 👤 **维护者**: 项目团队
 
-> **版本说明**: 本文档使用 v2.2.0 作为内部开发版本号（历史遗留），当前项目稳定版本为 v0.1.1
+> **版本说明**: 本文档使用 v2.2.0 作为内部开发版本号（历史遗留），当前项目稳定版本为 v0.1.1.1
 
 ---
 
@@ -933,8 +933,8 @@ if __name__ == '__main__':
 
 - [项目主页](https://github.com/your-org/frontend-design)
 - [开发文档](./DEVELOPMENT_WORKFLOW.md)
-- [任务追踪](../TASK.md)
-- [变更日志](../CHANGELOG.md)
+- [任务追踪](./TASK.md)
+- [变更日志](../frontend-design/CHANGELOG.md)
 
 ---
 
