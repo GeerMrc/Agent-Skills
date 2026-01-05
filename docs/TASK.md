@@ -566,7 +566,7 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 
 | 任务ID | 任务名称 | 状态 | 完成时间 | 备注 |
 |--------|----------|------|----------|------|
-| TASK-1001 | 优化超行数文档（>600行拆分） | ✅ DONE | 2026-01-05 | 拆分3个超长文档为10个子文档 |
+| TASK-1001 | 优化超行数文档（>600行拆分） | ✅ DONE | 2026-01-05 | 拆分3个文档，创建8个子文档 |
 | TASK-1002 | 添加Git提交规范自动化 | ✅ DONE | 2026-01-04 | 创建.commit-msg.sh和.pre-commit-config.yaml |
 | TASK-1003 | 创建模板测试脚本 | ✅ DONE | 2026-01-04 | 创建完整的模板测试框架 |
 
@@ -702,16 +702,19 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 - 交叉验证通过: 文件结构正确,链接有效
 
 **TASK-1104.4 完成记录** (2026-01-05):
-- angular.md (680行) → 拆分为2份:
+- angular.md (680行) → 拆分为3份:
   - angular.md (527行) - 总览文档
-  - angular-guide.md (958行) - 完整实现指南
+  - angular-guide.md (253行) - 完整实现指南
+  - angular-guide-routing-forms.md (280行) - 路由与表单
+  - angular-guide-testing-best-practices.md (310行) - 测试最佳实践
 - 更新引用文件: references/README.md, by-framework/README.md
 - 交叉验证通过: 文件结构正确,链接有效
 
 **TASK-1104.5 完成记录** (2026-01-05):
-- vue.md (668行) → 拆分为2份:
+- vue.md (668行) → 拆分为3份:
   - vue.md (577行) - 总览文档
-  - vue-guide.md (717行) - 完整实现指南
+  - vue-guide.md (470行) - 完整实现指南
+  - vue-guide-composition.md (280行) - Composition API
 - 更新引用文件: references/README.md, by-framework/README.md
 - 交叉验证通过: 文件结构正确,链接有效
 
@@ -723,25 +726,30 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 - 交叉验证通过: 文件结构正确,链接有效
 
 **TASK-1104.7 完成记录** (2026-01-05):
-- tailwind.md (649行) → 拆分为2份:
+- tailwind.md (649行) → 拆分为3份:
   - tailwind.md (488行) - 总览文档
-  - tailwind-guide.md (744行) - 完整配置指南
+  - tailwind-guide.md (432行) - 完整配置指南
+  - tailwind-guide-customization.md (250行) - 自定义配置
 - 更新引用文件: references/README.md, by-framework/README.md
 - Git commit: caf17b4 docs(phase-12): split tailwind.md into overview and guide documents
 - 交叉验证通过: 文件结构正确,链接有效
 
 **TASK-1104.8 完成记录** (2026-01-05):
-- svelte.md (644行) → 拆分为2份:
+- svelte.md (644行) → 拆分为4份:
   - svelte.md (502行) - 总览文档
-  - svelte-guide.md (968行) - 完整实现指南
+  - svelte-guide.md (362行) - 完整实现指南
+  - svelte-guide-state-routing.md (180行) - 状态管理与路由
+  - svelte-guide-advanced.md (230行) - 高级主题
 - 更新引用文件: references/README.md, by-framework/README.md
 - Git commit: 9aab97f docs(phase-12): split svelte.md into overview and guide documents
 - 交叉验证通过: 文件结构正确,链接有效
 
 **TASK-1104.9 完成记录** (2026-01-05):
-- design-directions-playful.md (634行) → 拆分为2份:
+- design-directions-playful.md (634行) → 拆分为4份:
   - design-directions-playful.md (277行) - 风格总览
-  - design-directions-playful-guide.md (1037行) - 完整实现指南
+  - design-directions-playful-guide.md (300行) - 完整实现指南
+  - design-directions-playful-decoration-animation.md (220行) - 装饰与动画
+  - design-directions-playful-layout-gamification.md (260行) - 布局与游戏化
 - 更新引用文件: references/README.md, references/aesthetics/README.md
 - Git commit: 3375985 docs(phase-12): split design-directions-playful.md into overview and guide documents
 - 交叉验证通过: 文件结构正确,链接有效

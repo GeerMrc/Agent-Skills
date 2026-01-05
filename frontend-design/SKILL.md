@@ -101,7 +101,7 @@ license: MIT
 
 | 文档 | 说明 |
 |------|------|
-| [组件示例](references/examples/component-examples.md) | 组件示例 ✅ DONE |
+| [组件示例](references/examples/component-examples.md) | 组件示例（1主文档+2份专题） ✅ DONE |
 | [布局示例](references/examples/layout-examples.md) | 布局示例 ✅ DONE |
 | [动画示例](references/examples/animation-examples.md) | 动画示例 ✅ DONE |
 

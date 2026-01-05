@@ -248,5 +248,5 @@ function SearchInput({ query, results, searching }) {
 ---
 
 > **状态**: ✅ DONE
-> **最后更新**: 2026-01-04 (文档重构：拆分为4个子文档)
+> **最后更新**: 2026-01-04 (文档重构：Phase 10拆分为3个子文档，Phase 12进一步拆分loading.md)
 > **维护者**: 项目团队
