@@ -27,8 +27,15 @@
 | 文档 | 说明 |
 |------|------|
 | [架构文档](ARCHITECTURE.md) | 系统架构设计 |
+| [开发计划](FRONTEND-DESIGN-DEVELOPMENT-PLAN.md) | 完整开发计划 |
 | [审计报告](PRE_RELEASE_AUDIT_REPORT.md) | 发布前审计 |
 | [质量验证](QUALITY_VALIDATION_REPORT.md) | 质量保证 |
+
+### 👥 贡献指南
+
+| 文档 | 说明 |
+|------|------|
+| [贡献指南](CONTRIBUTING.md) | 贡献流程规范 |
 
 ---
 
