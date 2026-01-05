@@ -37,8 +37,9 @@
 | └─ [完整配置指南](tailwind-guide.md) | 设计令牌、自定义配置、性能优化 | 380行 | ✅ DONE |
 | [CSS Modules](css-modules.md) | CSS Modules指南（主文档，1份子文档） | 300行 | ✅ DONE |
 | └─ [高级主题](css-modules-advanced.md) | 预处理器、主题、性能、测试、迁移 | 357行 | ✅ DONE |
-| [Styled Components](styled-components.md) | Styled Components总览（主文档，1份子文档） | 294行 | ✅ DONE |
+| [Styled Components](styled-components.md) | Styled Components总览（主文档，2份子文档） | 294行 | ✅ DONE |
 | └─ [完整实现指南](styled-components-guide.md) | 安装、配置、高级用法、测试、性能优化 | 582行 | ✅ DONE |
+| └─ [高级主题](styled-components-guide-advanced.md) | 高级用法、性能优化 | 300行 | ✅ DONE |
 
 ---
 

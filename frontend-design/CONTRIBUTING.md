@@ -573,11 +573,11 @@ describe('Button', () => {
 
 ### 资源链接
 
-- [项目文档](./docs/)
-- [API 文档](./docs/API.md)
-- [开发规范](./docs/DEVELOPMENT_WORKFLOW.md)
-- [任务追踪](./TASK.md)
-- [变更日志](./CHANGELOG.md)
+- [项目文档](../docs/)
+- [API 文档](../docs/API.md)
+- [开发规范](../docs/DEVELOPMENT_WORKFLOW.md)
+- [任务追踪](../docs/TASK.md)
+- [变更日志](CHANGELOG.md)
 
 ### 常见问题
 
