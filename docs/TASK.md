@@ -1031,12 +1031,17 @@ grep -r "v[0-9]\+\.[0-9]\+\.[0-9]\+" . | grep -v "v0.1.1.1"
 
 **审核范围**:
 
-**Python工具脚本** (19个文件):
+**Python工具脚本** (10个文件):
 - `scripts/validate/check-tokens.py` - Token验证工具
 - `scripts/validate/check-accessibility.py` - 无障碍检查工具
 - `scripts/validate/check-performance.py` - 性能检查工具
 - `scripts/generate/generate-component.py` - 组件生成器
 - `scripts/generate/generate-theme.py` - 主题生成器
+- `scripts/utils/color.py` - 颜色工具
+- `scripts/utils/token.py` - Token工具
+- `scripts/utils/reporter.py` - 报告工具
+- `scripts/__init__.py` - 包初始化
+- `scripts/utils/__init__.py` - 工具包初始化
 
 **项目模板** (3个框架):
 - `templates/react/` - Vite+React+TypeScript
@@ -1056,7 +1061,7 @@ ls templates/vanilla/
 
 #### TASK-1703: TASK.md与实际开发进度一致性审核
 
-**目标**: 确认TASK.md中78个任务状态与实际代码一致
+**目标**: 确认TASK.md中89个任务状态与实际代码一致
 
 **审核项**:
 1. 验证Phase 0-16所有任务是否真正完成
