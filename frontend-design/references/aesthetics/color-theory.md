@@ -183,7 +183,7 @@ color: oklch(0.5 0.15 250);
 
 ```bash
 # 使用提供的对比度检查工具
-python scripts/validate/check-accessibility.html index.html
+python scripts/validate/check-accessibility.py index.html
 
 # 输出示例
 # 🔴 CRITICAL: 颜色对比度不足: 2.8:1 (要求 4.5:1)

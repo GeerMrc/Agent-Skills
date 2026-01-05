@@ -1421,6 +1421,98 @@ cat frontend-design/SKILL.md
 
 ---
 
+## 🎯 Phase 22: 全面深度审核与P0问题修复 (2026-01-05)
+
+**目标**: 全面深度审核项目，避免文档表述与实际开发功能实现/目录结构调整不一致的问题
+
+**开发流程规范**:
+- 遵循 `docs/DEVELOPMENT_WORKFLOW.md` 规范
+- 每个任务完成后必须进行交叉验证确认
+- TASK.md 更新必须立即 git commit
+
+**审核范围**:
+- 扫描所有文档中的目录结构引用
+- 扫描所有文档中的版本号声明
+- 扫描所有文档中的文件路径引用
+- 验证所有脚本文件的存在性
+- 验证所有模板文件的存在性
+
+| 任务ID | 任务名称 | 状态 | 优先级 | 备注 |
+|--------|----------|------|--------|------|
+| TASK-2201 | 扫描所有文档中的目录结构引用 | ✅ DONE | - | 发现约60处路径上下文问题 |
+| TASK-2202 | 扫描所有文档中的版本号声明 | ✅ DONE | - | 发现2处版本号不一致 |
+| TASK-2203 | 扫描所有文档中的文件路径引用 | ✅ DONE | - | 发现4处断链引用 |
+| TASK-2204 | 验证所有脚本文件的存在性 | ✅ DONE | - | 90+文件验证通过 |
+| TASK-2205 | 验证所有模板文件的存在性 | ✅ DONE | - | 所有模板存在 |
+| TASK-2206 | 交叉验证所有发现并生成报告 | ✅ DONE | - | 生成完整审核报告 |
+| TASK-2207 | 修复 release/README.md 版本号 | ✅ DONE | P0 | 2.2.0 → 0.1.1.1 |
+| TASK-2208 | 修复 frontend-design/README.md 版本历史 | ✅ DONE | P0 | v0.1.1 → v0.1.1.1 |
+| TASK-2209 | 删除 SKILL.md 中的不存在的脚本引用 | ✅ DONE | P0 | 删除 export-tokens.py |
+| TASK-2210 | 修正 check-accessibility.html 引用 | ✅ DONE | P0 | 4处 .html → .py |
+| TASK-2211 | 修复 docs/API.md 脚本路径 | ✅ DONE | P0 | 添加基准目录说明 |
+| TASK-2212 | 交叉验证所有修复 | ✅ DONE | P0 | 确认所有修复生效 |
+| TASK-2213 | 更新TASK.md记录 | ✅ DONE | P0 | 本记录 |
+| TASK-2214 | Git提交修复 | ⏳ PENDING | P0 | 待提交 |
+
+### 审核发现
+
+**P0 严重问题**（已全部修复）:
+1. **版本号不一致** (2处)
+   - release/README.md:95 → 2.2.0 → 0.1.1.1
+   - frontend-design/README.md:221 → v0.1.1 → v0.1.1.1
+
+2. **断链引用** (4处)
+   - SKILL.md:157 → export-tokens.py 不存在 → 已删除
+   - accessibility.md:410,413,414 → check-accessibility.html → check-accessibility.py
+   - color-theory.md:186 → check-accessibility.html → check-accessibility.py
+
+3. **路径上下文不明** (约60处)
+   - docs/API.md → 添加基准目录说明，更新所有脚本路径
+
+**P1 重要问题**（保留为优化项）:
+- 测试覆盖路径错误 → 约10处（--cov=scripts 需修改为 --cov=frontend-design/scripts）
+
+**P2 一般问题**（保留为优化项）:
+- 导航链接问题 → 约40处 references/文档中的TASK.md链接
+
+### 修复详情
+
+**TASK-2207**: 修复 release/README.md 版本号
+- 文件: `release/README.md`
+- 修改: 第95行版本号 `"skill_version": "2.2.0"` → `"skill_version": "0.1.1.1"`
+
+**TASK-2208**: 修复 frontend-design/README.md 版本历史
+- 文件: `frontend-design/README.md`
+- 修改: 第221-225行版本历史 `v0.1.1 (2026-01-04)` → `v0.1.1.1 (2026-01-05)`
+
+**TASK-2209**: 删除 SKILL.md 中的不存在的脚本引用
+- 文件: `frontend-design/SKILL.md`
+- 修改: 第157行删除 `- scripts/generate/export-tokens.py - Token导出`
+
+**TASK-2210**: 修正 check-accessibility.html 引用
+- 文件1: `frontend-design/references/aesthetics/color-theory.md:186`
+- 文件2: `frontend-design/references/implementation/accessibility.md:410,413,414`
+- 修改: `check-accessibility.html` → `check-accessibility.py`
+
+**TASK-2211**: 修复 docs/API.md 脚本路径
+- 文件: `docs/API.md`
+- 修改:
+  - 添加基准目录说明（第44-64行）
+  - 批量更新所有脚本路径：`scripts/` → `frontend-design/scripts/`
+
+### 修复影响文件
+
+| 文件 | 修改内容 | 行数变化 |
+|------|----------|----------|
+| `release/README.md` | 版本号 2.2.0 → 0.1.1.1 | 1行修改 |
+| `frontend-design/README.md` | 版本历史更新 | -3行, +6行 |
+| `frontend-design/SKILL.md` | 删除不存在的脚本引用 | -1行 |
+| `frontend-design/references/aesthetics/color-theory.md` | 修正脚本文件扩展名 | 1行修改 |
+| `frontend-design/references/implementation/accessibility.md` | 修正脚本文件扩展名 | 3行修改 |
+| `docs/API.md` | 添加基准目录说明，更新脚本路径 | +23行，多行修改 |
+
+---
+
 ## 🔗 相关文档
 
 - [开发流程规范](DEVELOPMENT_WORKFLOW.md)

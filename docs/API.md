@@ -39,7 +39,29 @@ Frontend Design Agent Skills 提供了一套完整的工具脚本和项目模板
 
 ## 工具脚本 API
 
-所有工具脚本位于 `scripts/` 目录下，使用 Python 3.8+ 运行。
+所有工具脚本位于 `frontend-design/scripts/` 目录下，使用 Python 3.8+ 运行。
+
+### 📁 基准目录说明
+
+**重要**: 本文档中的所有命令都应从**项目根目录**执行。
+
+项目目录结构：
+```
+/Volumes/DISK/Claude-code-glm/frontend-design/    # 项目根目录
+├── docs/                                        # 本文档所在目录
+├── frontend-design/                             # 技能包核心
+│   └── scripts/                                 # 工具脚本目录
+└── tests/                                       # 测试代码
+```
+
+**执行命令前，请先切换到项目根目录**：
+```bash
+cd /path/to/frontend-design
+# 或
+cd ../../  # 如果当前在 docs/ 目录
+```
+
+---
 
 ### 验证工具
 
@@ -49,7 +71,7 @@ Design Token 验证工具，检查命名规范和结构完整性。
 
 **用法**:
 ```bash
-python scripts/validate/check-tokens.py <token-file> [options]
+python frontend-design/scripts/validate/check-tokens.py <token-file> [options]
 ```
 
 **参数**:
@@ -67,16 +89,16 @@ python scripts/validate/check-tokens.py <token-file> [options]
 **示例**:
 ```bash
 # 基础验证
-python scripts/validate/check-tokens.py tokens.json
+python frontend-design/scripts/validate/check-tokens.py tokens.json
 
 # JSON 格式输出
-python scripts/validate/check-tokens.py tokens.json --format json
+python frontend-design/scripts/validate/check-tokens.py tokens.json --format json
 
 # 生成 Markdown 报告
-python scripts/validate/check-tokens.py tokens.json --format markdown --output report.md
+python frontend-design/scripts/validate/check-tokens.py tokens.json --format markdown --output report.md
 
 # 严格模式
-python scripts/validate/check-tokens.py tokens.json --strict
+python frontend-design/scripts/validate/check-tokens.py tokens.json --strict
 ```
 
 **验证规则**:
@@ -93,7 +115,7 @@ python scripts/validate/check-tokens.py tokens.json --strict
 
 **用法**:
 ```bash
-python scripts/validate/check-accessibility.py <file> [options]
+python frontend-design/scripts/validate/check-accessibility.py <file> [options]
 ```
 
 **参数**:
@@ -111,13 +133,13 @@ python scripts/validate/check-accessibility.py <file> [options]
 **示例**:
 ```bash
 # 检查 HTML 文件
-python scripts/validate/check-accessibility.py index.html
+python frontend-design/scripts/validate/check-accessibility.py index.html
 
 # AAA 级别检查
-python scripts/validate/check-accessibility.py index.html --level AAA
+python frontend-design/scripts/validate/check-accessibility.py index.html --level AAA
 
 # 生成报告
-python scripts/validate/check-accessibility.py index.html --format markdown --output a11y-report.md
+python frontend-design/scripts/validate/check-accessibility.py index.html --format markdown --output a11y-report.md
 ```
 
 **检查项**:
@@ -135,7 +157,7 @@ python scripts/validate/check-accessibility.py index.html --format markdown --ou
 
 **用法**:
 ```bash
-python scripts/validate/check-performance.py <file> [options]
+python frontend-design/scripts/validate/check-performance.py <file> [options]
 ```
 
 **参数**:
@@ -153,10 +175,10 @@ python scripts/validate/check-performance.py <file> [options]
 **示例**:
 ```bash
 # 检查性能
-python scripts/validate/check-performance.py src/components/Button.tsx
+python frontend-design/scripts/validate/check-performance.py src/components/Button.tsx
 
 # 自定义阈值
-python scripts/validate/check-performance.py src/components/Button.tsx --threshold 90
+python frontend-design/scripts/validate/check-performance.py src/components/Button.tsx --threshold 90
 ```
 
 **检查项**:
@@ -176,7 +198,7 @@ python scripts/validate/check-performance.py src/components/Button.tsx --thresho
 
 **用法**:
 ```bash
-python scripts/generate/generate-component.py <component-name> [options]
+python frontend-design/scripts/generate/generate-component.py <component-name> [options]
 ```
 
 **参数**:
@@ -194,16 +216,16 @@ python scripts/generate/generate-component.py <component-name> [options]
 **示例**:
 ```bash
 # 生成 React 按钮组件
-python scripts/generate/generate-component.py Button
+python frontend-design/scripts/generate/generate-component.py Button
 
 # 生成 Vue 模态框组件
-python scripts/generate/generate-component.py Modal --framework vue
+python frontend-design/scripts/generate/generate-component.py Modal --framework vue
 
 # 生成并保存到文件
-python scripts/generate/generate-component.py Card --framework react --output src/components/
+python frontend-design/scripts/generate/generate-component.py Card --framework react --output src/components/
 
 # 生成 TypeScript 类型定义
-python scripts/generate/generate-component.py Button --framework typescript
+python frontend-design/scripts/generate/generate-component.py Button --framework typescript
 ```
 
 **支持的组件类型**:
@@ -234,7 +256,7 @@ python scripts/generate/generate-component.py Button --framework typescript
 
 **用法**:
 ```bash
-python scripts/generate/generate-theme.py [options]
+python frontend-design/scripts/generate/generate-theme.py [options]
 ```
 
 **参数**:
@@ -251,16 +273,16 @@ python scripts/generate/generate-theme.py [options]
 **示例**:
 ```bash
 # 生成亮色主题
-python scripts/generate/generate-theme.py --type light
+python frontend-design/scripts/generate/generate-theme.py --type light
 
 # 生成暗色主题
-python scripts/generate/generate-theme.py --type dark
+python frontend-design/scripts/generate/generate-theme.py --type dark
 
 # 生成两种主题
-python scripts/generate/generate-theme.py --type both
+python frontend-design/scripts/generate/generate-theme.py --type both
 
 # 生成 SCSS 格式
-python scripts/generate/generate-theme.py --type both --format scss --output src/styles/
+python frontend-design/scripts/generate/generate-theme.py --type both --format scss --output src/styles/
 ```
 
 **主题配置包含**:
@@ -763,7 +785,7 @@ npm run dev
 
 ```bash
 # 生成按钮组件
-python scripts/generate/generate-component.py Button --framework react --output src/components/
+python frontend-design/scripts/generate/generate-component.py Button --framework react --output src/components/
 ```
 
 #### 3. 验证 Design Token
@@ -778,21 +800,21 @@ cat > tokens.json << EOF
 EOF
 
 # 验证 Token
-python scripts/validate/check-tokens.py tokens.json
+python frontend-design/scripts/validate/check-tokens.py tokens.json
 ```
 
 #### 4. 生成主题
 
 ```bash
 # 生成亮色和暗色主题
-python scripts/generate/generate-theme.py --type both --format json --output src/styles/
+python frontend-design/scripts/generate/generate-theme.py --type both --format json --output src/styles/
 ```
 
 #### 5. 检查无障碍性
 
 ```bash
 # 检查组件无障碍性
-python scripts/validate/check-accessibility.py src/components/Button.tsx --format markdown --output reports/a11y.md
+python frontend-design/scripts/validate/check-accessibility.py src/components/Button.tsx --format markdown --output reports/a11y.md
 ```
 
 ---
@@ -817,15 +839,15 @@ jobs:
 
       - name: Validate Design Tokens
         run: |
-          python scripts/validate/check-tokens.py tokens.json --strict
+          python frontend-design/scripts/validate/check-tokens.py tokens.json --strict
 
       - name: Check Accessibility
         run: |
-          python scripts/validate/check-accessibility.py src/**/*.tsx --format json --output reports/a11y.json
+          python frontend-design/scripts/validate/check-accessibility.py src/**/*.tsx --format json --output reports/a11y.json
 
       - name: Check Performance
         run: |
-          python scripts/validate/check-performance.py src/**/*.tsx --threshold 80
+          python frontend-design/scripts/validate/check-performance.py src/**/*.tsx --threshold 80
 ```
 
 ---

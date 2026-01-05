@@ -407,11 +407,11 @@ python scripts/validate/check-accessibility.py index.html
 
 ```bash
 # 使用提供的无障碍检查工具
-python scripts/validate/check-accessibility.html index.html
+python scripts/validate/check-accessibility.py index.html
 
 # 输出格式选项
-python scripts/validate/check-accessibility.html index.html --format json
-python scripts/validate/check-accessibility.html index.html --format markdown --output report.md
+python scripts/validate/check-accessibility.py index.html --format json
+python scripts/validate/check-accessibility.py index.html --format markdown --output report.md
 ```
 
 ### 手动测试

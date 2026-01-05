@@ -92,7 +92,7 @@ python verify-after-install.py
 ```json
 {
   "skill_name": "frontend-design",
-  "skill_version": "2.2.0",
+  "skill_version": "0.1.1.1",
   "output_directory": "../output/",
 
   "exclude_patterns": [

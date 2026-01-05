@@ -154,7 +154,6 @@ license: MIT
 ### 生成工具
 - `scripts/generate/generate-theme.py` - 主题生成
 - `scripts/generate/generate-component.py` - 组件生成
-- `scripts/generate/export-tokens.py` - Token导出
 
 ### 测试工具
 - `release/verify/test/test-skill.py` - 技能测试
