@@ -275,7 +275,8 @@ const Button = styled.button``;
 ## 🔗 相关文档
 
 - [完整实现指南](styled-components-guide.md)
-- [CSS Modules指南](css-modules.md)
+- [CSS Modules指南](css-modules.md) - 核心概念、配置、基础用法
+- [CSS Modules高级主题](css-modules-advanced.md) - 预处理器、主题、性能、测试
 - [React最佳实践](react.md)
 
 ---

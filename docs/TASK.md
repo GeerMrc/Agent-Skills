@@ -790,11 +790,11 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 | TASK-1304 | 拆分 styled-components-guide.md | ✅ DONE | P0 | 829→2份(444+493) |
 | TASK-1305 | 拆分 tailwind-guide.md | ✅ DONE | P1 | 744→2份(432+477) |
 | TASK-1306 | 拆分 vue-guide.md | ✅ DONE | P1 | 717→2份(470+546) |
-| TASK-1307 | 拆分 component-states-loading-patterns.md | ⏳ TODO | P2 | 649→2份 |
-| TASK-1308 | 拆分 component-examples-display-feedback.md | ⏳ TODO | P2 | 604→2份 |
-| TASK-1309 | 拆分 css-modules.md | ⏳ TODO | P2 | 603→2份 |
-| TASK-1310 | 更新 references/README.md 索引 | ⏳ TODO | - | 同步拆分文档索引 |
-| TASK-1311 | 验证所有引用路径有效性 | ⏳ TODO | - | 交叉验证确认 |
+| TASK-1307 | 拆分 component-states-loading-patterns.md | ✅ DONE | P2 | 649→2份(335+479) |
+| TASK-1308 | 拆分 component-examples-display-feedback.md | ✅ DONE | P2 | 604→2份(285+401) |
+| TASK-1309 | 拆分 css-modules.md | ✅ DONE | P2 | 603→2份(300+357) |
+| TASK-1310 | 更新 references/README.md 索引 | ✅ DONE | - | 同步拆分文档索引 |
+| TASK-1311 | 验证所有引用路径有效性 | ✅ DONE | - | 交叉验证确认 |
 
 ### 审核发现
 

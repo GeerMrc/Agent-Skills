@@ -35,7 +35,8 @@
 | └─ [完整实现指南](angular-guide.md) | 依赖注入、路由、表单、测试 | 620行 | ✅ DONE |
 | [Tailwind](tailwind.md) | Tailwind最佳实践（主文档，1份子文档） | 265行 | ✅ DONE |
 | └─ [完整配置指南](tailwind-guide.md) | 设计令牌、自定义配置、性能优化 | 380行 | ✅ DONE |
-| [CSS Modules](css-modules.md) | CSS Modules指南，命名规范，最佳实践 | 603行 | ✅ DONE |
+| [CSS Modules](css-modules.md) | CSS Modules指南（主文档，1份子文档） | 300行 | ✅ DONE |
+| └─ [高级主题](css-modules-advanced.md) | 预处理器、主题、性能、测试、迁移 | 357行 | ✅ DONE |
 | [Styled Components](styled-components.md) | Styled Components总览（主文档，1份子文档） | 294行 | ✅ DONE |
 | └─ [完整实现指南](styled-components-guide.md) | 安装、配置、高级用法、测试、性能优化 | 582行 | ✅ DONE |
 
@@ -56,7 +57,7 @@
 - 使用Svelte时 → 读取 svelte.md
 - 使用Angular时 → 读取 angular.md
 - 使用Tailwind时 → 读取 tailwind.md
-- 使用CSS Modules时 → 读取 css-modules.md
+- 使用CSS Modules时 → 读取 css-modules.md 和 css-modules-advanced.md
 - 使用Styled Components时 → 读取 styled-components.md
 
 ---

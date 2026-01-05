@@ -1,20 +1,21 @@
-# Loading状态 - 加载模式与实现
+# Loading状态 - 基础加载模式
 
-> ⚙️ **4种加载模式详解** - 完整实现代码和示例
+> ⚙️ **Basic Loading Patterns** - 旋转圆环、进度条
 
 ---
 
 ## 📖 文档说明
 
-本文档提供 4 种常用加载模式的完整实现代码和详细说明。
+本文档提供 2 种基础加载模式的完整实现代码和详细说明。
 
 **相关文档**：
+- [高级加载模式](component-states-loading-advanced.md) - 骨架屏、覆盖层、实用技巧
 - [返回主文档](component-states-loading.md)
 - [视觉描述与交互设计](component-states-loading-visual.md)
 
 ---
 
-## 📋 加载模式详解
+## 📋 基础加载模式
 
 ### 1. 旋转圆环（Spinner）
 
@@ -80,36 +81,41 @@
 
 **React 实现**：
 ```tsx
-function LoadingButton() {
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = async () => {
-    setLoading(true);
-    try {
-      await submitData();
-    } finally {
-      setLoading(false);
-    }
-  };
-
+function LoadingButton({ isLoading, children, ...props }) {
   return (
     <button
-      onClick={handleClick}
-      disabled={loading}
-      aria-busy={loading}
-      className={`button ${loading ? 'is-loading' : ''}`}
+      {...props}
+      disabled={isLoading}
+      aria-busy={isLoading}
+      aria-live="polite"
     >
-      {loading ? (
-        <>
-          <span className="spinner" aria-hidden="true" />
-          <span className="sr-only">提交中...</span>
-        </>
-      ) : (
-        '提交'
+      {isLoading && (
+        <span className="spinner" aria-hidden="true" />
       )}
+      {isLoading && <span className="sr-only">加载中...</span>}
+      <span>{children}</span>
     </button>
   );
 }
+```
+
+**Vue 实现**：
+```vue
+<template>
+  <button
+    :disabled="loading"
+    :aria-busy="loading"
+    aria-live="polite"
+  >
+    <span v-if="loading" class="spinner" aria-hidden="true" />
+    <span v-if="loading" class="sr-only">加载中...</span>
+    <slot />
+  </button>
+</template>
+
+<script setup lang="ts">
+defineProps<{ loading: boolean }>();
+</script>
 ```
 
 ---
@@ -117,521 +123,192 @@ function LoadingButton() {
 ### 2. 进度条（Progress Bar）
 
 **适用场景**：
-- 文件上传/下载
-- 长时间任务处理
-- 可计算进度的操作
+- 多步骤流程
+- 文件上传
+- 可计算进度的加载
+- 明确时间范围的加载
 
 **优点**：
-- 显示具体进度百分比
-- 用户明确知道剩余时间
-- 减少等待焦虑
+- 显示具体进度
+- 减少用户焦虑
+- 提供完成时间预估
 
 **缺点**：
-- 需要知道总进度
-- 实现相对复杂
+- 需要准确的进度信息
+- 占用额外空间
 
 #### 完整实现
 
 **CSS**：
 ```css
 .progress {
-  height: 6px;
-  background: var(--color-bg-progress);
+  position: relative;
+  height: 4px;
+  background: var(--color-border);
   border-radius: var(--radius-full);
   overflow: hidden;
 }
 
-.progress-bar {
+.progress__bar {
   height: 100%;
   background: var(--color-primary);
+  border-radius: var(--radius-full);
   transition: width 0.3s ease;
-  animation: progress-pulse 1.5s infinite;
 }
 
-@keyframes progress-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+/* 尺寸变体 */
+.progress--sm { height: 2px; }
+.progress--md { height: 4px; }
+.progress--lg { height: 8px; }
+
+/* 颜色变体 */
+.progress--success .progress__bar {
+  background: var(--color-success);
 }
 
-.progress-text {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  margin-top: var(--spacing-xs);
-  text-align: center;
+.progress--warning .progress__bar {
+  background: var(--color-warning);
 }
 
-/* 不同颜色状态 */
-.progress-bar--primary { background: var(--color-primary); }
-.progress-bar--success { background: var(--color-success); }
-.progress-bar--warning { background: var(--color-warning); }
-.progress-bar--danger { background: var(--color-danger); }
+.progress--error .progress__bar {
+  background: var(--color-error);
+}
+
+/* 条纹动画 */
+.progress__bar--striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progress-stripes 1s linear infinite;
+}
+
+@keyframes progress-stripes {
+  from { background-position: 1rem 0; }
+  to { background-position: 0 0; }
+}
 ```
 
 **HTML**：
 ```html
-<div role="progressbar"
-     aria-valuenow="60"
-     aria-valuemin="0"
-     aria-valuemax="100"
-     aria-label="上传进度">
-  <div class="progress">
-    <div class="progress-bar progress-bar--primary" style="width: 60%"></div>
-  </div>
-  <div class="progress-text">60%</div>
+<div
+  class="progress"
+  role="progressbar"
+  aria-valuenow="60"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-label="加载进度"
+>
+  <div class="progress__bar" style="width: 60%"></div>
 </div>
+
+<div class="sr-only">已加载 60%</div>
 ```
 
-**JavaScript 实现**：
-```javascript
-class ProgressBar {
-  constructor(element, options = {}) {
-    this.element = element;
-    this.min = options.min || 0;
-    this.max = options.max || 100;
-    this.value = options.value || 0;
-    this.update();
-  }
-
-  set(value) {
-    this.value = Math.min(Math.max(value, this.min), this.max);
-    this.update();
-    this.element.setAttribute('aria-valuenow', this.value);
-  }
-
-  update() {
-    const percent = ((this.value - this.min) / (this.max - this.min)) * 100;
-    const bar = this.element.querySelector('.progress-bar');
-    const text = this.element.querySelector('.progress-text');
-
-    bar.style.width = `${percent}%`;
-    if (text) {
-      text.textContent = `${Math.round(percent)}%`;
-    }
-  }
-}
-
-// 使用
-const progress = new ProgressBar(document.querySelector('#progress'));
-progress.set(60); // 设置为60%
-```
-
-**React 上传组件**：
+**React 实现**：
 ```tsx
-function FileUpload() {
-  const [progress, setProgress] = useState(0);
-  const [uploading, setUploading] = useState(false);
-
-  const handleUpload = async (file: File) => {
-    setUploading(true);
-
-    const xhr = new XMLHttpRequest();
-    xhr.upload.addEventListener('progress', (e) => {
-      if (e.lengthComputable) {
-        const percent = (e.loaded / e.total) * 100;
-        setProgress(percent);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      setUploading(false);
-      setProgress(100);
-    });
-
-    xhr.open('POST', '/upload');
-    xhr.send(new FormData(file));
-  };
+function ProgressBar({ value = 0, max = 100, label }) {
+  const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
 
   return (
-    <div>
-      <input
-        type="file"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) handleUpload(file);
-        }}
-        disabled={uploading}
+    <div
+      className="progress"
+      role="progressbar"
+      aria-valuenow={value}
+      aria-valuemin={0}
+      aria-valuemax={max}
+      aria-label={label}
+    >
+      <div
+        className="progress__bar"
+        style={{ width: `${percentage}%` }}
       />
-
-      {uploading && (
-        <div
-          role="progressbar"
-          aria-valuenow={progress}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-label="文件上传进度"
-        >
-          <div className="progress">
-            <div
-              className="progress-bar"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          <div className="progress-text">{Math.round(progress)}%</div>
-        </div>
-      )}
     </div>
   );
 }
 ```
 
----
+**Vue 实现**：
+```vue
+<template>
+  <div
+    class="progress"
+    role="progressbar"
+    :aria-valuenow="value"
+    aria-valuemin="0"
+    :aria-valuemax="max"
+    :aria-label="label"
+  >
+    <div
+      class="progress__bar"
+      :style="{ width: `${percentage}%` }"
+    />
+  </div>
+</template>
 
-### 3. 骨架屏（Skeleton Screen）
+<script setup lang="ts">
+import { computed } from 'vue';
 
-**适用场景**：
-- 列表、卡片、feed加载
-- 保持布局结构
-- 内容结构固定的场景
+const props = defineProps<{
+  value: number;
+  max?: number;
+  label?: string;
+}>();
 
-**优点**：
-- 保持布局结构稳定
-- 提供更好的视觉连续性
-- 用户感知加载更快
+const percentage = computed(() => {
+  return Math.min(Math.max((props.value / (props.max || 100)) * 100, 0), 100);
+});
+</script>
+```
 
-**缺点**：
-- 实现相对复杂
-- 需要预知内容结构
+#### 进度状态文本
 
-#### 完整实现
+**HTML**：
+```html
+<div class="progress-group">
+  <div class="progress-group__header">
+    <span class="progress-group__label">上传文件</span>
+    <span class="progress-group__value">60%</span>
+  </div>
+  <div class="progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress__bar" style="width: 60%"></div>
+  </div>
+  <span class="progress-group__helper">正在上传...</span>
+</div>
+```
 
 **CSS**：
 ```css
-.skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--color-skeleton-start) 25%,
-    var(--color-skeleton-middle) 50%,
-    var(--color-skeleton-end) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: var(--radius-md);
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* 卡片骨架 */
-.skeleton-card {
-  padding: var(--spacing-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.skeleton-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  flex-shrink: 0;
-  background: var(--color-skeleton);
-  animation: shimmer 1.5s infinite;
-}
-
-.skeleton-content {
-  flex: 1;
+.progress-group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 }
 
-.skeleton-title {
-  height: 20px;
-  width: 60%;
-  background: var(--color-skeleton);
-  border-radius: var(--radius-sm);
-  animation: shimmer 1.5s infinite;
-  animation-delay: 0.1s;
-}
-
-.skeleton-text {
-  height: 14px;
-  width: 80%;
-  background: var(--color-skeleton);
-  border-radius: var(--radius-sm);
-  animation: shimmer 1.5s infinite;
-  animation-delay: 0.2s;
-}
-
-.skeleton-text:last-child {
-  width: 60%;
-}
-```
-
-**HTML**：
-```html
-<div aria-busy="true" aria-live="polite">
-  <!-- 骨架屏 -->
-  <div class="skeleton-card">
-    <div class="skeleton-avatar" aria-hidden="true"></div>
-    <div class="skeleton-content">
-      <div class="skeleton-title" aria-hidden="true"></div>
-      <div class="skeleton-text" aria-hidden="true"></div>
-      <div class="skeleton-text" aria-hidden="true"></div>
-    </div>
-  </div>
-
-  <!-- 屏幕阅读器提示 -->
-  <span class="sr-only">正在加载用户信息...</span>
-</div>
-```
-
-**React 列表骨架**：
-```tsx
-function UserListSkeleton() {
-  return (
-    <div aria-busy="true" aria-live="polite">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div key={i} className="skeleton-card">
-          <div className="skeleton-avatar" aria-hidden="true" />
-          <div className="skeleton-content">
-            <div className="skeleton-title" aria-hidden="true" />
-            <div className="skeleton-text" aria-hidden="true" />
-            <div className="skeleton-text" aria-hidden="true" />
-          </div>
-        </div>
-      ))}
-      <span className="sr-only">正在加载用户列表...</span>
-    </div>
-  );
-}
-
-function UserList() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchUsers()
-      .then(data => {
-        setUsers(data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <UserListSkeleton />;
-  }
-
-  return (
-    <ul>
-      {users.map(user => (
-        <li key={user.id}>
-          <img src={user.avatar} alt="" />
-          <h3>{user.name}</h3>
-          <p>{user.email}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}
-```
-
----
-
-### 4. 模糊覆盖层（Overlay）
-
-**适用场景**：
-- 模态框、对话框加载
-- 页面级加载
-- 需要明确区域划分
-
-**优点**：
-- 明确的区域划分
-- 阻塞用户操作
-- 视觉焦点突出
-
-**缺点**：
-- 阻塞用户所有操作
-- 长时间加载体验差
-
-#### 完整实现
-
-**CSS**：
-```css
-.overlay-container {
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
+.progress-group__header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
 }
 
-/* 深色主题 */
-@media (prefers-color-scheme: dark) {
-  .overlay {
-    background: rgba(0, 0, 0, 0.8);
-  }
+.progress-group__label {
+  font-weight: var(--font-weight-medium);
 }
 
-.overlay__spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-  border-right-color: transparent;
-  animation: spin 0.6s linear infinite;
-}
-```
-
-**HTML**：
-```html
-<div class="overlay-container">
-  <!-- 内容区域 -->
-  <div class="content">
-    <h2>用户设置</h2>
-    <form>
-      <!-- 表单内容 -->
-    </form>
-  </div>
-
-  <!-- 覆盖层 -->
-  <div class="overlay" aria-busy="true" aria-live="polite">
-    <div class="overlay__spinner" aria-hidden="true"></div>
-    <span class="sr-only">正在加载...</span>
-  </div>
-</div>
-```
-
-**React 模态框加载**：
-```tsx
-function SettingsModal() {
-  const [loading, setLoading] = useState(false);
-
-  const handleSave = async () => {
-    setLoading(true);
-    try {
-      await saveSettings();
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="modal">
-      <div className="modal__content">
-        <h2>用户设置</h2>
-        <form>
-          {/* 表单字段 */}
-        </form>
-      </div>
-
-      {loading && (
-        <div
-          className="modal__overlay"
-          aria-busy="true"
-          aria-live="polite"
-        >
-          <div className="spinner" aria-hidden="true" />
-          <span className="sr-only">正在保存设置...</span>
-        </div>
-      )}
-    </div>
-  );
-}
-```
-
----
-
-## 📊 实现示例
-
-### 示例1：带最小显示时间的加载
-
-```javascript
-// 避免闪烁的最小显示时间
-function showLoading(minDuration = 500) {
-  const startTime = Date.now();
-  const loadingIndicator = document.querySelector('.loading');
-
-  loadingIndicator.style.display = 'block';
-
-  return {
-    hide: () => {
-      const elapsed = Date.now() - startTime;
-      const remaining = Math.max(0, minDuration - elapsed);
-
-      setTimeout(() => {
-        loadingIndicator.style.display = 'none';
-      }, remaining);
-    }
-  };
+.progress-group__value {
+  color: var(--color-text-muted);
 }
 
-// 使用示例
-async function loadData() {
-  const loading = showLoading(500);
-
-  try {
-    const data = await fetch(url);
-    return await data.json();
-  } finally {
-    loading.hide();
-  }
-}
-```
-
-### 示例2：超时处理加载
-
-```javascript
-async function loadDataWithTimeout(url, timeout = 10000) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal
-    });
-    clearTimeout(timeoutId);
-    return await response.json();
-  } catch (error) {
-    if (error.name === 'AbortError') {
-      throw new Error('加载超时，请重试');
-    }
-    throw error;
-  }
-}
-
-// 使用
-loadDataWithTimeout('/api/data', 5000)
-  .then(data => console.log(data))
-  .catch(error => console.error(error.message));
-```
-
-### 示例3：渐进式加载
-
-```javascript
-async function loadProgressiveData() {
-  // 1. 立即显示骨架屏
-  showSkeleton();
-
-  // 2. 加载关键数据（优先级高）
-  const critical = await fetchCriticalData();
-  renderCriticalData(critical);
-  hideSkeleton();
-
-  // 3. 加载次要数据（后台加载）
-  fetchSecondaryData().then(secondary => {
-    renderSecondaryData(secondary);
-  });
-
-  // 4. 加载增强数据（低优先级）
-  fetchEnhancementData().then(enhancement => {
-    renderEnhancementData(enhancement);
-  });
+.progress-group__helper {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
 }
 ```
 
@@ -639,11 +316,20 @@ async function loadProgressiveData() {
 
 ## 🔗 相关文档
 
+- [高级加载模式](component-states-loading-advanced.md) - 骨架屏、覆盖层、实用技巧
 - [返回主文档](component-states-loading.md)
 - [视觉描述与交互设计](component-states-loading-visual.md)
-- [组件状态总览](component-states.md)
 
 ---
 
+## 🔗 快速导航
+
+- [返回implementation/](./README.md)
+- [返回references/](../README.md)
+- [返回SKILL.md](../../SKILL.md)
+
+---
+
+> **文档版本**: v2.1 (拆分版)
 > **最后更新**: 2026-01-05
-> **维护者**: Frontend Design Agent Skills 项目团队
+> **维护者**: Frontend Design Agent Skills Team

@@ -14,7 +14,8 @@
 
 **相关文档**:
 - [基础与表单组件](component-examples-basic-form.md) - Button、Input、FormField、Select 完整实现
-- [数据展示与反馈组件](component-examples-display-feedback.md) - Card、Badge、Toast、Modal、Layout、复合组件
+- [数据展示组件](component-examples-display.md) - Card、Badge、Container、Grid
+- [用户反馈组件](component-examples-feedback.md) - Toast、Modal、复合组件
 
 ---
 
@@ -39,10 +40,10 @@
 |------|------|------|----------|
 | **基础组件** | Button, Input | 最常用的基础交互组件 | [查看详情](component-examples-basic-form.md) |
 | **表单组件** | FormField, Select | 表单相关组件 | [查看详情](component-examples-basic-form.md) |
-| **数据展示** | Card, Badge | 数据可视化展示组件 | [查看详情](component-examples-display-feedback.md) |
-| **反馈组件** | Toast, Modal | 用户反馈和对话框 | [查看详情](component-examples-display-feedback.md) |
-| **布局组件** | Container, Grid | 页面布局容器 | [查看详情](component-examples-display-feedback.md) |
-| **复合组件** | UserCard | 组合多个基础组件 | [查看详情](component-examples-display-feedback.md) |
+| **数据展示** | Card, Badge | 数据可视化展示组件 | [查看详情](component-examples-display.md) |
+| **布局组件** | Container, Grid | 页面布局容器 | [查看详情](component-examples-display.md) |
+| **反馈组件** | Toast, Modal | 用户反馈和对话框 | [查看详情](component-examples-feedback.md) |
+| **复合组件** | UserCard | 组合多个基础组件 | [查看详情](component-examples-feedback.md) |
 
 ### 按复杂度分类
 
@@ -202,16 +203,16 @@ describe('Button', () => {
 └─ 使用 [Input](component-examples-basic-form.md#input-组件)
 
 需要展示数据？
-└─ 使用 [Card](component-examples-display-feedback.md#card-组件)
+└─ 使用 [Card](component-examples-display.md#card-组件)
 
 需要通知用户？
-└─ 使用 [Toast](component-examples-display-feedback.md#toast-组件)
+└─ 使用 [Toast](component-examples-feedback.md#toast-组件)
 
 需要对话框？
-└─ 使用 [Modal](component-examples-display-feedback.md#modal-组件)
+└─ 使用 [Modal](component-examples-feedback.md#modal-组件)
 
 需要布局容器？
-└─ 使用 [Container](component-examples-display-feedback.md#container-组件)
+└─ 使用 [Container](component-examples-display.md#container-组件)
 ```
 
 ---
@@ -219,7 +220,8 @@ describe('Button', () => {
 ## 🔗 相关文档
 
 - [基础与表单组件详解](component-examples-basic-form.md)
-- [数据展示与反馈组件详解](component-examples-display-feedback.md)
+- [数据展示组件详解](component-examples-display.md) - Card、Badge、Container、Grid
+- [用户反馈组件详解](component-examples-feedback.md) - Toast、Modal、复合组件
 - [组件状态覆盖](../implementation/component-states.md)
 - [Design Token方法论](../methodology/design-tokens.md)
 
