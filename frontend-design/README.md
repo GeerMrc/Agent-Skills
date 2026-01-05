@@ -20,7 +20,7 @@
 
 | 技能包 | 版本 | 描述 | 状态 |
 |--------|------|------|------|
-| [Frontend Design](#frontend-design) | v0.1.1 | 创建独特、生产级前端界面的专业技能 | ✅ 已发布 |
+| [Frontend Design](#frontend-design) | v0.1.1.1 | 创建独特、生产级前端界面的专业技能 | ✅ 已发布 |
 
 ---
 
@@ -56,7 +56,7 @@ python ../release/verify/verify-after-install.py
 ```bash
 # 1. 从 GitHub Release 下载发布包
 # 2. 解压到目标位置
-unzip frontend-design-2.2.0.zip
+unzip frontend-design-0.1.1.1.zip
 
 # 3. 验证安装
 cd frontend-design
@@ -87,20 +87,21 @@ python ../release/verify/verify-after-install.py
 ```
 frontend-design/
 ├── SKILL.md              # 技能入口（193行）
-├── scripts/              # 11个Python工具脚本
+├── LICENSE               # 许可证
+├── README.md             # 技能说明
+├── CHANGELOG.md          # 变更日志
+├── scripts/              # 10个Python工具脚本
 │   ├── validate/         # Token/无障碍/性能验证
 │   ├── generate/         # 组件/主题生成
-│   ├── test/             # 技能测试工具
 │   └── utils/            # 共享模块
 ├── references/           # 详细文档
 │   ├── methodology/      # 设计方法论
 │   ├── by-framework/     # 框架指南
 │   └── quality/          # 质量指南
-├── templates/            # 项目模板
-│   ├── react/            # Vite + React 18 + TS
-│   ├── vue/              # Vite + Vue 3.4 + TS
-│   └── vanilla/          # Vite + TypeScript
-└── docs/                 # 开发文档（不在发布包中）
+└── templates/            # 项目模板
+    ├── react/            # Vite + React 18 + TS
+    ├── vue/              # Vite + Vue 3.4 + TS
+    └── vanilla/          # Vite + TypeScript
 ```
 
 **快速使用**:

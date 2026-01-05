@@ -1358,6 +1358,69 @@ cat frontend-design/SKILL.md
 
 ---
 
+## 🎯 Phase 21: 文档一致性修复 (2026-01-05)
+
+**目标**: 修复文档内容与实际开发表述不一致的问题
+
+**开发流程规范**:
+- 遵循 `docs/DEVELOPMENT_WORKFLOW.md` 规范
+- 每个任务完成后必须进行交叉验证确认
+- TASK.md 更新必须立即 git commit
+
+**问题发现**:
+- 根README.md中的项目结构图显示docs/在frontend-design/目录下，实际docs/在项目根目录
+- 描述的测试目录结构是旧的scripts/test/，而非实际的tests/
+- 版本号不一致（v0.1.1 vs v0.1.1.1）
+- 占位符URL未替换为实际仓库URL
+
+| 任务ID | 任务名称 | 状态 | 优先级 | 备注 |
+|--------|----------|------|--------|------|
+| TASK-2101 | 修复根README.md项目结构图和版本号 | ✅ DONE | P0 | 添加完整项目结构，更新v0.1.1.1 |
+| TASK-2102 | 修复技能包README版本号和结构 | ✅ DONE | P1 | 更新版本号，修正项目结构描述 |
+| TASK-2103 | 修复CONTRIBUTING.md占位符URL | ✅ DONE | P1 | 替换为实际仓库URL |
+| TASK-2104 | 交叉验证所有修复 | ✅ DONE | P0 | 确认版本号、结构、URL一致 |
+| TASK-2105 | 更新TASK.md记录 | ✅ DONE | P0 | 本记录 |
+| TASK-2106 | Git提交修复 | ⏳ PENDING | P0 | 待提交 |
+
+### 修复详情
+
+**TASK-2101**: 修复根README.md (`/README.md`)
+- 更新第23行版本号：v0.1.1 → v0.1.1.1
+- 添加完整项目结构图，反映实际目录层级：
+  - docs/ 在项目根目录（与frontend-design/同级）
+  - tests/ 在项目根目录（与docs/、release/同级）
+  - 明确区分GitHub仓库结构和发布的技能包结构
+
+**TASK-2102**: 修复技能包README (`/frontend-design/README.md`)
+- 更新第23行版本号：v0.1.1 → v0.1.1.1
+- 更新第59行发布包文件名：frontend-design-2.2.0.zip → frontend-design-0.1.1.1.zip
+- 修正项目结构图：
+  - 移除docs/目录（不在技能包中）
+  - 移除scripts/test/（测试在项目根目录tests/）
+  - 更新Python脚本数量：11个 → 10个
+
+**TASK-2103**: 修复CONTRIBUTING.md (`/frontend-design/CONTRIBUTING.md`)
+- 替换占位符URL：
+  - `https://github.com/your-org/frontend-design/issues` → `https://github.com/GeerMrc/Agent-Skills/issues`
+  - `https://github.com/original-org/frontend-design.git` → `https://github.com/GeerMrc/Agent-Skills.git`
+
+**TASK-2104**: 交叉验证结果
+- ✅ 所有文档版本号统一为 v0.1.1.1
+- ✅ 项目结构图反映实际目录层级
+- ✅ docs/ 目录位置正确（项目根目录，12个文件）
+- ✅ tests/ 目录位置正确（项目根目录）
+- ✅ 无占位符URL（保留合理的YOUR_USERNAME模板）
+
+### 修复影响文件
+
+| 文件 | 修改内容 | 行数变化 |
+|------|----------|----------|
+| `/README.md` | 版本号 + 项目结构图 | +44行 |
+| `/frontend-design/README.md` | 版本号 + 文件名 + 结构图 | -7行, +17行 |
+| `/frontend-design/CONTRIBUTING.md` | URL替换 | 3行修改 |
+
+---
+
 ## 🔗 相关文档
 
 - [开发流程规范](DEVELOPMENT_WORKFLOW.md)

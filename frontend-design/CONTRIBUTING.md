@@ -44,7 +44,7 @@
 ### 举报
 
 如果您遇到不可接受的行为，请通过以下方式联系项目维护者：
-- GitHub Issues: https://github.com/your-org/frontend-design/issues
+- GitHub Issues: https://github.com/GeerMrc/Agent-Skills/issues
 - Email: maintainers@example.com
 
 ---
@@ -65,7 +65,7 @@
 
 ### 开始贡献
 
-1. **查看开放的问题**: [GitHub Issues](https://github.com/your-org/frontend-design/issues)
+1. **查看开放的问题**: [GitHub Issues](https://github.com/GeerMrc/Agent-Skills/issues)
 2. **选择一个任务**: 寻找标记为 `good first issue` 或 `help wanted` 的问题
 3. **领取任务**: 在问题下评论表示您正在处理
 4. **开始工作**: 按照以下指南设置开发环境
@@ -90,7 +90,7 @@ git clone https://github.com/YOUR_USERNAME/frontend-design.git
 cd frontend-design
 
 # 3. 添加上游远程仓库
-git remote add upstream https://github.com/original-org/frontend-design.git
+git remote add upstream https://github.com/GeerMrc/Agent-Skills.git
 
 # 4. 验证远程仓库
 git remote -v

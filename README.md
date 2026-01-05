@@ -20,7 +20,7 @@
 
 | 技能包 | 版本 | 描述 | 状态 |
 |--------|------|------|------|
-| [Frontend Design](frontend-design/) | v0.1.1 | 创建独特、生产级前端界面的专业技能 | ✅ 已发布 |
+| [Frontend Design](frontend-design/) | v0.1.1.1 | 创建独特、生产级前端界面的专业技能 | ✅ 已发布 |
 
 ---
 
@@ -63,6 +63,48 @@ skill-name/
 ├── templates/            # 可选 - 项目模板
 ├── assets/               # 可选 - 静态资源
 └── tests/                # 可选 - 测试文件
+```
+
+### 本仓库项目结构
+
+```
+Agent-Skills/                    # GitHub 仓库根目录
+├── README.md                    # 仓库总览
+├── CHANGELOG.md                 # 变更日志
+├── CONTRIBUTING.md              # 贡献指南
+├── LICENSE                      # 许可证
+├── docs/                        # 开发文档目录（仅在仓库中）
+│   ├── README.md                # 文档导航索引
+│   ├── DEVELOPMENT_WORKFLOW.md  # 开发流程规范
+│   ├── API.md                   # API文档
+│   ├── TASK.md                  # 任务追踪
+│   └── [其他开发文档...]
+├── tests/                       # 测试代码目录（仅在仓库中）
+│   ├── unit/                    # 单元测试
+│   ├── integration/             # 集成测试
+│   ├── e2e/                     # E2E测试
+│   └── test-cases/              # 测试用例
+├── release/                     # 发布管理（仅在仓库中）
+│   ├── package/                 # 打包工具
+│   ├── verify/                  # 验证工具
+│   └── output/                  # 发布包输出
+└── frontend-design/             # 技能包目录（纯净的运行时）
+    ├── SKILL.md                 # 必需 - 技能入口文件
+    ├── LICENSE                  # 可选 - 许可证
+    ├── README.md                # 可选 - 技能说明
+    ├── CHANGELOG.md             # 可选 - 变更日志
+    ├── scripts/                 # 技能运行脚本
+    │   ├── validate/            # 验证工具
+    │   ├── generate/            # 生成工具
+    │   └── utils/               # 共享模块
+    ├── references/              # 详细文档
+    │   ├── methodology/         # 设计方法论
+    │   ├── by-framework/        # 框架指南
+    │   └── quality/             # 质量指南
+    └── templates/               # 项目模板
+        ├── react/               # React模板
+        ├── vue/                 # Vue模板
+        └── vanilla/             # Vanilla模板
 ```
 
 ---
