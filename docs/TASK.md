@@ -688,10 +688,11 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 - 交叉验证通过: 文件结构正确,链接有效
 
 **TASK-1104.2 完成记录** (2026-01-05):
-- component-examples.md (704行) → 拆分为3份:
+- component-examples.md (704行) → 拆分为4份:
   - component-examples.md (238行) - 总览文档
   - component-examples-basic-form.md (464行) - 基础与表单组件
-  - component-examples-display-feedback.md (604行) - 数据展示与反馈组件
+  - component-examples-display.md (285行) - 数据展示组件
+  - component-examples-feedback.md (401行) - 反馈组件
 - 更新引用文件: references/README.md, examples/README.md
 - 交叉验证通过: 文件结构正确,链接有效
 
@@ -800,7 +801,7 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 | TASK-1305 | 拆分 tailwind-guide.md | ✅ DONE | P1 | 744→2份(432+477) |
 | TASK-1306 | 拆分 vue-guide.md | ✅ DONE | P1 | 717→2份(470+546) |
 | TASK-1307 | 拆分 component-states-loading-patterns.md | ✅ DONE | P2 | 649→2份(335+479) |
-| TASK-1308 | 拆分 component-examples-display-feedback.md | ✅ DONE | P2 | 604→2份(285+401) |
+| TASK-1308 | 拆分 component-examples-display/feedback.md | ✅ DONE | P2 | 拆分为2份(285+401) |
 | TASK-1309 | 拆分 css-modules.md | ✅ DONE | P2 | 603→2份(300+357) |
 | TASK-1310 | 更新 references/README.md 索引 | ✅ DONE | - | 同步拆分文档索引 |
 | TASK-1311 | 验证所有引用路径有效性 | ✅ DONE | - | 交叉验证确认 |
@@ -834,7 +835,7 @@ frontend-design-skill/     ✅ 发布的技能包（精简）
 **发现9个超长文档**:
 - P0 (>900行): 4个 - design-directions-playful-guide(1037), svelte-guide(968), angular-guide(958), styled-components-guide(829)
 - P1 (800-900行): 2个 - tailwind-guide(744), vue-guide(717)
-- P2 (600-800行): 3个 - component-states-loading-patterns(649), component-examples-display-feedback(604), css-modules(603)
+- P2 (600-800行): 3个 - component-states-loading-patterns(649), component-examples-display(285), component-examples-feedback(401)
 
 **SKILL.md 描述需更新**:
 - 第77行: 组件状态描述需反映7份文档结构
