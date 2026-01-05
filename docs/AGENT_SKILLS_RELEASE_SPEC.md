@@ -780,7 +780,7 @@ git checkout v2.2.0
 ```
 
 ## 完整变更日志
-参见 [CHANGELOG.md](CHANGELOG.md)
+参见 [CHANGELOG.md](../frontend-design/CHANGELOG.md)
 ```
 
 #### 3.2 附加资产
@@ -1005,7 +1005,7 @@ python scripts/generate-theme.py my-theme --colors modern
 
 ## 版本历史
 
-参见 [CHANGELOG.md](CHANGELOG.md) 获取完整版本历史。
+参见 [CHANGELOG.md](../frontend-design/CHANGELOG.md) 获取完整版本历史。
 
 ## 许可证
 

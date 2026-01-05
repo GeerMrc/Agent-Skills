@@ -492,4 +492,4 @@ gpg --verify v2.2.0.tar.gz.sig
 
 ## 历史版本
 
-查看完整的历史版本信息，请访问 [CHANGELOG.md](./CHANGELOG.md)。
+查看完整的历史版本信息，请访问 [CHANGELOG.md](../frontend-design/CHANGELOG.md)。
